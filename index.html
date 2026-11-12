@@ -1,0 +1,1923 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SageMC - Minecraft Server & Custom Store</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Press+Start+2P&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: #eef2ff;
+    color: #0f172a;
+    padding-bottom: 92px;
+    transition: background 0.2s;
+  }
+  body.store-dark {
+    background: #16181d;
+    color: #f8fafc;
+  }
+
+  /* top bar */
+  .topbar {
+    background: #ffffff;
+    border-bottom: 1px solid #dbe4f3;
+    padding: 12px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 40;
+  }
+  body.store-dark .topbar {
+    background: #1e2128;
+    border-bottom-color: #2d323e;
+  }
+  .topbar-inner {
+    max-width: 960px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 800;
+    font-size: 19px;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+  }
+  .nav-actions { display: flex; gap: 8px; align-items: center; }
+  .icon-btn {
+    width: 38px; height: 38px;
+    border-radius: 8px;
+    border: 1px solid #cbd5e1;
+    background: #fff;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+  }
+  body.store-dark .icon-btn {
+    background: #282c37;
+    border-color: #3b4252;
+    color: #fff;
+  }
+  .btn-primary {
+    background: #3358d4;
+    color: #fff;
+    border: none;
+    padding: 9px 18px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  .btn-primary:hover { background: #2747b5; }
+
+  .wrap {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  /* search */
+  .search-box {
+    background: #fff;
+    border: 1px solid #cbd5e1;
+    border-radius: 12px;
+    padding: 6px 8px 6px 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 6px rgba(15, 23, 42, 0.03);
+  }
+  .search-box input {
+    border: none;
+    outline: none;
+    flex: 1;
+    font-size: 14px;
+    font-family: inherit;
+    color: #1e293b;
+  }
+
+  /* hero banner */
+  .hero-banner {
+    background: linear-gradient(135deg, #facc15 0%, #eab308 100%);
+    border-radius: 14px;
+    padding: 24px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 0 #ca8a04;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .hero-banner h1 { font-size: 26px; font-weight: 800; color: #1e1b08; margin-bottom: 4px; }
+  .hero-banner p { font-size: 14px; color: #3f380e; margin-bottom: 14px; font-weight: 500; }
+  .ip-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+  .ip-pill {
+    background: #fef9c3;
+    border: 2px solid #ca8a04;
+    padding: 9px 14px;
+    border-radius: 8px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 11px;
+    color: #1e1b08;
+    letter-spacing: 0.5px;
+  }
+  .hero-art { display: flex; align-items: center; gap: 12px; }
+
+  h2.sec-title {
+    font-size: 22px;
+    font-weight: 800;
+    margin-bottom: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .sec-link {
+    font-size: 13px;
+    color: #3358d4;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  /* explore grid */
+  .explore-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  @media (max-width: 700px) {
+    .explore-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  .mode-card {
+    border-radius: 14px;
+    padding: 24px 16px 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: transform 0.14s ease;
+    min-height: 210px;
+  }
+  .mode-card:hover { transform: translateY(-3px); }
+  .mode-card span {
+    font-weight: 800;
+    font-size: 15px;
+    color: #0f172a;
+    margin-top: 14px;
+  }
+  .c-green { background: #6ee76b; box-shadow: 0 4px 0 #38b835; }
+  .c-pink { background: #ff8da1; box-shadow: 0 4px 0 #e05670; }
+  .c-blue { background: #7da6f8; box-shadow: 0 4px 0 #4d7ce0; }
+  .c-orange { background: #fdb462; box-shadow: 0 4px 0 #dc8629; }
+  .c-purple { background: #b99aff; box-shadow: 0 4px 0 #8a63e6; }
+  .c-rose { background: #f88fb3; box-shadow: 0 4px 0 #d65b86; }
+  .c-yellow { background: #fcd34d; box-shadow: 0 4px 0 #d4a317; }
+  .c-mint { background: #67d4a7; box-shadow: 0 4px 0 #37a377; }
+  .c-cyan { background: #67d8ef; box-shadow: 0 4px 0 #34a6bd; }
+
+  /* skin studio promo */
+  .panel-card {
+    background: #fff;
+    border: 1px solid #cbd5e1;
+    border-radius: 14px;
+    padding: 18px;
+    margin-bottom: 30px;
+  }
+  .studio-previews {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+  .preview-box {
+    background: #dceeff;
+    border-radius: 10px;
+    padding: 14px;
+    display: grid;
+    place-items: center;
+  }
+  .btn-gold {
+    width: 100%;
+    background: #facc15;
+    border: none;
+    box-shadow: 0 3px 0 #ca8a04;
+    padding: 13px;
+    border-radius: 10px;
+    font-weight: 800;
+    font-size: 14px;
+    color: #1e1b08;
+    cursor: pointer;
+    margin-top: 12px;
+  }
+  .btn-gold:hover { background: #f5c305; }
+
+  /* horizontal item strip */
+  .items-strip {
+    display: flex;
+    gap: 14px;
+    overflow-x: auto;
+    padding-bottom: 12px;
+    margin-bottom: 28px;
+  }
+  .mini-item {
+    min-width: 142px;
+    background: #fff;
+    border: 1px solid #cbd5e1;
+    border-radius: 12px;
+    padding: 14px 10px;
+    text-align: center;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+  .mini-item:hover { border-color: #3358d4; }
+  .mini-item h4 { font-size: 13px; font-weight: 700; margin: 8px 0 6px; }
+
+  /* rarity pills */
+  .badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 800;
+    padding: 2px 8px;
+    border-radius: 5px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+  }
+  .b-legendary { border: 1px solid #f59e0b; color: #d97706; background: #fffbeb; }
+  .b-mythic { border: 1px solid #ec4899; color: #db2777; background: #fdf2f8; }
+  .b-epic { border: 1px solid #8b5cf6; color: #7c3aed; background: #f5f3ff; }
+  .b-rare { border: 1px solid #3b82f6; color: #2563eb; background: #eff6ff; }
+
+  /* news cards */
+  .news-card {
+    background: #fff;
+    border: 1px solid #cbd5e1;
+    border-radius: 12px;
+    padding: 16px 18px;
+    margin-bottom: 12px;
+  }
+  .tag-pill {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 800;
+    color: #15803d;
+    border: 1px solid #22c55e;
+    background: #f0fdf4;
+    padding: 2px 7px;
+    border-radius: 4px;
+    margin-bottom: 6px;
+  }
+  .news-card h3 { font-size: 15px; font-weight: 800; margin-bottom: 4px; }
+  .news-card p { font-size: 13px; color: #475569; margin-bottom: 6px; }
+  .news-card small { font-size: 11px; color: #64748b; }
+
+  /* items catalog page */
+  .catalog-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  @media (max-width: 760px) { .catalog-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 480px) { .catalog-grid { grid-template-columns: 1fr; } }
+  .item-card {
+    background: #fff;
+    border: 1px solid #cbd5e1;
+    border-radius: 14px;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .item-art-bg {
+    background: #d9ecff;
+    border-radius: 10px;
+    height: 115px;
+    display: grid;
+    place-items: center;
+    margin-bottom: 12px;
+  }
+  .item-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+  }
+  .item-top h3 { font-size: 15px; font-weight: 800; }
+  .item-desc { font-size: 12.5px; color: #475569; line-height: 1.4; margin-bottom: 8px; }
+  .item-slot { font-size: 12px; color: #334155; margin-bottom: 12px; }
+  .item-foot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .price { font-size: 17px; font-weight: 800; }
+  .btn-cart {
+    background: #4ea819;
+    color: #fff;
+    border: none;
+    box-shadow: 0 3px 0 #36780e;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 12.5px;
+    cursor: pointer;
+  }
+  .btn-cart:hover { background: #439414; }
+
+  .pack-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 12px;
+  }
+  .pack-tile {
+    width: 72px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    padding: 8px 4px;
+    text-align: center;
+    background: #f8fafc;
+  }
+  .pack-tile span { display: block; font-size: 10px; font-weight: 700; margin-top: 4px; }
+
+  /* skin studio page */
+  .studio-layout {
+    display: grid;
+    grid-template-columns: 310px 1fr;
+    gap: 20px;
+    align-items: start;
+  }
+  @media (max-width: 760px) { .studio-layout { grid-template-columns: 1fr; } }
+  .stage-box {
+    background: #d7ebff;
+    border: 1px solid #bfd8f5;
+    border-radius: 14px;
+    padding: 28px 16px;
+    display: grid;
+    place-items: center;
+    position: sticky;
+    top: 78px;
+  }
+  .ctrl-card {
+    background: #fff;
+    border: 1px solid #cbd5e1;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 14px;
+  }
+  .ctrl-card h3 { font-size: 15px; font-weight: 800; margin-bottom: 12px; }
+  .swatch-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .swatch-label { width: 52px; font-size: 12.5px; font-weight: 600; color: #475569; }
+  .swatch {
+    width: 28px; height: 28px;
+    border-radius: 6px;
+    border: 2px solid #cbd5e1;
+    cursor: pointer;
+  }
+  .swatch.active { outline: 2px solid #2563eb; outline-offset: 2px; }
+  .equip-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .equip-btn {
+    border: 1px solid #cbd5e1;
+    background: #f8fafc;
+    border-radius: 10px;
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    text-align: left;
+  }
+  .equip-btn.selected {
+    border: 2px solid #2563eb;
+    background: #eff6ff;
+  }
+  .equip-btn strong { display: block; font-size: 12.5px; }
+  .equip-btn small { font-size: 11px; color: #64748b; }
+
+  /* rules accordion */
+  .rule-box {
+    background: #fff;
+    border: 1px solid #cbd5e1;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    overflow: hidden;
+  }
+  .rule-head {
+    padding: 16px 18px;
+    font-weight: 800;
+    font-size: 15px;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+  }
+  .rule-body {
+    padding: 0 18px 16px 34px;
+    font-size: 13.5px;
+    color: #334155;
+    line-height: 1.7;
+    display: none;
+  }
+  .rule-box.open .rule-body { display: block; }
+
+  /* dark store view */
+  .store-pixel-head {
+    text-align: center;
+    padding: 18px 0 22px;
+  }
+  .store-pixel-head h1 {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 26px;
+    color: #fcd34d;
+    text-shadow: 0 3px 0 #92400e;
+    margin-bottom: 8px;
+  }
+  .store-pixel-head p {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 9px;
+    color: #94a3b8;
+    letter-spacing: 2px;
+  }
+  .store-top-btns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .s-btn-brown {
+    background: linear-gradient(180deg, #85583f, #5c3a27);
+    border: 2px solid #a87659;
+    color: #fff;
+    padding: 12px;
+    border-radius: 8px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 11px;
+    cursor: pointer;
+  }
+  .s-btn-blue {
+    background: linear-gradient(180deg, #2b6cb0, #1e4e8c);
+    border: 2px solid #4299e1;
+    color: #fff;
+    padding: 12px;
+    border-radius: 8px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 11px;
+    cursor: pointer;
+  }
+  .crate-hero {
+    background: #232730;
+    border: 2px solid #353b48;
+    border-radius: 10px;
+    padding: 24px;
+    text-align: center;
+    margin-bottom: 18px;
+  }
+  .crate-art-box {
+    width: 150px; height: 150px;
+    margin: 0 auto 16px;
+    background: #2d4259;
+    border-radius: 8px;
+    display: grid;
+    place-items: center;
+  }
+  .crate-hero h2 {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 15px;
+    color: #fcd34d;
+    margin-bottom: 8px;
+  }
+  .timer-row {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    margin: 14px 0 18px;
+    font-family: 'Press Start 2P', monospace;
+  }
+  .timer-num { font-size: 20px; color: #fde68a; }
+  .timer-lbl { font-size: 9px; color: #94a3b8; margin-top: 6px; font-family: 'Plus Jakarta Sans', sans-serif; }
+
+  .store-cats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+  .cat-tile {
+    border-radius: 10px;
+    padding: 18px;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .cat-tile h3 {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 12px;
+    color: #fff;
+    text-shadow: 0 2px 0 rgba(0,0,0,0.45);
+    margin-top: 10px;
+  }
+  .cat-crates { grid-row: span 2; background: #eab308; box-shadow: 0 4px 0 #a16207; }
+  .cat-coins { background: #0284c7; box-shadow: 0 4px 0 #0369a1; }
+  .cat-ranks { background: #dc2626; box-shadow: 0 4px 0 #991b1b; }
+  .cat-bundles { background: #ea580c; box-shadow: 0 4px 0 #9a3412; }
+  .cat-sageplus { background: #0ea5e9; box-shadow: 0 4px 0 #0284c7; }
+  .pop-pill {
+    background: #facc15;
+    color: #1e1b08;
+    font-size: 9px;
+    font-weight: 800;
+    padding: 2px 8px;
+    border-radius: 99px;
+    margin-bottom: 6px;
+  }
+
+  .dark-box {
+    background: #232730;
+    border: 1px solid #353b48;
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin-bottom: 14px;
+  }
+  .dark-box h4 {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 11px;
+    color: #fde68a;
+    margin-bottom: 10px;
+  }
+
+  /* auth card */
+  .auth-card {
+    max-width: 440px;
+    margin: 24px auto;
+    background: #fff;
+    border: 1px solid #cbd5e1;
+    border-radius: 14px;
+    padding: 26px;
+  }
+  .auth-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 16px 0 18px; }
+  .auth-tab {
+    padding: 10px;
+    border-radius: 8px;
+    font-weight: 700;
+    border: 1px solid #cbd5e1;
+    background: #f1f5f9;
+    cursor: pointer;
+  }
+  .auth-tab.active { background: #3358d4; color: #fff; border-color: #3358d4; }
+  .field-lbl { display: block; font-size: 13px; font-weight: 700; margin-bottom: 6px; }
+  .field-inp {
+    width: 100%;
+    padding: 11px 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    margin-bottom: 14px;
+    font-family: inherit;
+  }
+
+  /* bottom nav */
+  .bottom-nav {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: #fff;
+    border-top: 1px solid #cbd5e1;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 8px 0 10px;
+    z-index: 50;
+  }
+  body.store-dark .bottom-nav {
+    background: #1e2128;
+    border-top-color: #2d323e;
+  }
+  .nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #64748b;
+    cursor: pointer;
+    border: none;
+    background: none;
+  }
+  .nav-item.active { color: #2563eb; }
+  .nav-plus {
+    width: 46px; height: 46px;
+    background: #facc15;
+    border-radius: 10px;
+    box-shadow: 0 3px 0 #ca8a04;
+    display: grid;
+    place-items: center;
+    font-size: 24px;
+    font-weight: 800;
+    color: #1e1b08;
+    border: none;
+    cursor: pointer;
+    margin-top: -14px;
+  }
+
+  /* cart modal */
+  .modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.55);
+    display: none;
+    place-items: center;
+    z-index: 100;
+    padding: 16px;
+  }
+  .modal-backdrop.open { display: grid; }
+  .modal-card {
+    background: #fff;
+    color: #0f172a;
+    width: 100%;
+    max-width: 440px;
+    border-radius: 16px;
+    padding: 22px;
+  }
+  .cart-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  .toast {
+    position: fixed;
+    top: 72px;
+    right: 20px;
+    background: #0f172a;
+    color: #fff;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    display: none;
+    z-index: 120;
+  }
+
+  .view { display: none; }
+  .view.active { display: block; }
+  footer.site-foot {
+    margin-top: 32px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(148,163,184,0.3);
+    font-size: 12px;
+    color: #64748b;
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  footer.site-foot a { color: inherit; text-decoration: none; font-weight: 600; cursor: pointer; }
+  canvas.px { image-rendering: pixelated; }
+</style>
+</head>
+<body>
+
+<div id="toast" class="toast">Copied to clipboard!</div>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" onclick="go('home')">
+      <canvas class="px" data-sprite="logo" width="32" height="32"></canvas>
+      <span>SageMC</span>
+    </a>
+    <div class="nav-actions">
+      <button class="icon-btn" onclick="openCart()" title="Cart">
+        🛒 <span id="top-cart-count" style="font-size:11px;font-weight:800;">2</span>
+      </button>
+      <button class="btn-primary" id="auth-btn" onclick="go('signin')">Sign in</button>
+    </div>
+  </div>
+</header>
+
+<!-- HOME VIEW -->
+<main id="view-home" class="view active wrap">
+  <div class="search-box">
+    <span>🔍</span>
+    <input type="text" id="home-search" placeholder="Find modes, items, news..." onkeyup="if(event.key==='Enter') go('items')">
+    <button class="btn-primary" style="padding:7px 14px;" onclick="go('items')">Go</button>
+  </div>
+
+  <section class="hero-banner">
+    <div>
+      <h1>Play on SageMC</h1>
+      <p>Add this server address in Minecraft</p>
+      <div class="ip-row">
+        <div class="ip-pill">PLAY.SAGEMC.NET</div>
+        <button class="btn-primary" onclick="copyIP()">Copy IP</button>
+      </div>
+    </div>
+    <div class="hero-art">
+      <canvas class="px" data-sprite="grass" width="76" height="76"></canvas>
+      <canvas class="px" data-sprite="sage_blade" width="76" height="76"></canvas>
+    </div>
+  </section>
+
+  <h2 class="sec-title">Explore</h2>
+  <div class="explore-grid">
+    <div class="mode-card c-green" onclick="notify('Survival: 1.21.11 Economy & Claims')">
+      <canvas class="px" data-sprite="shovel" width="84" height="84"></canvas>
+      <span>Survival</span>
+    </div>
+    <div class="mode-card c-pink" onclick="notify('Hardcore: Single-life seasonal world')">
+      <canvas class="px" data-sprite="heart" width="84" height="84"></canvas>
+      <span>Hardcore</span>
+    </div>
+    <div class="mode-card c-blue" onclick="notify('PvP: Crystal, Axe & Netherite Duels')">
+      <canvas class="px" data-sprite="iron_sword" width="84" height="84"></canvas>
+      <span>PvP</span>
+    </div>
+    <div class="mode-card c-orange" onclick="notify('BedWars: Solos, Doubles & 4v4')">
+      <canvas class="px" data-sprite="bed" width="84" height="84"></canvas>
+      <span>BedWars</span>
+    </div>
+    <div class="mode-card c-purple" onclick="notify('Minigames: Spleef, TNT Run & Parkour')">
+      <canvas class="px" data-sprite="trophy" width="84" height="84"></canvas>
+      <span>Minigames</span>
+    </div>
+    <div class="mode-card c-rose" onclick="go('skins')">
+      <canvas class="px" data-sprite="steve" width="84" height="84"></canvas>
+      <span>Skins</span>
+    </div>
+    <div class="mode-card c-yellow" onclick="go('items')">
+      <canvas class="px" data-sprite="crown" width="84" height="84"></canvas>
+      <span>Items</span>
+    </div>
+    <div class="mode-card c-mint" onclick="go('rules')">
+      <canvas class="px" data-sprite="grass" width="84" height="84"></canvas>
+      <span>Features</span>
+    </div>
+    <div class="mode-card c-cyan" onclick="go('store')">
+      <canvas class="px" data-sprite="chest" width="84" height="84"></canvas>
+      <span>Store</span>
+    </div>
+  </div>
+
+  <h2 class="sec-title">Custom Skins <a class="sec-link" onclick="go('skins')">Open studio</a></h2>
+  <div class="panel-card">
+    <div class="studio-previews">
+      <div class="preview-box"><canvas class="px" data-sprite="char_1" width="90" height="90"></canvas></div>
+      <div class="preview-box"><canvas class="px" data-sprite="char_2" width="90" height="90"></canvas></div>
+      <div class="preview-box"><canvas class="px" data-sprite="char_3" width="90" height="90"></canvas></div>
+    </div>
+    <p style="font-size:13.5px; color:#475569;">Put SageMC custom items on your own skin, see the full look, then buy the pieces you want.</p>
+    <button class="btn-gold" onclick="go('skins')">Try the skin studio</button>
+  </div>
+
+  <h2 class="sec-title">Custom Items <a class="sec-link" onclick="go('items')">See all</a></h2>
+  <div class="items-strip" id="home-items-strip"></div>
+
+  <h2 class="sec-title">News</h2>
+  <div class="news-card">
+    <span class="tag-pill">WEBSITE</span>
+    <h3>The SageMC website is live</h3>
+    <p>Browse game modes, rules, custom items and the store. Join with play.sagemc.net.</p>
+    <small>9 Nov 2026</small>
+  </div>
+  <div class="news-card">
+    <span class="tag-pill">SKINS</span>
+    <h3>Custom Skin studio is open</h3>
+    <p>Dress a character with SageMC custom items, preview the full look and buy the pieces you like.</p>
+    <small>9 Nov 2026</small>
+  </div>
+  <div class="news-card">
+    <span class="tag-pill">STORE</span>
+    <h3>Store preview</h3>
+    <p>Crates, ranks, bundles and Sage+ are listed with high-res 16×16 resource pack textures.</p>
+    <small>9 Nov 2026</small>
+  </div>
+</main>
+
+<!-- CUSTOM ITEMS CATALOG VIEW -->
+<main id="view-items" class="view wrap">
+  <h2 class="sec-title" style="font-size:28px; margin-bottom:6px;">Custom Items</h2>
+  <p style="font-size:14px; color:#475569; margin-bottom:20px;">Wear them on your skin in the studio, or add them straight to your cart.</p>
+
+  <div class="catalog-grid" id="catalog-grid"></div>
+
+  <div class="panel-card">
+    <h3 style="font-size:19px; font-weight:800; margin-bottom:4px;">Texture pack preview</h3>
+    <p style="font-size:13px; color:#475569;">Every custom item has its own shaded 16×16 texture. This is how they look in the pack.</p>
+    <div class="pack-grid" id="pack-grid"></div>
+    <button class="btn-gold" onclick="go('skins')">Try them in the skin studio</button>
+  </div>
+</main>
+
+<!-- SKIN STUDIO VIEW -->
+<main id="view-skins" class="view wrap">
+  <h2 class="sec-title" style="font-size:28px; margin-bottom:6px;">Custom Skin</h2>
+  <p style="font-size:14px; color:#475569; margin-bottom:20px;">Pick your colors, try SageMC custom items on your character and buy what you like.</p>
+
+  <div class="studio-layout">
+    <div class="stage-box">
+      <canvas id="studio-canvas" class="px" width="220" height="240"></canvas>
+    </div>
+
+    <div>
+      <div class="ctrl-card">
+        <h3>Your look</h3>
+        <div class="swatch-row" id="sw-skin"><span class="swatch-label">Skin</span></div>
+        <div class="swatch-row" id="sw-hair"><span class="swatch-label">Hair</span></div>
+        <div class="swatch-row" id="sw-shirt"><span class="swatch-label">Shirt</span></div>
+        <div class="swatch-row" id="sw-pants"><span class="swatch-label">Pants</span></div>
+      </div>
+
+      <div id="slot-controls"></div>
+
+      <div class="ctrl-card" style="display:flex; justify-content:space-between; align-items:center;">
+        <div>
+          <div style="font-size:12px; color:#64748b;" id="selected-count">2 items selected</div>
+          <div style="font-size:22px; font-weight:800;" id="selected-total">₹1,098</div>
+        </div>
+        <div style="display:flex; gap:8px;">
+          <button class="icon-btn" style="width:auto; padding:0 14px; font-weight:700;" onclick="resetStudio()">Reset</button>
+          <button class="btn-cart" style="padding:10px 18px;" onclick="buySelectedStudio()">Buy selected</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- RULES VIEW -->
+<main id="view-rules" class="view wrap">
+  <h2 class="sec-title" style="font-size:28px; margin-bottom:6px;">Server Rules</h2>
+  <p style="font-size:14px; color:#475569; margin-bottom:18px;">Read these before you play. Breaking them can lead to a mute, kick or ban.<br>Questions? Open a support ticket.</p>
+
+  <div class="rule-box open">
+    <div class="rule-head" onclick="this.parentElement.classList.toggle('open')">
+      <span>Respect everyone</span><span>−</span>
+    </div>
+    <ol class="rule-body">
+      <li><strong>Be kind.</strong> No harassment, hate speech, threats or targeting of any player or staff member.</li>
+      <li><strong>Keep chat clean.</strong> No spam, caps abuse, excessive swearing or sexual content.</li>
+      <li><strong>No drama copy-pasting.</strong> Do not bring outside fights into SageMC chat.</li>
+    </ol>
+  </div>
+  <div class="rule-box">
+    <div class="rule-head" onclick="this.parentElement.classList.toggle('open')">
+      <span>Fair play</span><span>+</span>
+    </div>
+    <ol class="rule-body">
+      <li><strong>No hacked clients.</strong> KillAura, Reach, X-Ray texture packs and auto-clickers are strictly banned.</li>
+      <li><strong>Allowed mods.</strong> Sodium, Optifine, MiniMaps without cave/entity radar, and ArmorStatus HUDs are fine.</li>
+    </ol>
+  </div>
+  <div class="rule-box">
+    <div class="rule-head" onclick="this.parentElement.classList.toggle('open')">
+      <span>Survival and Hardcore</span><span>+</span>
+    </div>
+    <ol class="rule-body">
+      <li><strong>No griefing claimed land.</strong> Bypassing claim borders with TNT cannons or pistons is bannable.</li>
+      <li><strong>Keep lag machines off.</strong> Massive redstone clocks without an on/off lever will be removed.</li>
+    </ol>
+  </div>
+  <div class="rule-box">
+    <div class="rule-head" onclick="this.parentElement.classList.toggle('open')">
+      <span>PvP and Minigames</span><span>+</span>
+    </div>
+    <ol class="rule-body">
+      <li><strong>No cross-teaming.</strong> Teaming in Solo BedWars or Free-For-All arenas results in a temporary ban.</li>
+      <li><strong>No combat logging.</strong> Disconnecting mid-fight forfeits your inventory automatically.</li>
+    </ol>
+  </div>
+  <div class="rule-box">
+    <div class="rule-head" onclick="this.parentElement.classList.toggle('open')">
+      <span>Skins, names and items</span><span>+</span>
+    </div>
+    <ol class="rule-body">
+      <li><strong>Keep skins appropriate.</strong> Offensive skins or renamed items with slurs will be confiscated.</li>
+    </ol>
+  </div>
+  <div class="rule-box">
+    <div class="rule-head" onclick="this.parentElement.classList.toggle('open')">
+      <span>Store and purchases</span><span>+</span>
+    </div>
+    <ol class="rule-body">
+      <li><strong>All store items are cosmetic or server perks.</strong> Chargebacks result in an automatic network ban.</li>
+    </ol>
+  </div>
+  <div class="rule-box">
+    <div class="rule-head" onclick="this.parentElement.classList.toggle('open')">
+      <span>Staff and appeals</span><span>+</span>
+    </div>
+    <ol class="rule-body">
+      <li><strong>Ban appeals.</strong> Open a support ticket with your IGN and ban ID within 14 days.</li>
+    </ol>
+  </div>
+
+  <button class="btn-gold" onclick="notify('Support ticket modal opened!')">Create a support ticket</button>
+</main>
+
+<!-- DARK STORE VIEW -->
+<main id="view-store" class="view wrap">
+  <div class="store-pixel-head">
+    <h1>SAGEMC</h1>
+    <p>OFFICIAL STORE</p>
+  </div>
+
+  <div class="store-top-btns">
+    <button class="s-btn-brown" onclick="go('items')">⊞ MENU</button>
+    <button class="s-btn-blue" onclick="openCart()">🛒 CART (<span id="store-cart-badge">2</span>)</button>
+  </div>
+
+  <div class="crate-hero">
+    <div class="crate-art-box">
+      <canvas class="px" data-sprite="void_chest" width="96" height="96"></canvas>
+    </div>
+    <h2>SAGE BLADE CRATE</h2>
+    <p style="font-size:12px; color:#94a3b8;">Available for a limited time!</p>
+    <div class="timer-row">
+      <div><div class="timer-num">23</div><div class="timer-lbl">Days</div></div>
+      <div><div class="timer-num">:</div></div>
+      <div><div class="timer-num">06</div><div class="timer-lbl">Hours</div></div>
+      <div><div class="timer-num">:</div></div>
+      <div><div class="timer-num">29</div><div class="timer-lbl">Minutes</div></div>
+    </div>
+    <button class="btn-gold" style="width:auto; padding:11px 24px;" onclick="addToCart('sage_crate')">Open crates — ₹249</button>
+  </div>
+
+  <div class="store-cats">
+    <div class="cat-tile cat-crates" onclick="addToCart('sage_crate')">
+      <canvas class="px" data-sprite="chest" width="76" height="76"></canvas>
+      <h3>CRATES</h3>
+    </div>
+    <div class="cat-tile cat-coins" onclick="addToCart('coins_pack')">
+      <span class="pop-pill">Most Popular</span>
+      <canvas class="px" data-sprite="diamond" width="54" height="54"></canvas>
+      <h3>COINS</h3>
+    </div>
+    <div class="cat-tile cat-ranks" onclick="addToCart('sage_rank')">
+      <canvas class="px" data-sprite="crown" width="54" height="54"></canvas>
+      <h3>RANKS</h3>
+    </div>
+    <div class="cat-tile cat-bundles" onclick="go('items')">
+      <canvas class="px" data-sprite="bundle" width="54" height="54"></canvas>
+      <h3>BUNDLES</h3>
+    </div>
+    <div class="cat-tile cat-sageplus" onclick="addToCart('sage_plus')">
+      <canvas class="px" data-sprite="plus_gem" width="54" height="54"></canvas>
+      <h3>SAGE+</h3>
+    </div>
+  </div>
+
+  <div class="dark-box">
+    <h4>BROWSE THE STORE</h4>
+    <p style="font-size:13px; color:#cbd5e1;">Pick Crates, Coins, Ranks, Bundles or Sage+ above. Custom items are on the <a style="color:#fde68a; text-decoration:underline; cursor:pointer;" onclick="go('items')">Items page</a>.</p>
+  </div>
+
+  <div class="dark-box">
+    <h4>SUPPORT / QUESTIONS</h4>
+    <div style="display:flex; justify-content:space-between; align-items:center; padding:8px 0; border-bottom:1px solid #353b48;">
+      <div>
+        <strong style="color:#4ade80; font-size:13px;">Support Ticket</strong>
+        <div style="font-size:11.5px; color:#94a3b8;">Problem with an order or a player?</div>
+      </div>
+      <button class="btn-cart" onclick="notify('Ticket created!')">CREATE</button>
+    </div>
+    <div style="display:flex; justify-content:space-between; align-items:center; padding-top:10px;">
+      <div>
+        <strong style="color:#818cf8; font-size:13px;">Discord Channel</strong>
+        <div style="font-size:11.5px; color:#94a3b8;">Chat with the community</div>
+      </div>
+      <button class="btn-primary" style="padding:7px 14px; font-size:12px;" onclick="notify('Opening discord.gg/sagemc')">JOIN</button>
+    </div>
+  </div>
+
+  <div class="dark-box" style="display:flex; justify-content:space-between; align-items:center;">
+    <div>
+      <h4>ACCOUNT</h4>
+      <strong style="font-size:13px;" id="store-user-lbl">Not signed in</strong>
+      <div style="font-size:11.5px; color:#94a3b8;">Use your Minecraft username and email.</div>
+    </div>
+    <button class="btn-gold" style="width:auto; padding:10px 14px; margin:0; font-size:12px;" onclick="go('signin')">LOGIN / REGISTER</button>
+  </div>
+</main>
+
+<!-- SIGN IN VIEW -->
+<main id="view-signin" class="view wrap">
+  <div class="auth-card">
+    <h2 style="font-size:26px; font-weight:800;">Sign in</h2>
+    <div class="auth-tabs">
+      <button class="auth-tab active" id="tab-login" onclick="switchAuthTab('login')">Login</button>
+      <button class="auth-tab" id="tab-reg" onclick="switchAuthTab('reg')">Register</button>
+    </div>
+    <label class="field-lbl">Minecraft username or email</label>
+    <input type="text" id="ign-input" class="field-inp" placeholder="Username or email">
+    <label class="field-lbl">Password</label>
+    <input type="password" id="pwd-input" class="field-inp" placeholder="At least 6 characters">
+    <button class="btn-gold" id="auth-submit-btn" onclick="handleLogin()">Login</button>
+    <p style="font-size:11.5px; color:#64748b; margin-top:14px; line-height:1.5;">
+      Accounts are saved only in this browser for now. Real accounts and payments need a server connected later.
+    </p>
+  </div>
+</main>
+
+<div class="wrap" style="padding-top:0;">
+  <footer class="site-foot">
+    <span>© SageMC</span>
+    <a onclick="go('rules')">Rules</a>
+    <a onclick="notify('Support ticket opened')">Support ticket</a>
+    <a onclick="notify('discord.gg/sagemc')">Discord</a>
+    <a onclick="go('store')">Store</a>
+  </footer>
+</div>
+
+<!-- CART MODAL -->
+<div class="modal-backdrop" id="cart-modal" onclick="if(event.target===this) closeCart()">
+  <div class="modal-card">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+      <h2 style="font-size:22px; font-weight:800;">Cart</h2>
+      <button class="icon-btn" onclick="closeCart()">✕</button>
+    </div>
+    <div id="cart-items-list"></div>
+    <div style="display:flex; justify-content:space-between; align-items:center; margin:18px 0;">
+      <span style="color:#64748b; font-weight:600;">Total</span>
+      <span style="font-size:22px; font-weight:800;" id="cart-total-price">₹1,098</span>
+    </div>
+    <button class="btn-gold" style="margin-top:0;" onclick="checkoutNow()">Checkout</button>
+  </div>
+</div>
+
+<!-- BOTTOM NAV -->
+<nav class="bottom-nav">
+  <button class="nav-item active" id="nav-home" onclick="go('home')"><span>🏠</span>Home</button>
+  <button class="nav-item" id="nav-skins" onclick="go('skins')"><span>👕</span>Skins</button>
+  <button class="nav-plus" onclick="go('items')" title="All Custom Items">+</button>
+  <button class="nav-item" id="nav-rules" onclick="go('rules')"><span>📄</span>Rules</button>
+  <button class="nav-item" id="nav-store" onclick="go('store')"><span>🛍️</span>Store</button>
+</nav>
+
+<script>
+// Upgraded shaded 16x16 pixel sprite matrices with multi-tone highlights & bevels
+const PAL = {
+  '.': null,
+  'k': '#141722', // deep outline
+  // emerald / sage blade
+  'e': '#047857', 'E': '#10b981', 'g': '#6ee7b7', 'w': '#ecfdf5',
+  // gold / hilt
+  'o': '#92400e', 'y': '#d97706', 'Y': '#facc15', 'L': '#fef08a',
+  // wood / handle
+  'b': '#451a03', 'B': '#78350f', 't': '#b45309',
+  // inferno fire
+  'r': '#991b1b', 'R': '#ef4444', 'O': '#f97316', 'F': '#fde047',
+  // void purple
+  'v': '#4c1d95', 'V': '#7c3aed', 'p': '#c084fc', 'P': '#f3e8ff',
+  // ice / frost / diamond
+  'c': '#0369a1', 'C': '#0ea5e9', 'a': '#7dd3fc', 'A': '#e0f2fe',
+  // steel / iron / shadow
+  's': '#334155', 'S': '#64748b', 'm': '#cbd5e1', 'M': '#f8fafc',
+  // grass & dirt
+  'd': '#5c3a21', 'D': '#7c4d2b', 'n': '#9c663c', 'G': '#22c55e', 'h': '#86efac'
+};
+
+const SPRITES = {
+  logo: [
+    "....kkkk........",
+    "..kkGGGGkk......",
+    "kkGGhhhhGGkk....",
+    "kGhhwwwwhhGk....",
+    "kGhwwGGGGhGk....",
+    "kGhwwkkkkkGk....",
+    "kGhhwwwwhhGk....",
+    "kGGGhhhhhhGk....",
+    "keeeeGGGGGGk....",
+    "keeeeeeeeeek....",
+    "keeeewwwwwkk....",
+    "keeeeeeeeek.....",
+    "..kkeeeekk......",
+    "....kkkk........",
+    "................",
+    "................"
+  ],
+  sage_blade: [
+    "...........kkkk.",
+    "..........kwwgkk",
+    ".........kwwgEgk",
+    "........kwwgEgk.",
+    ".......kwwgEgk..",
+    "......kwwgEgk...",
+    ".....kwwgEgk....",
+    "..kkkwwgEgk.....",
+    ".kLYkkgEgk......",
+    ".kYLYkEgk.......",
+    "..kkYYkk........",
+    "..kBtkYk........",
+    ".kBtkkLYk.......",
+    "kBtk..kk........",
+    "kkk.............",
+    "................"
+  ],
+  inferno_edge: [
+    "...........kkkk.",
+    "..........kFFOkk",
+    ".........kFFOORk",
+    "........kFFOORk.",
+    ".......kFFOORk..",
+    "......kFFOORk...",
+    ".....kFFOORk....",
+    "..kkkFFOORk.....",
+    ".kOykkgORk......",
+    ".kROykORk.......",
+    "..kkRRkk........",
+    "..kbbkRk........",
+    ".kbbkkOyk.......",
+    "kbbk..kk........",
+    "kkk.............",
+    "................"
+  ],
+  void_cleaver: [
+    "...........kkkk.",
+    "..........kPPpkk",
+    ".........kPPpVpk",
+    "........kPPpVpk.",
+    ".......kPPpVpk..",
+    "......kPPpVpk...",
+    ".....kPPpVpk....",
+    "..kkkPPpVpk.....",
+    ".kSskkpVpk......",
+    ".kMSskVpk.......",
+    "..kkVVkk........",
+    "..kbbkVk........",
+    ".kbbkkSsk.......",
+    "kbbk..kk........",
+    "kkk.............",
+    "................"
+  ],
+  dragonfang_axe: [
+    ".......kkkkk....",
+    "......kLYYYLk...",
+    ".....kLYYYYYLk..",
+    "....kLYYYyoyYLk.",
+    "....kLYYyoooyLk.",
+    ".....kLYyokoyk..",
+    "......kkBtkkk...",
+    ".....kBtk.......",
+    "....kBtk........",
+    "...kBtk.........",
+    "..kBtk..........",
+    ".kBtk...........",
+    "kBtk............",
+    "kkk.............",
+    "................",
+    "................"
+  ],
+  shadow_bow: [
+    "....kkkk........",
+    "...kMssSk.......",
+    "..kMs..kMk......",
+    ".kMs....kMk.....",
+    ".kMs....kMk.....",
+    "kVpk....kMk.....",
+    "kVpk....kMk.....",
+    "kVpk....kMk.....",
+    "kVpk....kMk.....",
+    ".kMs....kMk.....",
+    ".kMs....kMk.....",
+    "..kMs..kMk......",
+    "...kMssSk.......",
+    "....kkkk........",
+    "................",
+    "................"
+  ],
+  guardian_shield: [
+    "..kkkkkkkkkkkk..",
+    ".kYLLLLLLLLLLyk.",
+    ".kYeeeeeeeeeeyk.",
+    ".kYewwwwwwwweyk.",
+    ".kYewGGGGGGweyk.",
+    ".kYewGGGGGGweyk.",
+    ".kYewwwwwwwweyk.",
+    ".kYeeeeeeeeeeyk.",
+    ".kYeeeeeeeeeeyk.",
+    "..kYeeeeeeeeyk..",
+    "..kYeeeeeeeeyk..",
+    "...kYeeeeeeyk...",
+    "....kYeeeeyk....",
+    ".....kYeeyk.....",
+    "......kkkk......",
+    "................"
+  ],
+  crown: [
+    "................",
+    "................",
+    ".kk....kk....kk.",
+    "kLLk..kLLk..kLLk",
+    "kLYk..kLYk..kLYk",
+    "kLYYkkLYYk..kLYk",
+    "kLYYYYYYYkkkkLYk",
+    "kLYEAYYYYYEAYLYk",
+    "kLYYYYYYYYYYYLYk",
+    "kooyyyyyyyyyyook",
+    "kYYYYYYYYYYYYYYk",
+    "kkkkkkkkkkkkkkkk",
+    "................",
+    "................",
+    "................",
+    "................"
+  ],
+  frost_helm: [
+    "................",
+    "................",
+    "...kkkkkkkkkk...",
+    "..kAAAAAAAAAAk..",
+    ".kAaaaaaaaaaaAk.",
+    ".kAaccccccccaAk.",
+    ".kAacMMMMMMcaAk.",
+    ".kAacMAAAAcMaAk.",
+    ".kAaccccccccaAk.",
+    ".kAaakkkkkkaaAk.",
+    ".kAaak....kaaAk.",
+    ".kkkk......kkkk.",
+    "................",
+    "................",
+    "................",
+    "................"
+  ],
+  storm_wings: [
+    "................",
+    ".kk..........kk.",
+    "kAAk........kAAk",
+    "kAack......kcaAk",
+    "kAacCk....kCcaAk",
+    "kAacCCk..kCCcaAk",
+    ".kAacCCkkCCcaAk.",
+    ".kAacCCCCCCcaAk.",
+    "..kAacCCCCcaAk..",
+    "..kAacCCCCcaAk..",
+    "...kAacCCcaAk...",
+    "....kAaccaAk....",
+    ".....kAAAAk.....",
+    "......kkkk......",
+    "................",
+    "................"
+  ],
+  phoenix_wings: [
+    "................",
+    ".kk..........kk.",
+    "kFFk........kFFk",
+    "kFOOk......kOOFk",
+    "kFOORk....kROOFk",
+    "kFOORRk..kRROOFk",
+    ".kFOORRkkRROOFk.",
+    ".kFOORRRRRROOFk.",
+    "..kFOORRRROOFk..",
+    "..kFOORRRROOFk..",
+    "...kFOORROOFk...",
+    "....kFOOOOFk....",
+    ".....kFFFFk.....",
+    "......kkkk......",
+    "................",
+    "................"
+  ],
+  aqua_boots: [
+    "................",
+    "................",
+    "................",
+    "..kkkkk..kkkkk..",
+    ".kMMMMMk.kMMMMMk",
+    ".kCaaaCk.kCaaaCk",
+    ".kCaaaCk.kCaaaCk",
+    ".kCaaaCk.kCaaaCk",
+    ".kCaaaCkkCaaaCkk",
+    "kACaaaCCkACaaaCk",
+    "kCCCCCCckCCCCCCk",
+    "kkkkkkkkkkkkkkkk",
+    "................",
+    "................",
+    "................",
+    "................"
+  ],
+  magma_boots: [
+    "................",
+    "................",
+    "................",
+    "..kkkkk..kkkkk..",
+    ".kOOOOOk.kOOOOOk",
+    ".kRbbbRk.kRbbbRk",
+    ".kRbbbRk.kRbbbRk",
+    ".kRbbbRk.kRbbbRk",
+    ".kRbbbRkkRbbbRkk",
+    "kFRbbbRRkFRbbbRk",
+    "kFFFFFFrkFFFFFFk",
+    "kkkkkkkkkkkkkkkk",
+    "................",
+    "................",
+    "................",
+    "................"
+  ],
+  grass: [
+    ".kkkkkkkkkkkkkk.",
+    "kGGGGhGGGGhGGGGk",
+    "kGhGGGGhGGGGhGGk",
+    "kGGGGeGGGGGeGGGk",
+    "kGekGGeGGekGGeGk",
+    "kdkkDdkkdkkDdkdk",
+    "kdDnDDdDnDDdDnDk",
+    "kDDdDnDDdDnDDdDk",
+    "kDnDDdDnDDdDnDDk",
+    "kdDnDDdDnDDdDnDk",
+    "kDDdDnDDdDnDDdDk",
+    "kDnDDdDnDDdDnDDk",
+    "kdDnDDdDnDDdDnDk",
+    "kDDDDDDDDDDDDDDk",
+    ".kkkkkkkkkkkkkk.",
+    "................"
+  ],
+  shovel: [
+    ".........kkkkk..",
+    "........kMMMMMk.",
+    ".......kMMmmmMMk",
+    ".......kMmSSSmMk",
+    ".......kMmSSSmMk",
+    "........kMMMMMk.",
+    ".......kBtkkkk..",
+    "......kBtk......",
+    ".....kBtk.......",
+    "....kBtk........",
+    "...kBtk.........",
+    "..kBtk..........",
+    ".kBtk...........",
+    "kBtk............",
+    "kkk.............",
+    "................"
+  ],
+  heart: [
+    "................",
+    "..kkkk....kkkk..",
+    ".kRRRRk..kRRRRk.",
+    "kRFFFFRk.kRRRRRk",
+    "kRFFRRRRkRRRRRRk",
+    "kRFRRRRRRRRRRRrk",
+    "kRRRRRRRRRRRRrrk",
+    "kRRRRRRRRRRRRrrk",
+    ".kRRRRRRRRRRrrk.",
+    "..kRRRRRRRRrrk..",
+    "...kRRRRRRrrk...",
+    "....kRRRRrrk....",
+    ".....kRRrrk.....",
+    "......krrk......",
+    ".......kk.......",
+    "................"
+  ],
+  iron_sword: [
+    "...........kkkk.",
+    "..........kMMmkk",
+    ".........kMMmSmk",
+    "........kMMmSmk.",
+    ".......kMMmSmk..",
+    "......kMMmSmk...",
+    ".....kMMmSmk....",
+    "..kkkMMmSmk.....",
+    ".kLYkkmSmk......",
+    ".kYLYkSmk.......",
+    "..kkYYkk........",
+    "..kBtkYk........",
+    ".kBtkkLYk.......",
+    "kBtk..kk........",
+    "kkk.............",
+    "................"
+  ],
+  bed: [
+    "................",
+    "................",
+    "................",
+    "................",
+    ".kkkkkkkkkkkkkk.",
+    "kMMMMkRRRRRRRRRk",
+    "kMmmmMRRRRRRRrrk",
+    "kMMMMkRRRRRRRRRk",
+    "kBBBBBBBBBBBBBBk",
+    "kBttttttttttttBk",
+    "kBtk........kBtk",
+    "kBtk........kBtk",
+    "kkk..........kkk",
+    "................",
+    "................",
+    "................"
+  ],
+  trophy: [
+    "................",
+    "..kkkkkkkkkkkk..",
+    ".kLLLLLLLLLLLLk.",
+    "kkLYYYYYYYYYYLkk",
+    "kLYYYLLLLLLYYYLk",
+    "kLYYYYYYYYYYYYLk",
+    "kkLYYYYYYYYYYLkk",
+    ".kkLYYYYYYYYLkk.",
+    "...kLYYYYYYLk...",
+    "....kkYYYYkk....",
+    ".....kYYYYk.....",
+    "....kYYYYYYk....",
+    "...kBBBBBBBBk...",
+    "..kBttttttttBk..",
+    "..kkkkkkkkkkkk..",
+    "................"
+  ],
+  chest: [
+    "................",
+    ".kkkkkkkkkkkkkk.",
+    "kBBBBBBBBBBBBBBk",
+    "kBttttttttttttBk",
+    "kBttttttttttttBk",
+    "kBttttttttttttBk",
+    "kBttttkLLkttttBk",
+    "kkkkkkkYYkkkkkkk",
+    "kBttttkYYkttttBk",
+    "kBttttttttttttBk",
+    "kBttttttttttttBk",
+    "kBBBBBBBBBBBBBBk",
+    ".kkkkkkkkkkkkkk.",
+    "................",
+    "................",
+    "................"
+  ],
+  void_chest: [
+    "................",
+    ".kkkkkkkkkkkkkk.",
+    "kvvvvvvvvvvvvvvk",
+    "kvVVVVVVVVVVVVvk",
+    "kvVVppppppppVVvk",
+    "kvVVppppppppVVvk",
+    "kvVVppkLLkppVVvk",
+    "kkkkkkkYYkkkkkkk",
+    "kvVVppkYYkppVVvk",
+    "kvVVppppppppVVvk",
+    "kvVVVVVVVVVVVVvk",
+    "kvvvvvvvvvvvvvvk",
+    ".kkkkkkkkkkkkkk.",
+    "................",
+    "................",
+    "................"
+  ],
+  diamond: [
+    "................",
+    ".....kkkkkk.....",
+    "....kAAAAAAk....",
+    "...kAAccccAAk...",
+    "..kAAccMMccAAk..",
+    ".kAAccMccMccAAk.",
+    ".kAAccMccMccAAk.",
+    "..kAAccMMccAAk..",
+    "...kAAccccAAk...",
+    "....kAAccAAk....",
+    ".....kAAAAk.....",
+    "......kAAk......",
+    ".......kk.......",
+    "................",
+    "................",
+    "................"
+  ],
+  bundle: [
+    "................",
+    "....kk....kk....",
+    "...kYYk..kYYk...",
+    "....kkYYYYkk....",
+    "..kkkkkkkkkkkk..",
+    ".kRRRRkYYkRRRRk.",
+    ".kRFFRkYYkRRRRk.",
+    ".kRRRRkYYkRRRRk.",
+    ".kRRRRkYYkRRRRk.",
+    ".kRRRRkYYkRRRRk.",
+    ".kRRRRkYYkRRRRk.",
+    ".krrrrkYYkrrrrk.",
+    "..kkkkkkkkkkkk..",
+    "................",
+    "................",
+    "................"
+  ],
+  plus_gem: [
+    "................",
+    "......kkkk......",
+    ".....kAAAAk.....",
+    ".....kCaaCk.....",
+    "..kkkkCaaCkkkk..",
+    ".kAAAACaaCAAAAk.",
+    ".kCaaaaaaaaaaCk.",
+    ".kCaaaaaaaaaaCk.",
+    ".kCCCCaaaaCCCCk.",
+    "..kkkkCaaCkkkk..",
+    ".....kCaaCk.....",
+    ".....kCCCCk.....",
+    "......kkkk......",
+    "................",
+    "................",
+    "................"
+  ]
+};
+
+const ITEMS = [
+  { id: 'sage_blade', name: 'Sage Blade', rarity: 'Legendary', slot: 'Main hand', price: 499, desc: 'Emerald blade with a glowing green edge and gold hilt.' },
+  { id: 'inferno_edge', name: 'Inferno Edge', rarity: 'Mythic', slot: 'Main hand', price: 799, desc: 'Forged in lava. Looks like it is always on fire.' },
+  { id: 'void_cleaver', name: 'Void Cleaver', rarity: 'Epic', slot: 'Main hand', price: 349, desc: 'Dark purple greatblade with a void-glass core.' },
+  { id: 'dragonfang_axe', name: 'Dragonfang Axe', rarity: 'Epic', slot: 'Main hand', price: 349, desc: 'Golden axe carved from a dragon tooth.' },
+  { id: 'shadow_bow', name: 'Shadow Bow', rarity: 'Rare', slot: 'Main hand', price: 199, desc: 'Matte black bow with a faint purple grip.' },
+  { id: 'guardian_shield', name: 'Guardian Shield', rarity: 'Rare', slot: 'Off hand', price: 199, desc: 'Round shield with a sage-leaf crest.' },
+  { id: 'crown', name: 'Crown of Sage', rarity: 'Legendary', slot: 'Head', price: 599, desc: 'Gold crown set with emerald gems.' },
+  { id: 'frost_helm', name: 'Frost Helm', rarity: 'Epic', slot: 'Head', price: 299, desc: 'Ice-blue helmet with a cold glowing visor.' },
+  { id: 'storm_wings', name: 'Storm Wings', rarity: 'Mythic', slot: 'Back', price: 899, desc: 'Wings made of storm cloud and lightning blue.' },
+  { id: 'phoenix_wings', name: 'Phoenix Wings', rarity: 'Legendary', slot: 'Back', price: 699, desc: 'Flame wings that look like they are rising.' },
+  { id: 'aqua_boots', name: 'Aqua Boots', rarity: 'Rare', slot: 'Feet', price: 149, desc: 'Water-blue boots with a white cuff.' },
+  { id: 'magma_boots', name: 'Magma Boots', rarity: 'Epic', slot: 'Feet', price: 249, desc: 'Dark boots with glowing lava soles.' }
+];
+
+const EXTRA_STORE = {
+  sage_crate: { id: 'sage_crate', name: 'Sage Blade Crate Key', price: 249 },
+  coins_pack: { id: 'coins_pack', name: '2,500 Sage Coins', price: 199 },
+  sage_rank: { id: 'sage_rank', name: 'Sage MVP Rank (Lifetime)', price: 899 },
+  sage_plus: { id: 'sage_plus', name: 'Sage+ Monthly Pass', price: 299 }
+};
+
+function drawSpriteToCanvas(canvas, spriteKey, dx = 0, dy = 0, scale = null) {
+  const ctx = canvas.getContext('2d');
+  const grid = SPRITES[spriteKey];
+  if (!grid) return;
+  const pxSize = scale || Math.floor(canvas.width / 16);
+  for (let r = 0; r < 16; r++) {
+    for (let c = 0; c < 16; c++) {
+      const ch = grid[r][c];
+      if (PAL[ch]) {
+        ctx.fillStyle = PAL[ch];
+        ctx.fillRect(dx + c * pxSize, dy + r * pxSize, pxSize, pxSize);
+      }
+    }
+  }
+}
+
+function drawCharacter(canvas, opts) {
+  const ctx = canvas.getContext('2d');
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  const u = Math.floor(canvas.width / 22);
+  const ox = Math.floor((canvas.width - 16 * u) / 2);
+  const oy = Math.floor((canvas.height - 20 * u) / 2);
+
+  // Back wings first
+  if (opts.Back) {
+    drawSpriteToCanvas(canvas, opts.Back, ox - u, oy + 4 * u, Math.round(u * 1.12));
+  }
+
+  // Head
+  ctx.fillStyle = opts.skin;
+  ctx.fillRect(ox + 5 * u, oy + 2 * u, 6 * u, 6 * u);
+  // Subtle shading on face
+  ctx.fillStyle = 'rgba(0,0,0,0.12)';
+  ctx.fillRect(ox + 5 * u, oy + 7 * u, 6 * u, u);
+
+  // Hair
+  ctx.fillStyle = opts.hair;
+  ctx.fillRect(ox + 5 * u, oy + 2 * u, 6 * u, 2 * u);
+  ctx.fillRect(ox + 5 * u, oy + 3 * u, u, 2 * u);
+  ctx.fillRect(ox + 10 * u, oy + 3 * u, u, 2 * u);
+
+  // Eyes
+  ctx.fillStyle = '#ffffff';
+  ctx.fillRect(ox + 6 * u, oy + 5 * u, u, u);
+  ctx.fillRect(ox + 9 * u, oy + 5 * u, u, u);
+  ctx.fillStyle = '#1e3a8a';
+  ctx.fillRect(ox + 7 * u, oy + 5 * u, Math.ceil(u * 0.6), u);
+  ctx.fillRect(ox + 9 * u, oy + 5 * u, Math.ceil(u * 0.6), u);
+
+  // Torso & Arms
+  ctx.fillStyle = opts.shirt;
+  ctx.fillRect(ox + 5 * u, oy + 8 * u, 6 * u, 6 * u);
+  ctx.fillRect(ox + 3 * u, oy + 8 * u, 2 * u, 3 * u);
+  ctx.fillRect(ox + 11 * u, oy + 8 * u, 2 * u, 3 * u);
+  // Shirt bevel
+  ctx.fillStyle = 'rgba(255,255,255,0.15)';
+  ctx.fillRect(ox + 5 * u, oy + 8 * u, 6 * u, u);
+
+  // Forearms
+  ctx.fillStyle = opts.skin;
+  ctx.fillRect(ox + 3 * u, oy + 11 * u, 2 * u, 3 * u);
+  ctx.fillRect(ox + 11 * u, oy + 11 * u, 2 * u, 3 * u);
+
+  // Legs
+  ctx.fillStyle = opts.pants;
+  ctx.fillRect(ox + 5 * u, oy + 14 * u, 3 * u, 5 * u);
+  ctx.fillRect(ox + 8 * u, oy + 14 * u, 3 * u, 5 * u);
+  ctx.fillStyle = 'rgba(0,0,0,0.15)';
+  ctx.fillRect(ox + 8 * u, oy + 14 * u, 3 * u, 5 * u);
+
+  // Shoes or custom boots
+  ctx.fillStyle = '#33261d';
+  ctx.fillRect(ox + 5 * u, oy + 19 * u, 3 * u, u);
+  ctx.fillRect(ox + 8 * u, oy + 19 * u, 3 * u, u);
+  if (opts.Feet) {
+    drawSpriteToCanvas(canvas, opts.Feet, ox + 4 * u, oy + 15 * u, Math.round(u * 0.52));
+  }
+
+  // Headgear
+  if (opts.Head) {
+    drawSpriteToCanvas(canvas, opts.Head, ox + 4 * u, oy - u, Math.round(u * 0.52));
+  }
+
+  // Main hand & Off hand
+  if (opts['Main hand']) {
+    drawSpriteToCanvas(canvas, opts['Main hand'], ox + 10 * u, oy + 8 * u, Math.round(u * 0.55));
+  }
+  if (opts['Off hand']) {
+    drawSpriteToCanvas(canvas, opts['Off hand'], ox + u, oy + 9 * u, Math.round(u * 0.45));
+  }
+}
+
+// Cart state
+let cart = [
+  { id: 'sage_blade', qty: 1 },
+  { id: 'crown', qty: 1 }
+];
+
+function getItemObj(id) {
+  return ITEMS.find(i => i.id === id) || EXTRA_STORE[id];
+}
+
+function updateCartUI() {
+  const totalCount = cart.reduce((s, x) => s + x.qty, 0);
+  document.getElementById('top-cart-count').textContent = totalCount;
+  const sb = document.getElementById('store-cart-badge');
+  if (sb) sb.textContent = totalCount;
+
+  const list = document.getElementById('cart-items-list');
+  let sum = 0;
+  if (cart.length === 0) {
+    list.innerHTML = '<p style="color:#64748b; padding:16px 0;">Your cart is empty.</p>';
+  } else {
+    list.innerHTML = cart.map(entry => {
+      const it = getItemObj(entry.id);
+      sum += it.price * entry.qty;
+      return `
+        <div class="cart-line">
+          <div>
+            <strong style="font-size:15px;">${it.name}</strong>
+            <div style="font-size:12.5px; color:#64748b;">₹${it.price} × ${entry.qty}</div>
+          </div>
+          <button class="icon-btn" style="width:auto; padding:0 12px; font-weight:700; font-size:12px;" onclick="removeFromCart('${entry.id}')">Remove</button>
+        </div>
+      `;
+    }).join('');
+  }
+  document.getElementById('cart-total-price').textContent = '₹' + sum.toLocaleString('en-IN');
+}
+
+function addToCart(id) {
+  const found = cart.find(c => c.id === id);
+  if (found) found.qty++;
+  else cart.push({ id, qty: 1 });
+  updateCartUI();
+  notify(getItemObj(id).name + ' added to cart!');
+}
+
+function removeFromCart(id) {
+  cart = cart.filter(c => c.id !== id);
+  updateCartUI();
+}
+
+function openCart() {
+  updateCartUI();
+  document.getElementById('cart-modal').classList.add('open');
+}
+function closeCart() {
+  document.getElementById('cart-modal').classList.remove('open');
+}
+function checkoutNow() {
+  if (!cart.length) return notify('Add an item first!');
+  closeCart();
+  notify('Order placed! Items queued for your IGN.');
+  cart = [];
+  updateCartUI();
+}
+
+// Studio state
+const COLORS = {
+  skin: ['#f5d0a9', '#e5b083', '#c68652', '#8d5524', '#523218'],
+  hair: ['#241c18', '#5c3c24', '#d4a338', '#b9382c', '#e2e8f0', '#2563eb'],
+  shirt: ['#2e8b57', '#3358d4', '#dc2626', '#f59e0b', '#7c3aed', '#1e293b', '#f1f5f9', '#f472b6'],
+  pants: ['#1e3a8a', '#1e293b', '#5c3a21', '#166534', '#64748b', '#7c3aed']
+};
+
+let studioState = {
+  skin: '#e5b083',
+  hair: '#241c18',
+  shirt: '#2e8b57',
+  pants: '#1e3a8a',
+  Head: 'crown',
+  Back: null,
+  'Main hand': 'sage_blade',
+  'Off hand': null,
+  Feet: null
+};
+
+function buildStudio() {
+  Object.keys(COLORS).forEach(part => {
+    const row = document.getElementById('sw-' + part);
+    COLORS[part].forEach(hex => {
+      const b = document.createElement('button');
+      b.className = 'swatch' + (studioState[part] === hex ? ' active' : '');
+      b.style.background = hex;
+      b.onclick = () => {
+        studioState[part] = hex;
+        row.querySelectorAll('.swatch').forEach(el => el.classList.remove('active'));
+        b.classList.add('active');
+        renderStudio();
+      };
+      row.appendChild(b);
+    });
+  });
+
+  const slots = ['Head', 'Back', 'Main hand', 'Off hand', 'Feet'];
+  const container = document.getElementById('slot-controls');
+  container.innerHTML = slots.map(slot => {
+    const matching = ITEMS.filter(i => i.slot === slot);
+    return `
+      <div class="ctrl-card">
+        <h3>${slot}</h3>
+        <div class="equip-grid">
+          ${matching.map(it => `
+            <button class="equip-btn ${studioState[slot] === it.id ? 'selected' : ''}" id="eq-${it.id}" onclick="toggleEquip('${slot}', '${it.id}')">
+              <canvas class="px" data-sprite="${it.id}" width="32" height="32"></canvas>
+              <div>
+                <strong>${it.name}</strong>
+                <small>₹${it.price}</small>
+              </div>
+            </button>
+          `).join('')}
+        </div>
+      </div>
+    `;
+  }).join('');
+  renderStudio();
+}
+
+function toggleEquip(slot, id) {
+  studioState[slot] = (studioState[slot] === id) ? null : id;
+  document.querySelectorAll('.equip-btn').forEach(b => b.classList.remove('selected'));
+  ['Head', 'Back', 'Main hand', 'Off hand', 'Feet'].forEach(s => {
+    if (studioState[s]) {
+      const btn = document.getElementById('eq-' + studioState[s]);
+      if (btn) btn.classList.add('selected');
+    }
+  });
+  renderStudio();
+}
+
+function resetStudio() {
+  studioState.Head = null;
+  studioState.Back = null;
+  studioState['Main hand'] = null;
+  studioState['Off hand'] = null;
+  studioState.Feet = null;
+  document.querySelectorAll('.equip-btn').forEach(b => b.classList.remove('selected'));
+  renderStudio();
+}
+
+function renderStudio() {
+  const c = document.getElementById('studio-canvas');
+  drawCharacter(c, studioState);
+  const picked = ['Head', 'Back', 'Main hand', 'Off hand', 'Feet'].map(s => studioState[s]).filter(Boolean);
+  const total = picked.reduce((sum, id) => sum + getItemObj(id).price, 0);
+  document.getElementById('selected-count').textContent = `${picked.length} item${picked.length === 1 ? '' : 's'} selected`;
+  document.getElementById('selected-total').textContent = '₹' + total.toLocaleString('en-IN');
+}
+
+function buySelectedStudio() {
+  const picked = ['Head', 'Back', 'Main hand', 'Off hand', 'Feet'].map(s => studioState[s]).filter(Boolean);
+  if (!picked.length) return notify('Select at least one item on your character!');
+  picked.forEach(id => {
+    const ex = cart.find(c => c.id === id);
+    if (!ex) cart.push({ id, qty: 1 });
+  });
+  updateCartUI();
+  openCart();
+}
+
+// Render dynamic item lists
+function populateCatalogs() {
+  const badgeClass = r => 'b-' + r.toLowerCase();
+
+  document.getElementById('home-items-strip').innerHTML = ITEMS.slice(0, 7).map(it => `
+    <div class="mini-item" onclick="go('items')">
+      <canvas class="px" data-sprite="${it.id}" width="56" height="56"></canvas>
+      <h4>${it.name}</h4>
+      <span class="badge ${badgeClass(it.rarity)}">${it.rarity}</span>
+    </div>
+  `).join('');
+
+  document.getElementById('catalog-grid').innerHTML = ITEMS.map(it => `
+    <div class="item-card">
+      <div>
+        <div class="item-art-bg">
+          <canvas class="px" data-sprite="${it.id}" width="68" height="68"></canvas>
+        </div>
+        <div class="item-top">
+          <h3>${it.name}</h3>
+          <span class="badge ${badgeClass(it.rarity)}">${it.rarity}</span>
+        </div>
+        <p class="item-desc">${it.desc}</p>
+        <div class="item-slot">Slot: <strong>${it.slot}</strong></div>
+      </div>
+      <div class="item-foot">
+        <span class="price">₹${it.price}</span>
+        <button class="btn-cart" onclick="addToCart('${it.id}')">Add to cart</button>
+      </div>
+    </div>
+  `).join('');
+
+  document.getElementById('pack-grid').innerHTML = ITEMS.map(it => `
+    <div class="pack-tile">
+      <canvas class="px" data-sprite="${it.id}" width="38" height="38"></canvas>
+      <span>${it.name}</span>
+    </div>
+  `).join('');
+}
+
+function renderAllSprites() {
+  document.querySelectorAll('canvas[data-sprite]').forEach(cv => {
+    const key = cv.dataset.sprite;
+    if (key === 'steve') {
+      drawCharacter(cv, { skin: '#e5b083', hair: '#4a2e1b', shirt: '#26a69a', pants: '#283593' });
+    } else if (key === 'char_1') {
+      drawCharacter(cv, { skin: '#e5b083', hair: '#241c18', shirt: '#2e8b57', pants: '#1e3a8a', Head: 'crown', 'Main hand': 'sage_blade' });
+    } else if (key === 'char_2') {
+      drawCharacter(cv, { skin: '#c68652', hair: '#5c3c24', shirt: '#dc2626', pants: '#1e293b', Back: 'phoenix_wings', 'Main hand': 'inferno_edge' });
+    } else if (key === 'char_3') {
+      drawCharacter(cv, { skin: '#f5d0a9', hair: '#2563eb', shirt: '#3358d4', pants: '#1e3a8a', Head: 'frost_helm', Back: 'storm_wings', 'Off hand': 'guardian_shield' });
+    } else {
+      drawSpriteToCanvas(cv, key);
+    }
+  });
+}
+
+// Navigation & Auth
+function go(viewName) {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.getElementById('view-' + viewName).classList.add('active');
+
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  const navBtn = document.getElementById('nav-' + viewName);
+  if (navBtn) navBtn.classList.add('active');
+
+  if (viewName === 'store') document.body.classList.add('store-dark');
+  else document.body.classList.remove('store-dark');
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function switchAuthTab(mode) {
+  document.getElementById('tab-login').classList.toggle('active', mode === 'login');
+  document.getElementById('tab-reg').classList.toggle('active', mode === 'reg');
+  document.getElementById('auth-submit-btn').textContent = mode === 'login' ? 'Login' : 'Create Account';
+}
+
+function handleLogin() {
+  const ign = document.getElementById('ign-input').value.trim();
+  if (!ign) return notify('Enter a Minecraft username!');
+  document.getElementById('auth-btn').textContent = ign;
+  document.getElementById('store-user-lbl').textContent = 'Signed in as ' + ign;
+  notify('Welcome back, ' + ign + '!');
+  go('home');
+}
+
+function copyIP() {
+  navigator.clipboard?.writeText('play.sagemc.net');
+  notify('Copied play.sagemc.net!');
+}
+
+function notify(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.style.display = 'block';
+  clearTimeout(window._toastTimer);
+  window._toastTimer = setTimeout(() => { t.style.display = 'none'; }, 2400);
+}
+
+// Boot
+populateCatalogs();
+buildStudio();
+renderAllSprites();
+updateCartUI();
+</script>
+</body>
+</html>
