@@ -39,7 +39,6 @@
     transition: background 0.2s, color 0.2s;
   }
 
-  /* top bar */
   .topbar {
     background: var(--nav-bg);
     border-bottom: 1px solid var(--border-col);
@@ -83,7 +82,7 @@
     font-weight: 700;
     font-size: 13px;
   }
-  .icon-btn:hover { border-color: #3358d4; }
+  .icon-btn:hover { border-color: #3b82f6; }
   .btn-primary {
     background: #3358d4;
     color: #fff;
@@ -103,7 +102,6 @@
     padding: 20px;
   }
 
-  /* search */
   .search-box {
     background: var(--bg-card);
     border: 1px solid var(--border-col);
@@ -124,7 +122,6 @@
     color: var(--text-main);
   }
 
-  /* hero banner */
   .hero-banner {
     background: linear-gradient(135deg, #facc15 0%, #eab308 100%);
     border-radius: 14px;
@@ -169,7 +166,6 @@
     text-decoration: none;
   }
 
-  /* explore grid */
   .explore-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -205,7 +201,6 @@
   .c-mint { background: #67d4a7; box-shadow: 0 4px 0 #37a377; }
   .c-cyan { background: #67d8ef; box-shadow: 0 4px 0 #34a6bd; }
 
-  /* skin studio promo */
   .panel-card {
     background: var(--bg-card);
     border: 1px solid var(--border-col);
@@ -242,7 +237,6 @@
   }
   .btn-gold:hover { background: #f5c305; }
 
-  /* horizontal item strip */
   .items-strip {
     display: flex;
     gap: 14px;
@@ -263,7 +257,6 @@
   .mini-item:hover { border-color: #3b82f6; }
   .mini-item h4 { font-size: 13px; font-weight: 700; margin: 8px 0 6px; color: var(--text-main); }
 
-  /* rarity pills */
   .badge {
     display: inline-block;
     font-size: 10px;
@@ -278,7 +271,6 @@
   .b-epic { border: 1px solid #8b5cf6; color: #7c3aed; background: rgba(139, 92, 246, 0.12); }
   .b-rare { border: 1px solid #3b82f6; color: #2563eb; background: rgba(59, 130, 246, 0.12); }
 
-  /* news cards */
   .news-card {
     background: var(--bg-card);
     border: 1px solid var(--border-col);
@@ -301,7 +293,6 @@
   .news-card p { font-size: 13px; color: var(--text-muted); margin-bottom: 6px; }
   .news-card small { font-size: 11px; color: var(--text-faint); }
 
-  /* items catalog page */
   .catalog-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -373,7 +364,6 @@
   }
   .pack-tile span { display: block; font-size: 10px; font-weight: 700; margin-top: 4px; }
 
-  /* skin studio page */
   .studio-layout {
     display: grid;
     grid-template-columns: 310px 1fr;
@@ -434,7 +424,6 @@
   .equip-btn strong { display: block; font-size: 12.5px; }
   .equip-btn small { font-size: 11px; color: var(--text-faint); }
 
-  /* rules accordion */
   .rule-box {
     background: var(--bg-card);
     border: 1px solid var(--border-col);
@@ -460,7 +449,6 @@
   }
   .rule-box.open .rule-body { display: block; }
 
-  /* store view */
   .store-pixel-head { text-align: center; padding: 14px 0 22px; }
   .store-pixel-head h1 {
     font-family: 'Press Start 2P', monospace;
@@ -585,7 +573,6 @@
     margin-bottom: 10px;
   }
 
-  /* auth card */
   .auth-card {
     max-width: 440px;
     margin: 24px auto;
@@ -636,7 +623,6 @@
     font-family: inherit;
   }
 
-  /* bottom nav */
   .bottom-nav {
     position: fixed;
     bottom: 0; left: 0; right: 0;
@@ -677,7 +663,6 @@
     margin-top: -14px;
   }
 
-  /* modals */
   .modal-backdrop {
     position: fixed;
     inset: 0;
@@ -1173,7 +1158,6 @@
 <script>
 const DISCORD_INVITE = "https://discord.gg/3vMdsVkWj3";
 
-// Shaded 16x16 pixel palette & sprites
 const PAL = {
   '.': null,
   'k': '#141722',
@@ -1722,9 +1706,6 @@ function drawCharacter(canvas, opts) {
   }
 }
 
-// ==========================================
-// THEME SWITCHER (LIGHT / DARK)
-// ==========================================
 function toggleTheme() {
   const isDark = document.body.classList.toggle('dark-mode');
   localStorage.setItem('sagemc_theme', isDark ? 'dark' : 'light');
@@ -1738,9 +1719,6 @@ function toggleTheme() {
   }
 })();
 
-// ==========================================
-// AUTHENTICATION SYSTEM & GATEKEEPER
-// ==========================================
 let authMode = 'login';
 let pendingAction = null;
 
@@ -1869,9 +1847,6 @@ function logoutUser() {
   go('home');
 }
 
-// ==========================================
-// GATED STORE, DISCORD & SUPPORT ACTIONS
-// ==========================================
 function storeAction(itemId) {
   requireAuth(() => {
     addToCart(itemId);
@@ -1903,9 +1878,6 @@ function submitTicket() {
   notify('Support ticket submitted for ' + getCurrentUser() + '!');
 }
 
-// ==========================================
-// IMPROVED CART & CHECKOUT
-// ==========================================
 let cart = JSON.parse(localStorage.getItem('sagemc_cart') || '[{"id":"sage_blade","qty":1},{"id":"crown","qty":1}]');
 
 function saveCart() {
@@ -2036,9 +2008,6 @@ function renderRecentOrders() {
   `).join('');
 }
 
-// ==========================================
-// SKIN STUDIO
-// ==========================================
 const COLORS = {
   skin: ['#f5d0a9', '#e5b083', '#c68652', '#8d5524', '#523218'],
   hair: ['#241c18', '#5c3c24', '#d4a338', '#b9382c', '#e2e8f0', '#2563eb'],
@@ -2061,6 +2030,7 @@ let studioState = {
 function buildStudio() {
   Object.keys(COLORS).forEach(part => {
     const row = document.getElementById('sw-' + part);
+    if (!row) return;
     COLORS[part].forEach(hex => {
       const b = document.createElement('button');
       b.className = 'swatch' + (studioState[part] === hex ? ' active' : '');
@@ -2077,6 +2047,7 @@ function buildStudio() {
 
   const slots = ['Head', 'Back', 'Main hand', 'Off hand', 'Feet'];
   const container = document.getElementById('slot-controls');
+  if (!container) return;
   container.innerHTML = slots.map(slot => {
     const matching = ITEMS.filter(i => i.slot === slot);
     return `
@@ -2123,11 +2094,13 @@ function resetStudio() {
 
 function renderStudio() {
   const c = document.getElementById('studio-canvas');
-  drawCharacter(c, studioState);
+  if (c) drawCharacter(c, studioState);
   const picked = ['Head', 'Back', 'Main hand', 'Off hand', 'Feet'].map(s => studioState[s]).filter(Boolean);
   const total = picked.reduce((sum, id) => sum + getItemObj(id).price, 0);
-  document.getElementById('selected-count').textContent = `${picked.length} item${picked.length === 1 ? '' : 's'} selected`;
-  document.getElementById('selected-total').textContent = '₹' + total.toLocaleString('en-IN');
+  const sc = document.getElementById('selected-count');
+  const st = document.getElementById('selected-total');
+  if (sc) sc.textContent = `${picked.length} item${picked.length === 1 ? '' : 's'} selected`;
+  if (st) st.textContent = '₹' + total.toLocaleString('en-IN');
 }
 
 function buySelectedStudio() {
@@ -2142,46 +2115,52 @@ function buySelectedStudio() {
   openCart();
 }
 
-// ==========================================
-// RENDER CATALOGS & NAVIGATION
-// ==========================================
 function populateCatalogs() {
   const badgeClass = r => 'b-' + r.toLowerCase();
 
-  document.getElementById('home-items-strip').innerHTML = ITEMS.slice(0, 7).map(it => `
-    <div class="mini-item" onclick="go('items')">
-      <canvas class="px" data-sprite="${it.id}" width="56" height="56"></canvas>
-      <h4>${it.name}</h4>
-      <span class="badge ${badgeClass(it.rarity)}">${it.rarity}</span>
-    </div>
-  `).join('');
-
-  document.getElementById('catalog-grid').innerHTML = ITEMS.map(it => `
-    <div class="item-card">
-      <div>
-        <div class="item-art-bg">
-          <canvas class="px" data-sprite="${it.id}" width="68" height="68"></canvas>
-        </div>
-        <div class="item-top">
-          <h3>${it.name}</h3>
-          <span class="badge ${badgeClass(it.rarity)}">${it.rarity}</span>
-        </div>
-        <p class="item-desc">${it.desc}</p>
-        <div class="item-slot">Slot: <strong>${it.slot}</strong></div>
+  const strip = document.getElementById('home-items-strip');
+  if (strip) {
+    strip.innerHTML = ITEMS.slice(0, 7).map(it => `
+      <div class="mini-item" onclick="go('items')">
+        <canvas class="px" data-sprite="${it.id}" width="56" height="56"></canvas>
+        <h4>${it.name}</h4>
+        <span class="badge ${badgeClass(it.rarity)}">${it.rarity}</span>
       </div>
-      <div class="item-foot">
-        <span class="price">₹${it.price}</span>
-        <button class="btn-cart" onclick="addToCart('${it.id}')">Add to cart</button>
-      </div>
-    </div>
-  `).join('');
+    `).join('');
+  }
 
-  document.getElementById('pack-grid').innerHTML = ITEMS.map(it => `
-    <div class="pack-tile">
-      <canvas class="px" data-sprite="${it.id}" width="38" height="38"></canvas>
-      <span>${it.name}</span>
-    </div>
-  `).join('');
+  const grid = document.getElementById('catalog-grid');
+  if (grid) {
+    grid.innerHTML = ITEMS.map(it => `
+      <div class="item-card">
+        <div>
+          <div class="item-art-bg">
+            <canvas class="px" data-sprite="${it.id}" width="68" height="68"></canvas>
+          </div>
+          <div class="item-top">
+            <h3>${it.name}</h3>
+            <span class="badge ${badgeClass(it.rarity)}">${it.rarity}</span>
+          </div>
+          <p class="item-desc">${it.desc}</p>
+          <div class="item-slot">Slot: <strong>${it.slot}</strong></div>
+        </div>
+        <div class="item-foot">
+          <span class="price">₹${it.price}</span>
+          <button class="btn-cart" onclick="addToCart('${it.id}')">Add to cart</button>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  const pack = document.getElementById('pack-grid');
+  if (pack) {
+    pack.innerHTML = ITEMS.map(it => `
+      <div class="pack-tile">
+        <canvas class="px" data-sprite="${it.id}" width="38" height="38"></canvas>
+        <span>${it.name}</span>
+      </div>
+    `).join('');
+  }
 }
 
 function renderAllSprites() {
@@ -2203,6 +2182,41 @@ function renderAllSprites() {
 
 function go(viewName) {
   document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-  document.getElementById('view-' + viewName).classList.add('active');
+  const target = document.getElementById('view-' + viewName);
+  if (target) target.classList.add('active');
 
-  document.querySelectorAll('.nav-item').forEach(n => n.classList
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  const navBtn = document.getElementById('nav-' + viewName);
+  if (navBtn) navBtn.classList.add('active');
+
+  if (viewName === 'store') document.body.classList.add('dark-mode');
+  else if (!localStorage.getItem('sagemc_theme') || localStorage.getItem('sagemc_theme') === 'light') {
+    document.body.classList.remove('dark-mode');
+  }
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function copyIP() {
+  navigator.clipboard?.writeText('play.sagemc.net');
+  notify('Copied play.sagemc.net!');
+}
+
+function notify(msg) {
+  const t = document.getElementById('toast');
+  if (!t) return;
+  t.textContent = msg;
+  t.style.display = 'block';
+  clearTimeout(window._toastTimer);
+  window._toastTimer = setTimeout(() => { t.style.display = 'none'; }, 2400);
+}
+
+// Initial Boot
+populateCatalogs();
+buildStudio();
+renderAllSprites();
+updateAuthUI();
+updateCartUI();
+</script>
+</body>
+</html>
