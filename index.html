@@ -757,7 +757,7 @@
     flex-wrap: wrap;
   }
   footer.site-foot a { color: inherit; text-decoration: none; font-weight: 600; cursor: pointer; }
-  .svg-icon { width: 64px; height: 64px; image-rendering: pixelated; }
+  .pixel-icon { width: 64px; height: 64px; image-rendering: pixelated; display: block; }
 </style>
 </head>
 <body>
@@ -767,7 +767,7 @@
 <header class="topbar">
   <div class="topbar-inner">
     <a class="brand" onclick="go('home')">
-      <svg class="svg-icon" style="width:32px;height:32px;" viewBox="0 0 16 16"><path fill="#10b981" d="M2 2h12v12H2z"/><path fill="#047857" d="M4 4h8v8H4z"/></svg>
+      <svg class="pixel-icon" style="width:28px;height:28px;" viewBox="0 0 16 16"><path fill="#10b981" d="M2 2h12v12H2z"/><path fill="#047857" d="M4 4h8v8H4z"/></svg>
       <span>SageMC</span>
     </a>
     <div class="nav-actions">
@@ -812,47 +812,47 @@
       </div>
     </div>
     <div class="hero-art">
-      <svg class="svg-icon" style="width:64px;height:64px;" viewBox="0 0 16 16"><path fill="#22c55e" d="M0 4h16v12H0z"/><path fill="#5c3a21" d="M6 10h4v6H6z"/></svg>
-      <svg class="svg-icon" style="width:64px;height:64px;" viewBox="0 0 16 16"><path fill="#facc15" d="M11 1l4 4-9 9H2v-4z"/><path fill="#10b981" d="M8 5l3 3-5 5H3V10z"/></svg>
+      <svg class="pixel-icon" viewBox="0 0 16 16"><path fill="#22c55e" d="M0 4h16v12H0z"/><path fill="#5c3a21" d="M6 10h4v6H6z"/></svg>
+      <svg class="pixel-icon" viewBox="0 0 16 16"><path fill="#facc15" d="M11 1l4 4-9 9H2v-4z"/><path fill="#10b981" d="M8 5l3 3-5 5H3V10z"/></svg>
     </div>
   </section>
 
   <h2 class="sec-title">Explore</h2>
   <div class="explore-grid">
     <div class="mode-card c-green" onclick="openModeModal('Survival', 'shovel', 'A big overworld to explore. Build a base, gather resources, trade with other players and make your own story.', ['Claim land and build freely', 'Player trading', 'Custom items to find and wear'])">
-      <svg class="svg-icon" viewBox="0 0 16 16"><path fill="#64748b" d="M9 1l6 6-3 3-6-6z"/><path fill="#5c3a21" d="M2 14l3-3 2 2-3 3z"/></svg>
+      <svg class="pixel-icon" viewBox="0 0 16 16"><path fill="#64748b" d="M9 1l6 6-3 3-6-6z"/><path fill="#5c3a21" d="M2 14l3-3 2 2-3 3z"/></svg>
       <span>Survival</span>
     </div>
     <div class="mode-card c-pink" onclick="openModeModal('Hardcore', 'heart', 'One life. Every fight, every cave and every mistake counts. Only for players who like real risk.', ['One life only', 'Higher stakes in every fight', 'For experienced players'])">
-      <svg class="svg-icon" viewBox="0 0 16 16"><path fill="#ef4444" d="M2 5a3 3 0 016 0 3 3 0 016 0c0 4-6 9-6 9s-6-5-6-9z"/></svg>
+      <svg class="pixel-icon" viewBox="0 0 16 16"><path fill="#ef4444" d="M2 5a3 3 0 016 0 3 3 0 016 0c0 4-6 9-6 9s-6-5-6-9z"/></svg>
       <span>Hardcore</span>
     </div>
     <div class="mode-card c-blue" onclick="openModeModal('PvP', 'iron_sword', 'Fight other players in arenas and in the open world. Use your best gear and your best aim.', ['Arena and open-world fights', 'Custom swords, shields and armor', 'Ranks and bragging rights'])">
-      <svg class="svg-icon" viewBox="0 0 16 16"><path fill="#94a3b8" d="M11 1l4 4-9 9H2v-4z"/><path fill="#5c3a21" d="M2 13l2 2-1 1H2z"/></svg>
+      <svg class="pixel-icon" viewBox="0 0 16 16"><path fill="#94a3b8" d="M11 1l4 4-9 9H2v-4z"/><path fill="#5c3a21" d="M2 13l2 2-1 1H2z"/></svg>
       <span>PvP</span>
     </div>
     <div class="mode-card c-orange" onclick="openModeModal('BedWars', 'bed', 'Guard your bed, gather resources and destroy the other teams. Lose your bed and you cannot respawn.', ['Team based rounds', 'Protect your bed', 'Upgrade gear during the match'])">
-      <svg class="svg-icon" viewBox="0 0 16 16"><path fill="#ef4444" d="M1 5h14v7H1z"/><path fill="#5c3a21" d="M1 12h2v3H1zm12 0h2v3h-2z"/></svg>
+      <svg class="pixel-icon" viewBox="0 0 16 16"><path fill="#ef4444" d="M1 5h14v7H1z"/><path fill="#5c3a21" d="M1 12h2v3H1zm12 0h2v3h-2z"/></svg>
       <span>BedWars</span>
     </div>
     <div class="mode-card c-purple" onclick="openModeModal('Minigames', 'trophy', 'Short party games you can jump into with friends. Quick rounds, new winners every time.', ['Quick rounds', 'Play with friends', 'More games added over time'])">
-      <svg class="svg-icon" viewBox="0 0 16 16"><path fill="#facc15" d="M4 2h8v5a4 4 0 01-8 0V2z"/><path fill="#78350f" d="M6 11h4v3H6z"/></svg>
+      <svg class="pixel-icon" viewBox="0 0 16 16"><path fill="#facc15" d="M4 2h8v5a4 4 0 01-8 0V2z"/><path fill="#78350f" d="M6 11h4v3H6z"/></svg>
       <span>Minigames</span>
     </div>
     <div class="mode-card c-rose" onclick="go('profile')">
-      <svg class="svg-icon" viewBox="0 0 16 16"><path fill="#e5b083" d="M4 3h8v8H4z"/><path fill="#26a69a" d="M4 11h8v5H4z"/></svg>
+      <svg class="pixel-icon" viewBox="0 0 16 16"><path fill="#e5b083" d="M4 3h8v8H4z"/><path fill="#26a69a" d="M4 11h8v5H4z"/></svg>
       <span>Skins</span>
     </div>
     <div class="mode-card c-yellow" onclick="go('items')">
-      <svg class="svg-icon" viewBox="0 0 16 16"><path fill="#facc15" d="M1 5l3 3 4-5 4 5 3-3v8H1z"/></svg>
+      <svg class="pixel-icon" viewBox="0 0 16 16"><path fill="#facc15" d="M1 5l3 3 4-5 4 5 3-3v8H1z"/></svg>
       <span>Items</span>
     </div>
     <div class="mode-card c-mint" onclick="go('rules')">
-      <svg class="svg-icon" viewBox="0 0 16 16"><path fill="#22c55e" d="M0 4h16v12H0z"/></svg>
+      <svg class="pixel-icon" viewBox="0 0 16 16"><path fill="#22c55e" d="M0 4h16v12H0z"/></svg>
       <span>Features</span>
     </div>
     <div class="mode-card c-cyan" onclick="go('store')">
-      <svg class="svg-icon" viewBox="0 0 16 16"><path fill="#78350f" d="M1 3h14v11H1z"/><path fill="#facc15" d="M6 7h4v3H6z"/></svg>
+      <svg class="pixel-icon" viewBox="0 0 16 16"><path fill="#78350f" d="M1 3h14v11H1z"/><path fill="#facc15" d="M6 7h4v3H6z"/></svg>
       <span>Store</span>
     </div>
   </div>
@@ -861,13 +861,13 @@
   <div class="panel-card">
     <div class="studio-previews">
       <div class="preview-box">
-        <svg class="svg-icon" viewBox="0 0 16 16"><path fill="#e5b083" d="M4 2h8v7H4z"/><path fill="#2e8b57" d="M3 9h10v5H3z"/><path fill="#facc15" d="M4 1l8 2-4 2z"/></svg>
+        <svg class="pixel-icon" viewBox="0 0 16 16"><path fill="#e5b083" d="M4 2h8v7H4z"/><path fill="#2e8b57" d="M3 9h10v5H3z"/><path fill="#facc15" d="M4 1l8 2-4 2z"/></svg>
       </div>
       <div class="preview-box">
-        <svg class="svg-icon" viewBox="0 0 16 16"><path fill="#c68652" d="M4 2h8v7H4z"/><path fill="#dc2626" d="M3 9h10v5H3z"/><path fill="#f97316" d="M2 4h3v8H2z"/></svg>
+        <svg class="pixel-icon" viewBox="0 0 16 16"><path fill="#c68652" d="M4 2h8v7H4z"/><path fill="#dc2626" d="M3 9h10v5H3z"/><path fill="#f97316" d="M2 4h3v8H2z"/></svg>
       </div>
       <div class="preview-box">
-        <svg class="svg-icon" viewBox="0 0 16 16"><path fill="#f5d0a9" d="M4 2h8v7H4z"/><path fill="#2563eb" d="M3 9h10v5H3z"/><path fill="#38bdf8" d="M11 4h3v8h-3z"/></svg>
+        <svg class="pixel-icon" viewBox="0 0 16 16"><path fill="#f5d0a9" d="M4 2h8v7H4z"/><path fill="#2563eb" d="M3 9h10v5H3z"/><path fill="#38bdf8" d="M11 4h3v8h-3z"/></svg>
       </div>
     </div>
     <p style="font-size:13.5px; color:var(--text-muted);">Put SageMC custom items on your own skin, see the full look, then buy the pieces you want.</p>
@@ -1035,7 +1035,7 @@
   </div>
   <div class="crate-hero">
     <div class="crate-art-box">
-      <svg class="svg-icon" style="width:80px;height:80px;" viewBox="0 0 16 16"><path fill="#7c3aed" d="M1 3h14v10H1z"/><path fill="#facc15" d="M6 6h4v3H6z"/></svg>
+      <svg class="pixel-icon" style="width:80px;height:80px;" viewBox="0 0 16 16"><path fill="#7c3aed" d="M1 3h14v10H1z"/><path fill="#facc15" d="M6 6h4v3H6z"/></svg>
     </div>
     <h2>SAGE BLADE CRATE</h2>
     <p style="font-size:12px; color:var(--text-faint);">Available for a limited time!</p>
@@ -1050,24 +1050,24 @@
   </div>
   <div class="store-cats">
     <div class="cat-tile cat-crates" onclick="storeAction('sage_crate')">
-      <svg class="svg-icon" viewBox="0 0 16 16"><path fill="#7c3aed" d="M1 3h14v10H1z"/></svg>
+      <svg class="pixel-icon" viewBox="0 0 16 16"><path fill="#7c3aed" d="M1 3h14v10H1z"/></svg>
       <h3>CRATES</h3>
     </div>
     <div class="cat-tile cat-coins" onclick="storeAction('coins_pack')">
       <span class="pop-pill">Most Popular</span>
-      <svg class="svg-icon" viewBox="0 0 16 16"><path fill="#38bdf8" d="M8 1l7 7-7 7-7-7z"/></svg>
+      <svg class="pixel-icon" viewBox="0 0 16 16"><path fill="#38bdf8" d="M8 1l7 7-7 7-7-7z"/></svg>
       <h3>COINS</h3>
     </div>
     <div class="cat-tile cat-ranks" onclick="storeAction('sage_rank')">
-      <svg class="svg-icon" viewBox="0 0 16 16"><path fill="#facc15" d="M1 5l3 3 4-5 4 5 3-3v8H1z"/></svg>
+      <svg class="pixel-icon" viewBox="0 0 16 16"><path fill="#facc15" d="M1 5l3 3 4-5 4 5 3-3v8H1z"/></svg>
       <h3>RANKS</h3>
     </div>
     <div class="cat-tile cat-bundles" onclick="requireAuth(() => go('items'), 'Sign in or create an account to view Store Bundles.')">
-      <svg class="svg-icon" viewBox="0 0 16 16"><path fill="#f97316" d="M2 3h12v10H2z"/></svg>
+      <svg class="pixel-icon" viewBox="0 0 16 16"><path fill="#f97316" d="M2 3h12v10H2z"/></svg>
       <h3>BUNDLES</h3>
     </div>
     <div class="cat-tile cat-sageplus" onclick="storeAction('sage_plus')">
-      <svg class="svg-icon" viewBox="0 0 16 16"><path fill="#0ea5e9" d="M3 3h10v10H3z"/></svg>
+      <svg class="pixel-icon" viewBox="0 0 16 16"><path fill="#0ea5e9" d="M3 3h10v10H3z"/></svg>
       <h3>SAGE+</h3>
     </div>
   </div>
@@ -1107,8 +1107,8 @@
       <h2 id="modal-mode-title" style="font-size:22px; font-weight:800;">Mode</h2>
       <button class="icon-btn" onclick="closeModeModal()">✕</button>
     </div>
-    <div style="background:var(--bg-art); border:2px solid var(--border-col); padding:20px; text-align:center; margin-bottom:16px;" id="modal-icon-container">
-      <svg class="svg-icon" style="width:64px;height:64px;" viewBox="0 0 16 16"><path fill="#22c55e" d="M2 2h12v12H2z"/></svg>
+    <div style="background:var(--bg-art); border:2px solid var(--border-col); padding:20px; text-align:center; margin-bottom:16px;">
+      <svg class="pixel-icon" style="width:64px;height:64px;margin:0 auto;" viewBox="0 0 16 16"><path fill="#22c55e" d="M2 2h12v12H2z"/></svg>
     </div>
     <p id="modal-mode-desc" style="font-size:13.5px; color:var(--text-muted); line-height:1.6; margin-bottom:14px;"></p>
     <ul id="modal-mode-bullets" style="margin-left:20px; font-size:13.5px; color:var(--text-main); margin-bottom:20px; line-height:1.6;"></ul>
@@ -1553,7 +1553,7 @@ function buildStudio() {
         <div class="equip-grid">
           ${matching.map(it => `
             <button class="equip-btn ${studioState[slot] === it.id ? 'selected' : ''}" id="eq-${it.id}" onclick="toggleEquip('${slot}', '${it.id}')">
-              <svg style="width:24px;height:24px;" viewBox="0 0 16 16"><path fill="#facc15" d="M2 2h12v12H2z"/></svg>
+              <svg class="pixel-icon" style="width:24px;height:24px;" viewBox="0 0 16 16"><path fill="#facc15" d="M3 3h10v10H3z"/></svg>
               <div>
                 <strong>${it.name}</strong>
                 <small>₹${it.price}</small>
@@ -1589,7 +1589,7 @@ function renderStudio() {
   const box = document.getElementById('studio-preview-box');
   if (box) {
     box.innerHTML = `
-      <svg style="width:140px; height:180px;" viewBox="0 0 16 20">
+      <svg style="width:140px; height:180px; image-rendering:pixelated;" viewBox="0 0 16 20">
         <rect x="5" y="1" width="6" height="6" fill="${studioState.skin}" />
         <rect x="5" y="1" width="6" height="2" fill="${studioState.hair}" />
         <rect x="5" y="7" width="6" height="6" fill="${studioState.shirt}" />
@@ -1624,7 +1624,7 @@ function populateCatalogs() {
   if (strip) {
     strip.innerHTML = ITEMS.slice(0, 7).map(it => `
       <div class="mini-item" onclick="go('items')">
-        <svg style="width:48px;height:48px;" viewBox="0 0 16 16"><path fill="#f59e0b" d="M3 3h10v10H3z"/></svg>
+        <svg class="pixel-icon" style="width:48px;height:48px;margin:0 auto;" viewBox="0 0 16 16"><path fill="#f59e0b" d="M3 3h10v10H3z"/></svg>
         <h4>${it.name}</h4>
         <span class="badge ${badgeClass(it.rarity)}">${it.rarity}</span>
       </div>
@@ -1636,7 +1636,7 @@ function populateCatalogs() {
       <div class="item-card">
         <div>
           <div class="item-art-bg">
-            <svg style="width:64px;height:64px;" viewBox="0 0 16 16"><path fill="#3b82f6" d="M3 3h10v10H3z"/></svg>
+            <svg class="pixel-icon" style="width:64px;height:64px;" viewBox="0 0 16 16"><path fill="#3b82f6" d="M3 3h10v10H3z"/></svg>
           </div>
           <div class="item-top">
             <h3>${it.name}</h3>
@@ -1656,7 +1656,7 @@ function populateCatalogs() {
   if (pack) {
     pack.innerHTML = ITEMS.map(it => `
       <div class="pack-tile">
-        <svg style="width:32px;height:32px;" viewBox="0 0 16 16"><path fill="#10b981" d="M3 3h10v10H3z"/></svg>
+        <svg class="pixel-icon" style="width:32px;height:32px;margin:0 auto;" viewBox="0 0 16 16"><path fill="#10b981" d="M3 3h10v10H3z"/></svg>
         <span>${it.name}</span>
       </div>
     `).join('');
