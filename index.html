@@ -221,6 +221,7 @@
     padding: 14px;
     display: grid;
     place-items: center;
+    height: 110px;
   }
   .btn-gold {
     width: 100%;
@@ -376,6 +377,7 @@
     position: sticky;
     top: 78px;
     box-shadow: 3px 3px 0 var(--border-col);
+    height: 290px;
   }
   .ctrl-card {
     background: var(--bg-card);
@@ -755,7 +757,7 @@
     flex-wrap: wrap;
   }
   footer.site-foot a { color: inherit; text-decoration: none; font-weight: 600; cursor: pointer; }
-  canvas.px { image-rendering: pixelated; }
+  .svg-icon { width: 64px; height: 64px; image-rendering: pixelated; }
 </style>
 </head>
 <body>
@@ -765,7 +767,7 @@
 <header class="topbar">
   <div class="topbar-inner">
     <a class="brand" onclick="go('home')">
-      <canvas class="px" data-sprite="logo" width="32" height="32"></canvas>
+      <svg class="svg-icon" style="width:32px;height:32px;" viewBox="0 0 16 16"><path fill="#10b981" d="M2 2h12v12H2z"/><path fill="#047857" d="M4 4h8v8H4z"/></svg>
       <span>SageMC</span>
     </a>
     <div class="nav-actions">
@@ -810,47 +812,47 @@
       </div>
     </div>
     <div class="hero-art">
-      <canvas class="px" data-sprite="grass" width="76" height="76"></canvas>
-      <canvas class="px" data-sprite="sage_blade" width="76" height="76"></canvas>
+      <svg class="svg-icon" style="width:64px;height:64px;" viewBox="0 0 16 16"><path fill="#22c55e" d="M0 4h16v12H0z"/><path fill="#5c3a21" d="M6 10h4v6H6z"/></svg>
+      <svg class="svg-icon" style="width:64px;height:64px;" viewBox="0 0 16 16"><path fill="#facc15" d="M11 1l4 4-9 9H2v-4z"/><path fill="#10b981" d="M8 5l3 3-5 5H3V10z"/></svg>
     </div>
   </section>
 
   <h2 class="sec-title">Explore</h2>
   <div class="explore-grid">
     <div class="mode-card c-green" onclick="openModeModal('Survival', 'shovel', 'A big overworld to explore. Build a base, gather resources, trade with other players and make your own story.', ['Claim land and build freely', 'Player trading', 'Custom items to find and wear'])">
-      <canvas class="px" data-sprite="shovel" width="84" height="84"></canvas>
+      <svg class="svg-icon" viewBox="0 0 16 16"><path fill="#64748b" d="M9 1l6 6-3 3-6-6z"/><path fill="#5c3a21" d="M2 14l3-3 2 2-3 3z"/></svg>
       <span>Survival</span>
     </div>
     <div class="mode-card c-pink" onclick="openModeModal('Hardcore', 'heart', 'One life. Every fight, every cave and every mistake counts. Only for players who like real risk.', ['One life only', 'Higher stakes in every fight', 'For experienced players'])">
-      <canvas class="px" data-sprite="heart" width="84" height="84"></canvas>
+      <svg class="svg-icon" viewBox="0 0 16 16"><path fill="#ef4444" d="M2 5a3 3 0 016 0 3 3 0 016 0c0 4-6 9-6 9s-6-5-6-9z"/></svg>
       <span>Hardcore</span>
     </div>
     <div class="mode-card c-blue" onclick="openModeModal('PvP', 'iron_sword', 'Fight other players in arenas and in the open world. Use your best gear and your best aim.', ['Arena and open-world fights', 'Custom swords, shields and armor', 'Ranks and bragging rights'])">
-      <canvas class="px" data-sprite="iron_sword" width="84" height="84"></canvas>
+      <svg class="svg-icon" viewBox="0 0 16 16"><path fill="#94a3b8" d="M11 1l4 4-9 9H2v-4z"/><path fill="#5c3a21" d="M2 13l2 2-1 1H2z"/></svg>
       <span>PvP</span>
     </div>
     <div class="mode-card c-orange" onclick="openModeModal('BedWars', 'bed', 'Guard your bed, gather resources and destroy the other teams. Lose your bed and you cannot respawn.', ['Team based rounds', 'Protect your bed', 'Upgrade gear during the match'])">
-      <canvas class="px" data-sprite="bed" width="84" height="84"></canvas>
+      <svg class="svg-icon" viewBox="0 0 16 16"><path fill="#ef4444" d="M1 5h14v7H1z"/><path fill="#5c3a21" d="M1 12h2v3H1zm12 0h2v3h-2z"/></svg>
       <span>BedWars</span>
     </div>
     <div class="mode-card c-purple" onclick="openModeModal('Minigames', 'trophy', 'Short party games you can jump into with friends. Quick rounds, new winners every time.', ['Quick rounds', 'Play with friends', 'More games added over time'])">
-      <canvas class="px" data-sprite="trophy" width="84" height="84"></canvas>
+      <svg class="svg-icon" viewBox="0 0 16 16"><path fill="#facc15" d="M4 2h8v5a4 4 0 01-8 0V2z"/><path fill="#78350f" d="M6 11h4v3H6z"/></svg>
       <span>Minigames</span>
     </div>
     <div class="mode-card c-rose" onclick="go('profile')">
-      <canvas class="px" data-sprite="steve" width="84" height="84"></canvas>
+      <svg class="svg-icon" viewBox="0 0 16 16"><path fill="#e5b083" d="M4 3h8v8H4z"/><path fill="#26a69a" d="M4 11h8v5H4z"/></svg>
       <span>Skins</span>
     </div>
     <div class="mode-card c-yellow" onclick="go('items')">
-      <canvas class="px" data-sprite="crown" width="84" height="84"></canvas>
+      <svg class="svg-icon" viewBox="0 0 16 16"><path fill="#facc15" d="M1 5l3 3 4-5 4 5 3-3v8H1z"/></svg>
       <span>Items</span>
     </div>
     <div class="mode-card c-mint" onclick="go('rules')">
-      <canvas class="px" data-sprite="grass" width="84" height="84"></canvas>
+      <svg class="svg-icon" viewBox="0 0 16 16"><path fill="#22c55e" d="M0 4h16v12H0z"/></svg>
       <span>Features</span>
     </div>
     <div class="mode-card c-cyan" onclick="go('store')">
-      <canvas class="px" data-sprite="chest" width="84" height="84"></canvas>
+      <svg class="svg-icon" viewBox="0 0 16 16"><path fill="#78350f" d="M1 3h14v11H1z"/><path fill="#facc15" d="M6 7h4v3H6z"/></svg>
       <span>Store</span>
     </div>
   </div>
@@ -858,9 +860,15 @@
   <h2 class="sec-title">Custom Skins <a class="sec-link" onclick="go('profile')">Open studio</a></h2>
   <div class="panel-card">
     <div class="studio-previews">
-      <div class="preview-box"><canvas class="px" data-sprite="char_1" width="90" height="90"></canvas></div>
-      <div class="preview-box"><canvas class="px" data-sprite="char_2" width="90" height="90"></canvas></div>
-      <div class="preview-box"><canvas class="px" data-sprite="char_3" width="90" height="90"></canvas></div>
+      <div class="preview-box">
+        <svg class="svg-icon" viewBox="0 0 16 16"><path fill="#e5b083" d="M4 2h8v7H4z"/><path fill="#2e8b57" d="M3 9h10v5H3z"/><path fill="#facc15" d="M4 1l8 2-4 2z"/></svg>
+      </div>
+      <div class="preview-box">
+        <svg class="svg-icon" viewBox="0 0 16 16"><path fill="#c68652" d="M4 2h8v7H4z"/><path fill="#dc2626" d="M3 9h10v5H3z"/><path fill="#f97316" d="M2 4h3v8H2z"/></svg>
+      </div>
+      <div class="preview-box">
+        <svg class="svg-icon" viewBox="0 0 16 16"><path fill="#f5d0a9" d="M4 2h8v7H4z"/><path fill="#2563eb" d="M3 9h10v5H3z"/><path fill="#38bdf8" d="M11 4h3v8h-3z"/></svg>
+      </div>
     </div>
     <p style="font-size:13.5px; color:var(--text-muted);">Put SageMC custom items on your own skin, see the full look, then buy the pieces you want.</p>
     <button class="btn-gold" onclick="go('profile')">Try the skin studio</button>
@@ -885,7 +893,7 @@
   <div class="news-card">
     <span class="tag-pill">STORE</span>
     <h3>Store preview</h3>
-    <p>Crates, ranks, bundles and Sage+ are listed with high-res 16×16 resource pack textures.</p>
+    <p>Crates, ranks, bundles and Sage+ are listed with high-res textures.</p>
     <small>9 Nov 2026</small>
   </div>
 </main>
@@ -920,7 +928,15 @@
 
   <div class="studio-layout">
     <div class="stage-box">
-      <canvas id="studio-canvas" class="px" width="220" height="240"></canvas>
+      <div id="studio-preview-box" style="text-align:center;">
+        <svg style="width:140px; height:180px;" viewBox="0 0 16 20">
+          <rect x="5" y="1" width="6" height="6" fill="#e5b083" />
+          <rect x="5" y="1" width="6" height="2" fill="#241c18" />
+          <rect x="5" y="7" width="6" height="6" fill="#2e8b57" />
+          <rect x="5" y="13" width="3" height="6" fill="#1e3a8a" />
+          <rect x="8" y="13" width="3" height="6" fill="#1e3a8a" />
+        </svg>
+      </div>
     </div>
     <div>
       <div class="ctrl-card">
@@ -1018,7 +1034,9 @@
     <button class="s-btn-blue" onclick="openCart()">🛒 CART (<span id="store-cart-badge">2</span>)</button>
   </div>
   <div class="crate-hero">
-    <div class="crate-art-box"><canvas class="px" data-sprite="void_chest" width="96" height="96"></canvas></div>
+    <div class="crate-art-box">
+      <svg class="svg-icon" style="width:80px;height:80px;" viewBox="0 0 16 16"><path fill="#7c3aed" d="M1 3h14v10H1z"/><path fill="#facc15" d="M6 6h4v3H6z"/></svg>
+    </div>
     <h2>SAGE BLADE CRATE</h2>
     <p style="font-size:12px; color:var(--text-faint);">Available for a limited time!</p>
     <div class="timer-row">
@@ -1032,24 +1050,24 @@
   </div>
   <div class="store-cats">
     <div class="cat-tile cat-crates" onclick="storeAction('sage_crate')">
-      <canvas class="px" data-sprite="chest" width="76" height="76"></canvas>
+      <svg class="svg-icon" viewBox="0 0 16 16"><path fill="#7c3aed" d="M1 3h14v10H1z"/></svg>
       <h3>CRATES</h3>
     </div>
     <div class="cat-tile cat-coins" onclick="storeAction('coins_pack')">
       <span class="pop-pill">Most Popular</span>
-      <canvas class="px" data-sprite="diamond" width="54" height="54"></canvas>
+      <svg class="svg-icon" viewBox="0 0 16 16"><path fill="#38bdf8" d="M8 1l7 7-7 7-7-7z"/></svg>
       <h3>COINS</h3>
     </div>
     <div class="cat-tile cat-ranks" onclick="storeAction('sage_rank')">
-      <canvas class="px" data-sprite="crown" width="54" height="54"></canvas>
+      <svg class="svg-icon" viewBox="0 0 16 16"><path fill="#facc15" d="M1 5l3 3 4-5 4 5 3-3v8H1z"/></svg>
       <h3>RANKS</h3>
     </div>
     <div class="cat-tile cat-bundles" onclick="requireAuth(() => go('items'), 'Sign in or create an account to view Store Bundles.')">
-      <canvas class="px" data-sprite="bundle" width="54" height="54"></canvas>
+      <svg class="svg-icon" viewBox="0 0 16 16"><path fill="#f97316" d="M2 3h12v10H2z"/></svg>
       <h3>BUNDLES</h3>
     </div>
     <div class="cat-tile cat-sageplus" onclick="storeAction('sage_plus')">
-      <canvas class="px" data-sprite="plus_gem" width="54" height="54"></canvas>
+      <svg class="svg-icon" viewBox="0 0 16 16"><path fill="#0ea5e9" d="M3 3h10v10H3z"/></svg>
       <h3>SAGE+</h3>
     </div>
   </div>
@@ -1082,15 +1100,15 @@
   </div>
 </main>
 
-<!-- MODE DETAIL MODAL (Matching screenshot) -->
+<!-- MODE DETAIL MODAL -->
 <div class="modal-backdrop" id="mode-modal" onclick="if(event.target===this) closeModeModal()">
   <div class="modal-card">
     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
       <h2 id="modal-mode-title" style="font-size:22px; font-weight:800;">Mode</h2>
       <button class="icon-btn" onclick="closeModeModal()">✕</button>
     </div>
-    <div style="background:var(--bg-art); border:2px solid var(--border-col); padding:20px; text-align:center; margin-bottom:16px;">
-      <canvas id="modal-mode-canvas" class="px" width="80" height="80"></canvas>
+    <div style="background:var(--bg-art); border:2px solid var(--border-col); padding:20px; text-align:center; margin-bottom:16px;" id="modal-icon-container">
+      <svg class="svg-icon" style="width:64px;height:64px;" viewBox="0 0 16 16"><path fill="#22c55e" d="M2 2h12v12H2z"/></svg>
     </div>
     <p id="modal-mode-desc" style="font-size:13.5px; color:var(--text-muted); line-height:1.6; margin-bottom:14px;"></p>
     <ul id="modal-mode-bullets" style="margin-left:20px; font-size:13.5px; color:var(--text-main); margin-bottom:20px; line-height:1.6;"></ul>
@@ -1127,47 +1145,6 @@
 </nav>
 
 <script>
-const DISCORD_INVITE = "https://discord.gg/3vMdsVkWj3";
-
-const PAL = {
-  '.': null, 'k': '#141722',
-  'e': '#047857', 'E': '#10b981', 'g': '#6ee7b7', 'w': '#ecfdf5',
-  'o': '#92400e', 'y': '#d97706', 'Y': '#facc15', 'L': '#fef08a',
-  'b': '#451a03', 'B': '#78350f', 't': '#b45309',
-  'r': '#991b1b', 'R': '#ef4444', 'O': '#f97316', 'F': '#fde047',
-  'v': '#4c1d95', 'V': '#7c3aed', 'p': '#c084fc', 'P': '#f3e8ff',
-  'c': '#0369a1', 'C': '#0ea5e9', 'a': '#7dd3fc', 'A': '#e0f2fe',
-  's': '#334155', 'S': '#64748b', 'm': '#cbd5e1', 'M': '#f8fafc',
-  'd': '#5c3a21', 'D': '#7c4d2b', 'n': '#9c663c', 'G': '#22c55e', 'h': '#86efac'
-};
-
-const SPRITES = {
-  logo: ["....kkkk........","..kkGGGGkk......","kkGGhhhhGGkk....","kGhhwwwwhhGk....","kGhwwGGGGhGk....","kGhwwkkkkkGk....","kGhhwwwwhhGk....","kGGGhhhhhhGk....","keeeeGGGGGGk....","keeeeeeeeeek....","keeeewwwwwkk....","keeeeeeeeek.....",""..kkeeeekk......","....kkkk........","................","................"],
-  sage_blade: ["...........kkkk.","..........kwwgkk",".........kwwgEgk","........kwwgEgk.",".......kwwgEgk..","......kwwgEgk...",".....kwwgEgk....","..kkkwwgEgk.....",".kLYkkgEgk......",".kYLYkEgk.......",""..kkYYkk........",""..kBtkYk........",".kBtkkLYk.......","kBtk..kk........","kkk.............","................"],
-  inferno_edge: ["...........kkkk.","..........kFFOkk",".........kFFOORk","........kFFOORk.",".......kFFOORk..","......kFFOORk...",".....kFFOORk....",""..kkkFFOORk.....",".kOykkgORk......",".kROykORk.......",""..kkRRkk........",""..kbbkRk........",".kbbkkOyk.......","kbbk..kk........","kkk.............","................"],
-  void_cleaver: ["...........kkkk.","..........kPPpkk",".........kPPpVpk","........kPPpVpk.",".......kPPpVpk..","......kPPpVpk...",".....kPPpVpk....",""..kkkPPpVpk.....",".kSskkpVpk......",".kMSskVpk.......",""..kkVVkk........",""..kbbkVk........",".kbbkkSsk.......","kbbk..kk........","kkk.............","................"],
-  dragonfang_axe: [".......kkkkk....","......kLYYYLk...",".....kLYYYYYLk..","....kLYYYyoyYLk.","....kLYYyoooyLk.",".....kLYyokoyk..","......kkBtkkk...",".....kBtk.......","....kBtk........",""...kBtk.........",""..kBtk..........",".kBtk...........", "kBtk............","kkk.............","................","................"],
-  shadow_bow: ["....kkkk........","...kMssSk.......",""..kMs..kMk......",".kMs....kMk.....",".kMs....kMk.....","kVpk....kMk.....","kVpk....kMk.....","kVpk....kMk.....","kVpk....kMk.....",".kMs....kMk.....",".kMs....kMk.....",""..kMs..kMk......","...kMssSk.......","....kkkk........","................","................"],
-  guardian_shield: ["..kkkkkkkkkkkk..",".kYLLLLLLLLLLyk.",".kYeeeeeeeeeeyk.",".kYewwwwwwwweyk.",".kYewGGGGGGweyk.",".kYewGGGGGGweyk.",".kYewwwwwwwweyk.",".kYeeeeeeeeeeyk.",".kYeeeeeeeeeeyk.",""..kYeeeeeeeeyk..",""..kYeeeeeeeeyk..","...kYeeeeeeyk...", "....kYeeeeyk....",".....kYeeyk.....","......kkkk......","................"],
-  crown: ["................","................",".kk....kk....kk.","kLLk..kLLk..kLLk","kLYk..kLYk..kLYk","kLYYkkLYYk..kLYk","kLYYYYYYYkkkkLYk","kLYEAYYYYYEAYLYk","kLYYYYYYYYYYYLYk","kooyyyyyyyyyyook","kYYYYYYYYYYYYYYk","kkkkkkkkkkkkkkkk","................","................","................","................"],
-  frost_helm: ["................","................","...kkkkkkkkkk...", "..kAAAAAAAAAAk..",".kAaaaaaaaaaaAk.",".kAaccccccccaAk.",".kAacMMMMMMcaAk.",".kAacMAAAAcMaAk.",".kAaccccccccaAk.",".kAaakkkkkkaaAk.",".kAaak....kaaAk.",".kkkk......kkkk.", "................","................","................","................"],
-  storm_wings: ["................",".kk..........kk.","kAAk........kAAk","kAack......kcaAk","kAacCk....kCcaAk","kAacCCk..kCCcaAk",".kAacCCkkCCcaAk.",".kAacCCCCCCcaAk.",""..kAacCCCCcaAk..",""..kAacCCCCcaAk..",""...kAacCCcaAk...", "....kAaccaAk....",".....kAAAAk.....","......kkkk......","................","................"],
-  phoenix_wings: ["................",".kk..........kk.","kFFk........kFFk","kFOOk......kOOFk","kFOORk....kROOFk","kFOORRk..kRROOFk",".kFOORRkkRROOFk.",".kFOORRRRRROOFk.",""..kFOORRRROOFk..",""..kFOORRRROOFk..",""...kFOORROOFk...", "....kFOOOOFk....",".....kFFFFk.....","......kkkk......","................","................"],
-  aqua_boots: ["................","................","................",""..kkkkk..kkkkk..",".kMMMMMk.kMMMMMk",".kCaaaCk.kCaaaCk",".kCaaaCk.kCaaaCk",".kCaaaCk.kCaaaCk",".kCaaaCkkCaaaCkk","kACaaaCCkACaaaCk","kCCCCCCckCCCCCCk", "kkkkkkkkkkkkkkkk","................","................","................","................"],
-  magma_boots: ["................","................","................",""..kkkkk..kkkkk..",".kOOOOOk.kOOOOOk",".kRbbbRk.kRbbbRk",".kRbbbRk.kRbbbRk",".kRbbbRk.kRbbbRk",".kRbbbRkkRbbbRkk","kFRbbbRRkFRbbbRk","kFFFFFFrkFFFFFFk", "kkkkkkkkkkkkkkkk","................","................","................","................"],
-  grass: [".kkkkkkkkkkkkkk.","kGGGGhGGGGhGGGGk","kGhGGGGhGGGGhGGk","kGGGGeGGGGGeGGGk","kGekGGeGGekGGeGk","kdkkDdkkdkkDdkdk","kdDnDDdDnDDdDnDk","kDDdDnDDdDnDDdDk","kDnDDdDnDDdDnDDk","kdDnDDdDnDDdDnDk","kDDdDnDDdDnDDdDk","kDnDDdDnDDdDnDDk","kdDnDDdDnDDdDnDk","kDDDDDDDDDDDDDDk",".kkkkkkkkkkkkkk.","................"],
-  shovel: [".........kkkkk..","........kMMMMMk.",".......kMMmmmMMk",".......kMmSSSmMk",".......kMmSSSmMk","........kMMMMMk.",".......kBtkkkk..","......kBtk......",".....kBtk.......","....kBtk........",""...kBtk.........", "..kBtk..........",".kBtk...........", "kBtk............","kkk.............","................"],
-  heart: ["................","..kkkk....kkkk..",".kRRRRk..kRRRRk.","kRFFFFRk.kRRRRRk","kRFFRRRRkRRRRRRk","kRFRRRRRRRRRRRrk","kRRRRRRRRRRRRrrk","kRRRRRRRRRRRRrrk",".kRRRRRRRRRRrrk.",""..kRRRRRRRRrrk..",""...kRRRRRRrrk...", "....kRRRRrrk....",".....kRRrrk.....","......krrk......",".......kk.......","................"],
-  iron_sword: ["...........kkkk.","..........kMMmkk",".........kMMmSmk","........kMMmSmk.",".......kMMmSmk..","......kMMmSmk...", ".....kMMmSmk....",""..kkkMMmSmk.....",".kLYkkmSmk......",".kYLYkSmk.......",""..kkYYkk........",""..kBtkYk........",".kBtkkLYk.......","kBtk..kk........","kkk.............","................"],
-  bed: ["................","................","................","................",".kkkkkkkkkkkkkk.","kMMMMkRRRRRRRRRk","kMmmmMRRRRRRRrrk","kMMMMkRRRRRRRRRk","kBBBBBBBBBBBBBBk","kBttttttttttttBk", "kBtk........kBtk","kBtk........kBtk","kkk..........kkk","................","................","................"],
-  trophy: ["................","..kkkkkkkkkkkk..",".kLLLLLLLLLLLLk.","kkLYYYYYYYYYYLkk","kLYYYLLLLLLYYYLk","kLYYYYYYYYYYYYLk","kkLYYYYYYYYYYLkk",".kkLYYYYYYYYLkk.","...kLYYYYYYLk...", "....kkYYYYkk....",".....kYYYYk.....","....kYYYYYYk....",""...kBBBBBBBBk..",""..kBttttttttBk..",""..kkkkkkkkkkkk..","................"],
-  chest: ["................",".kkkkkkkkkkkkkk.","kBBBBBBBBBBBBBBk","kBttttttttttttBk","kBttttttttttttBk","kBttttttttttttBk","kBttttkLLkttttBk","kkkkkkkYYkkkkkkk","kBttttkYYkttttBk", "kBttttttttttttBk","kBttttttttttttBk","kBBBBBBBBBBBBBBk",".kkkkkkkkkkkkkk.","................","................","................"],
-  void_chest: ["................",".kkkkkkkkkkkkkk.","kvvvvvvvvvvvvvvk","kvVVVVVVVVVVVVvk","kvVVppppppppVVvk","kvVVppppppppVVvk","kvVVppkLLkppVVvk","kkkkkkkYYkkkkkkk","kvVVppkYYkppVVvk", "kvVVppppppppVVvk","kvVVVVVVVVVVVVvk","kvvvvvvvvvvvvvvk",".kkkkkkkkkkkkkk.","................","................","................"],
-  diamond: ["................",".....kkkkkk.....","....kAAAAAAk....","...kAAccccAAk...", "..kAAccMMccAAk..",".kAAccMccMccAAk.",".kAAccMccMccAAk.",""..kAAccMMccAAk..","...kAAccccAAk...", "....kAAccAAk....",".....kAAAAk.....","......kAAk......",".......kk.......","................","................","................"],
-  bundle: ["................","....kk....kk....","...kYYk..kYYk...", "....kkYYYYkk....",""..kkkkkkkkkkkk..",".kRRRRkYYkRRRRk.",".kRFFRkYYkRRRRk.",".kRRRRkYYkRRRRk.",".kRRRRkYYkRRRRk.",".kRRRRkYYkRRRRk.","".kRRRRkYYkRRRRk.",".krrrrkYYkrrrrk.", "..kkkkkkkkkkkk..","................","................","................"],
-  plus_gem: ["................","......kkkk......",".....kAAAAk.....",".....kCaaCk.....",""..kkkkCaaCkkkk..",".kAAAACaaCAAAAk.",".kCaaaaaaaaaaCk.","".kCaaaaaaaaaaCk.",".kCCCCaaaaCCCCk.", "..kkkkCaaCkkkk..",".....kCaaCk.....",".....kCCCCk.....","......kkkk......","................","................","................"]
-};
-
 const ITEMS = [
   { id: 'sage_blade', name: 'Sage Blade', rarity: 'Legendary', slot: 'Main hand', price: 499, desc: 'Emerald blade with a glowing green edge and gold hilt.' },
   { id: 'inferno_edge', name: 'Inferno Edge', rarity: 'Mythic', slot: 'Main hand', price: 799, desc: 'Forged in lava. Looks like it is always on fire.' },
@@ -1184,89 +1161,11 @@ const ITEMS = [
 ];
 
 const EXTRA_STORE = {
-  sage_crate: { id: 'sage_crate', name: 'Sage Blade Crate Key', price: 249, sprite: 'void_chest' },
-  coins_pack: { id: 'coins_pack', name: '2,500 Sage Coins', price: 199, sprite: 'diamond' },
-  sage_rank: { id: 'sage_rank', name: 'Sage MVP Rank (Lifetime)', price: 899, sprite: 'crown' },
-  sage_plus: { id: 'sage_plus', name: 'Sage+ Monthly Pass', price: 299, sprite: 'plus_gem' }
+  sage_crate: { id: 'sage_crate', name: 'Sage Blade Crate Key', price: 249 },
+  coins_pack: { id: 'coins_pack', name: '2,500 Sage Coins', price: 199 },
+  sage_rank: { id: 'sage_rank', name: 'Sage MVP Rank (Lifetime)', price: 899 },
+  sage_plus: { id: 'sage_plus', name: 'Sage+ Monthly Pass', price: 299 }
 };
-
-function drawSpriteToCanvas(canvas, spriteKey, dx = 0, dy = 0, scale = null) {
-  const ctx = canvas.getContext('2d');
-  const grid = SPRITES[spriteKey];
-  if (!grid) return;
-  const pxSize = scale || Math.floor(canvas.width / 16);
-  for (let r = 0; r < 16; r++) {
-    for (let c = 0; c < 16; c++) {
-      const ch = grid[r][c];
-      if (PAL[ch]) {
-        ctx.fillStyle = PAL[ch];
-        ctx.fillRect(dx + c * pxSize, dy + r * pxSize, pxSize, pxSize);
-      }
-    }
-  }
-}
-
-function drawCharacter(canvas, opts) {
-  const ctx = canvas.getContext('2d');
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  const u = Math.floor(canvas.width / 22);
-  const ox = Math.floor((canvas.width - 16 * u) / 2);
-  const oy = Math.floor((canvas.height - 20 * u) / 2);
-
-  if (opts.Back) {
-    drawSpriteToCanvas(canvas, opts.Back, ox - u, oy + 4 * u, Math.round(u * 1.12));
-  }
-
-  ctx.fillStyle = opts.skin;
-  ctx.fillRect(ox + 5 * u, oy + 2 * u, 6 * u, 6 * u);
-  ctx.fillStyle = 'rgba(0,0,0,0.12)';
-  ctx.fillRect(ox + 5 * u, oy + 7 * u, 6 * u, u);
-
-  ctx.fillStyle = opts.hair;
-  ctx.fillRect(ox + 5 * u, oy + 2 * u, 6 * u, 2 * u);
-  ctx.fillRect(ox + 5 * u, oy + 3 * u, u, 2 * u);
-  ctx.fillRect(ox + 10 * u, oy + 3 * u, u, 2 * u);
-
-  ctx.fillStyle = '#ffffff';
-  ctx.fillRect(ox + 6 * u, oy + 5 * u, u, u);
-  ctx.fillRect(ox + 9 * u, oy + 5 * u, u, u);
-  ctx.fillStyle = '#1e3a8a';
-  ctx.fillRect(ox + 7 * u, oy + 5 * u, Math.ceil(u * 0.6), u);
-  ctx.fillRect(ox + 9 * u, oy + 5 * u, Math.ceil(u * 0.6), u);
-
-  ctx.fillStyle = opts.shirt;
-  ctx.fillRect(ox + 5 * u, oy + 8 * u, 6 * u, 6 * u);
-  ctx.fillRect(ox + 3 * u, oy + 8 * u, 2 * u, 3 * u);
-  ctx.fillRect(ox + 11 * u, oy + 8 * u, 2 * u, 3 * u);
-  ctx.fillStyle = 'rgba(255,255,255,0.15)';
-  ctx.fillRect(ox + 5 * u, oy + 8 * u, 6 * u, u);
-
-  ctx.fillStyle = opts.skin;
-  ctx.fillRect(ox + 3 * u, oy + 11 * u, 2 * u, 3 * u);
-  ctx.fillRect(ox + 11 * u, oy + 11 * u, 2 * u, 3 * u);
-
-  ctx.fillStyle = opts.pants;
-  ctx.fillRect(ox + 5 * u, oy + 14 * u, 3 * u, 5 * u);
-  ctx.fillRect(ox + 8 * u, oy + 14 * u, 3 * u, 5 * u);
-  ctx.fillStyle = 'rgba(0,0,0,0.15)';
-  ctx.fillRect(ox + 8 * u, oy + 14 * u, 3 * u, 5 * u);
-
-  ctx.fillStyle = '#33261d';
-  ctx.fillRect(ox + 5 * u, oy + 19 * u, 3 * u, u);
-  ctx.fillRect(ox + 8 * u, oy + 19 * u, 3 * u, u);
-  if (opts.Feet) {
-    drawSpriteToCanvas(canvas, opts.Feet, ox + 4 * u, oy + 15 * u, Math.round(u * 0.52));
-  }
-  if (opts.Head) {
-    drawSpriteToCanvas(canvas, opts.Head, ox + 4 * u, oy - u, Math.round(u * 0.52));
-  }
-  if (opts['Main hand']) {
-    drawSpriteToCanvas(canvas, opts['Main hand'], ox + 10 * u, oy + 8 * u, Math.round(u * 0.55));
-  }
-  if (opts['Off hand']) {
-    drawSpriteToCanvas(canvas, opts['Off hand'], ox + u, oy + 9 * u, Math.round(u * 0.45));
-  }
-}
 
 function toggleTheme() {
   const isDark = document.body.classList.toggle('dark-mode');
@@ -1281,22 +1180,12 @@ function toggleTheme() {
   }
 })();
 
-// ==========================================
-// AUTH & TASK REDIRECTION SYSTEM
-// ==========================================
-let authMode = 'login';
-let pendingRoute = null;
-
+// AUTH & USERS
 function getUsers() {
-  try { return JSON.parse(localStorage.getItem('sagemc_users') || '[]'); }
-  catch (e) { return []; }
+  try { return JSON.parse(localStorage.getItem('sagemc_users') || '[]'); } catch (e) { return []; }
 }
-function saveUsers(list) {
-  localStorage.setItem('sagemc_users', JSON.stringify(list));
-}
-function getCurrentUser() {
-  return localStorage.getItem('sagemc_current_user') || null;
-}
+function saveUsers(list) { localStorage.setItem('sagemc_users', JSON.stringify(list)); }
+function getCurrentUser() { return localStorage.getItem('sagemc_current_user') || null; }
 
 function isUserStaff(username) {
   if (!username) return false;
@@ -1345,24 +1234,15 @@ function updateAuthUI() {
   renderStaffDashboard();
 }
 
-function toggleUserMenu() {
-  document.getElementById('user-dropdown').classList.toggle('open');
-}
-function closeUserMenu() {
-  document.getElementById('user-dropdown').classList.remove('open');
-}
+function toggleUserMenu() { document.getElementById('user-dropdown').classList.toggle('open'); }
+function closeUserMenu() { document.getElementById('user-dropdown').classList.remove('open'); }
+window.onclick = function(event) { if (!event.target.closest('#user-menu-wrap')) closeUserMenu(); }
 
-window.onclick = function(event) {
-  if (!event.target.closest('#user-menu-wrap')) {
-    closeUserMenu();
-  }
-}
+let authMode = 'login';
+let pendingRoute = null;
 
 function requireAuth(callback, promptMsg) {
-  if (getCurrentUser()) {
-    callback();
-    return;
-  }
+  if (getCurrentUser()) { callback(); return; }
   pendingRoute = callback;
   openAuthPage('login', promptMsg || 'Please login or register to continue.');
 }
@@ -1399,7 +1279,6 @@ function showAuthError(htmlMsg) {
 function handleAuthSubmit() {
   const ign = document.getElementById('ign-input').value.trim();
   const pwd = document.getElementById('pwd-input').value.trim();
-
   if (!ign) return showAuthError('Please enter your Minecraft username or email.');
   if (pwd.length < 6) return showAuthError('Password must be at least 6 characters.');
 
@@ -1407,10 +1286,7 @@ function handleAuthSubmit() {
   let existing = users.find(u => u.ign.toLowerCase() === ign.toLowerCase());
 
   if (authMode === 'reg') {
-    if (existing) {
-      showAuthError('Credentials already registered! <a style="text-decoration:underline; cursor:pointer; font-weight:800;" onclick="switchAuthTab(\'login\')">Click on Login</a>.');
-      return;
-    }
+    if (existing) return showAuthError('Credentials already registered! <a style="text-decoration:underline; cursor:pointer; font-weight:800;" onclick="switchAuthTab(\'login\')">Click on Login</a>.');
     const isStaffEmail = ign.toLowerCase().includes('staff') || ign.toLowerCase() === 'admin@sagemc.net';
     users.push({ ign, pwd, isStaff: isStaffEmail });
     saveUsers(users);
@@ -1419,14 +1295,8 @@ function handleAuthSubmit() {
     notify('Account created! Welcome, ' + ign);
     finishAuthRedirect();
   } else {
-    if (!existing) {
-      showAuthError('No account found with that username. <a style="text-decoration:underline; cursor:pointer; font-weight:800;" onclick="switchAuthTab(\'reg\')">Register first</a>.');
-      return;
-    }
-    if (existing.pwd !== pwd) {
-      showAuthError('Incorrect password. Please try again.');
-      return;
-    }
+    if (!existing) return showAuthError('No account found. <a style="text-decoration:underline; cursor:pointer; font-weight:800;" onclick="switchAuthTab(\'reg\')">Register first</a>.');
+    if (existing.pwd !== pwd) return showAuthError('Incorrect password.');
     localStorage.setItem('sagemc_current_user', existing.ign);
     updateAuthUI();
     notify('Welcome back, ' + existing.ign + '!');
@@ -1436,13 +1306,8 @@ function handleAuthSubmit() {
 
 function finishAuthRedirect() {
   document.getElementById('pwd-input').value = '';
-  if (pendingRoute) {
-    const fn = pendingRoute;
-    pendingRoute = null;
-    fn();
-  } else {
-    go('home');
-  }
+  if (pendingRoute) { const fn = pendingRoute; pendingRoute = null; fn(); }
+  else go('home');
 }
 
 function logoutUser() {
@@ -1452,53 +1317,44 @@ function logoutUser() {
   go('home');
 }
 
-// Discord linking / deauthorizing
 function toggleDiscordLink() {
   const user = getCurrentUser();
   if (!user) return;
   const currentLink = localStorage.getItem('sagemc_dc_' + user);
   if (currentLink) {
     localStorage.removeItem('sagemc_dc_' + user);
-    notify('Discord account deauthorized successfully.');
+    notify('Discord deauthorized.');
   } else {
     localStorage.setItem('sagemc_dc_' + user, user + '#0001 (Linked)');
-    notify('Discord account linked successfully!');
+    notify('Discord linked successfully!');
   }
   updateAuthUI();
 }
 
-// ==========================================
-// TICKETS & BAN APPEALS (Staff Dashboard)
-// ==========================================
+// TICKETS
 function getTickets() {
-  try { return JSON.parse(localStorage.getItem('sagemc_tickets') || '[]'); }
-  catch(e) { return []; }
+  try { return JSON.parse(localStorage.getItem('sagemc_tickets') || '[]'); } catch(e) { return []; }
 }
-function saveTickets(list) {
-  localStorage.setItem('sagemc_tickets', JSON.stringify(list));
-}
+function saveTickets(list) { localStorage.setItem('sagemc_tickets', JSON.stringify(list)); }
 
 function submitNewTicket() {
   requireAuth(() => {
     const type = document.getElementById('sup-type').value;
     const desc = document.getElementById('sup-desc').value.trim();
-    if (!desc) return notify('Please provide details for your ticket.');
-
+    if (!desc) return notify('Please provide ticket details.');
     const tickets = getTickets();
     tickets.unshift({
       id: 'TICK-' + Math.floor(1000 + Math.random() * 9000),
       user: getCurrentUser(),
-      type,
-      desc,
-      status: 'Open',
+      type, desc, status: 'Open',
       date: new Date().toLocaleDateString('en-IN')
     });
     saveTickets(tickets);
     document.getElementById('sup-desc').value = '';
-    notify('Ticket submitted successfully! Staff will review it.');
+    notify('Ticket submitted successfully!');
     renderUserTickets();
     renderStaffDashboard();
-  }, 'Please sign in to submit a support ticket.');
+  }, 'Please sign in to submit a ticket.');
 }
 
 function renderUserTickets() {
@@ -1527,7 +1383,7 @@ function renderStaffDashboard() {
   if (!container) return;
   const user = getCurrentUser();
   if (!user || !isUserStaff(user)) {
-    container.innerHTML = '<p style="color:#ef4444; font-weight:700;">Access Denied. Staff credentials required to view this dashboard.</p>';
+    container.innerHTML = '<p style="color:#ef4444; font-weight:700;">Access Denied. Staff credentials required.</p>';
     return;
   }
   const tickets = getTickets();
@@ -1561,42 +1417,25 @@ function resolveTicket(id) {
 }
 
 function deleteTicket(id) {
-  let tickets = getTickets();
-  tickets = tickets.filter(x => x.id !== id);
+  let tickets = getTickets().filter(x => x.id !== id);
   saveTickets(tickets);
   renderStaffDashboard();
   renderUserTickets();
   notify('Ticket deleted.');
 }
 
-// ==========================================
-// MODE POPUP MODAL (matching screenshot)
-// ==========================================
-function openModeModal(title, sprite, desc, bullets) {
+// MODAL
+function openModeModal(title, iconType, desc, bullets) {
   document.getElementById('modal-mode-title').textContent = title;
   document.getElementById('modal-mode-desc').textContent = desc;
-  const cv = document.getElementById('modal-mode-canvas');
-  drawSpriteToCanvas(cv, sprite, 0, 0, 5);
   const ul = document.getElementById('modal-mode-bullets');
   ul.innerHTML = bullets.map(b => `<li>${b}</li>`).join('');
   document.getElementById('mode-modal').classList.add('open');
 }
-function closeModeModal() {
-  document.getElementById('mode-modal').classList.remove('open');
-}
+function closeModeModal() { document.getElementById('mode-modal').classList.remove('open'); }
 
-// ==========================================
-// STORE & CART SYSTEM
-// ==========================================
-function storeAction(itemId) {
-  requireAuth(() => {
-    addToCart(itemId);
-    openCart();
-  }, 'Please sign in or register to purchase items from the SageMC Store.');
-}
-
+// CART & STORE
 let cart = JSON.parse(localStorage.getItem('sagemc_cart') || '[{"id":"sage_blade","qty":1},{"id":"crown","qty":1}]');
-
 function saveCart() { localStorage.setItem('sagemc_cart', JSON.stringify(cart)); }
 function getItemObj(id) { return ITEMS.find(i => i.id === id) || EXTRA_STORE[id]; }
 
@@ -1671,9 +1510,11 @@ function checkoutNow() {
   notify('Checkout successful! Items delivered in-game.');
 }
 
-// ==========================================
+function storeAction(itemId) {
+  requireAuth(() => { addToCart(itemId); openCart(); }, 'Please sign in or register to purchase items.');
+}
+
 // SKIN STUDIO
-// ==========================================
 const COLORS = {
   skin: ['#f5d0a9', '#e5b083', '#c68652', '#8d5524', '#523218'],
   hair: ['#241c18', '#5c3c24', '#d4a338', '#b9382c', '#e2e8f0', '#2563eb'],
@@ -1712,7 +1553,7 @@ function buildStudio() {
         <div class="equip-grid">
           ${matching.map(it => `
             <button class="equip-btn ${studioState[slot] === it.id ? 'selected' : ''}" id="eq-${it.id}" onclick="toggleEquip('${slot}', '${it.id}')">
-              <canvas class="px" data-sprite="${it.id}" width="32" height="32"></canvas>
+              <svg style="width:24px;height:24px;" viewBox="0 0 16 16"><path fill="#facc15" d="M2 2h12v12H2z"/></svg>
               <div>
                 <strong>${it.name}</strong>
                 <small>₹${it.price}</small>
@@ -1745,8 +1586,18 @@ function resetStudio() {
 }
 
 function renderStudio() {
-  const c = document.getElementById('studio-canvas');
-  if (c) drawCharacter(c, studioState);
+  const box = document.getElementById('studio-preview-box');
+  if (box) {
+    box.innerHTML = `
+      <svg style="width:140px; height:180px;" viewBox="0 0 16 20">
+        <rect x="5" y="1" width="6" height="6" fill="${studioState.skin}" />
+        <rect x="5" y="1" width="6" height="2" fill="${studioState.hair}" />
+        <rect x="5" y="7" width="6" height="6" fill="${studioState.shirt}" />
+        <rect x="5" y="13" width="3" height="6" fill="${studioState.pants}" />
+        <rect x="8" y="13" width="3" height="6" fill="${studioState.pants}" />
+      </svg>
+    `;
+  }
   const picked = ['Head', 'Back', 'Main hand', 'Off hand', 'Feet'].map(s => studioState[s]).filter(Boolean);
   const total = picked.reduce((sum, id) => sum + getItemObj(id).price, 0);
   const sc = document.getElementById('selected-count');
@@ -1773,7 +1624,7 @@ function populateCatalogs() {
   if (strip) {
     strip.innerHTML = ITEMS.slice(0, 7).map(it => `
       <div class="mini-item" onclick="go('items')">
-        <canvas class="px" data-sprite="${it.id}" width="56" height="56"></canvas>
+        <svg style="width:48px;height:48px;" viewBox="0 0 16 16"><path fill="#f59e0b" d="M3 3h10v10H3z"/></svg>
         <h4>${it.name}</h4>
         <span class="badge ${badgeClass(it.rarity)}">${it.rarity}</span>
       </div>
@@ -1784,7 +1635,9 @@ function populateCatalogs() {
     grid.innerHTML = ITEMS.map(it => `
       <div class="item-card">
         <div>
-          <div class="item-art-bg"><canvas class="px" data-sprite="${it.id}" width="68" height="68"></canvas></div>
+          <div class="item-art-bg">
+            <svg style="width:64px;height:64px;" viewBox="0 0 16 16"><path fill="#3b82f6" d="M3 3h10v10H3z"/></svg>
+          </div>
           <div class="item-top">
             <h3>${it.name}</h3>
             <span class="badge ${badgeClass(it.rarity)}">${it.rarity}</span>
@@ -1803,22 +1656,11 @@ function populateCatalogs() {
   if (pack) {
     pack.innerHTML = ITEMS.map(it => `
       <div class="pack-tile">
-        <canvas class="px" data-sprite="${it.id}" width="38" height="38"></canvas>
+        <svg style="width:32px;height:32px;" viewBox="0 0 16 16"><path fill="#10b981" d="M3 3h10v10H3z"/></svg>
         <span>${it.name}</span>
       </div>
     `).join('');
   }
-}
-
-function renderAllSprites() {
-  document.querySelectorAll('canvas[data-sprite]').forEach(cv => {
-    const key = cv.dataset.sprite;
-    if (key === 'steve') drawCharacter(cv, { skin: '#e5b083', hair: '#4a2e1b', shirt: '#26a69a', pants: '#283593' });
-    else if (key === 'char_1') drawCharacter(cv, { skin: '#e5b083', hair: '#241c18', shirt: '#2e8b57', pants: '#1e3a8a', Head: 'crown', 'Main hand': 'sage_blade' });
-    else if (key === 'char_2') drawCharacter(cv, { skin: '#c68652', hair: '#5c3c24', shirt: '#dc2626', pants: '#1e293b', Back: 'phoenix_wings', 'Main hand': 'inferno_edge' });
-    else if (key === 'char_3') drawCharacter(cv, { skin: '#f5d0a9', hair: '#2563eb', shirt: '#3358d4', pants: '#1e3a8a', Head: 'frost_helm', Back: 'storm_wings', 'Off hand': 'guardian_shield' });
-    else drawSpriteToCanvas(cv, key);
-  });
 }
 
 function go(viewName) {
@@ -1845,11 +1687,9 @@ function notify(msg) {
   window._toastTimer = setTimeout(() => { t.style.display = 'none'; }, 2400);
 }
 
-// Ensure all sprites render once window is fully loaded
 window.onload = function() {
   populateCatalogs();
   buildStudio();
-  renderAllSprites();
   updateAuthUI();
   updateCartUI();
 };
