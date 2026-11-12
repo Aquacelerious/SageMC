@@ -1845,12 +1845,14 @@ function notify(msg) {
   window._toastTimer = setTimeout(() => { t.style.display = 'none'; }, 2400);
 }
 
-// Boot
-populateCatalogs();
-buildStudio();
-renderAllSprites();
-updateAuthUI();
-updateCartUI();
+// Ensure all sprites render once window is fully loaded
+window.onload = function() {
+  populateCatalogs();
+  buildStudio();
+  renderAllSprites();
+  updateAuthUI();
+  updateCartUI();
+};
 </script>
 </body>
 </html>
