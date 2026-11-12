@@ -14,7 +14,7 @@
     --text-main: #0f172a;
     --text-muted: #475569;
     --text-faint: #64748b;
-    --border-col: #cbd5e1;
+    --border-col: #0f172a;
     --nav-bg: #ffffff;
   }
 
@@ -26,11 +26,11 @@
     --text-main: #f8fafc;
     --text-muted: #cbd5e1;
     --text-faint: #94a3b8;
-    --border-col: #313846;
+    --border-col: #64748b;
     --nav-bg: #181b22;
   }
 
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; border-radius: 0 !important; }
   body {
     font-family: 'Plus Jakarta Sans', sans-serif;
     background: var(--bg-main);
@@ -41,7 +41,7 @@
 
   .topbar {
     background: var(--nav-bg);
-    border-bottom: 1px solid var(--border-col);
+    border-bottom: 2px solid var(--border-col);
     padding: 12px 20px;
     position: sticky;
     top: 0;
@@ -64,13 +64,12 @@
     text-decoration: none;
     color: var(--text-main);
   }
-  .nav-actions { display: flex; gap: 8px; align-items: center; }
+  .nav-actions { display: flex; gap: 8px; align-items: center; position: relative; }
   .icon-btn {
     height: 38px;
     min-width: 38px;
     padding: 0 10px;
-    border-radius: 8px;
-    border: 1px solid var(--border-col);
+    border: 2px solid var(--border-col);
     background: var(--bg-card);
     color: var(--text-main);
     cursor: pointer;
@@ -81,18 +80,19 @@
     font-family: inherit;
     font-weight: 700;
     font-size: 13px;
+    box-shadow: 2px 2px 0 var(--border-col);
   }
-  .icon-btn:hover { border-color: #3b82f6; }
+  .icon-btn:hover { background: var(--bg-soft); }
   .btn-primary {
     background: #3358d4;
     color: #fff;
-    border: none;
+    border: 2px solid #1e293b;
     padding: 9px 16px;
-    border-radius: 8px;
     font-weight: 700;
     font-size: 13.5px;
     cursor: pointer;
     font-family: inherit;
+    box-shadow: 2px 2px 0 #1e293b;
   }
   .btn-primary:hover { background: #2747b5; }
 
@@ -104,13 +104,13 @@
 
   .search-box {
     background: var(--bg-card);
-    border: 1px solid var(--border-col);
-    border-radius: 12px;
+    border: 2px solid var(--border-col);
     padding: 6px 8px 6px 14px;
     display: flex;
     align-items: center;
     gap: 10px;
     margin-bottom: 20px;
+    box-shadow: 3px 3px 0 var(--border-col);
   }
   .search-box input {
     border: none;
@@ -124,12 +124,12 @@
 
   .hero-banner {
     background: linear-gradient(135deg, #facc15 0%, #eab308 100%);
-    border-radius: 14px;
+    border: 2px solid #78350f;
     padding: 24px 28px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 4px 0 #ca8a04;
+    box-shadow: 4px 4px 0 #78350f;
     margin-bottom: 28px;
     flex-wrap: wrap;
     gap: 16px;
@@ -141,11 +141,11 @@
     background: #fef9c3;
     border: 2px solid #ca8a04;
     padding: 9px 14px;
-    border-radius: 8px;
     font-family: 'Press Start 2P', monospace;
     font-size: 11px;
     color: #1e1b08;
     letter-spacing: 0.5px;
+    box-shadow: 2px 2px 0 #ca8a04;
   }
   .hero-art { display: flex; align-items: center; gap: 12px; }
 
@@ -174,7 +174,7 @@
   }
   @media (max-width: 700px) { .explore-grid { grid-template-columns: repeat(2, 1fr); } }
   .mode-card {
-    border-radius: 14px;
+    border: 2px solid #1e293b;
     padding: 24px 16px 18px;
     display: flex;
     flex-direction: column;
@@ -183,6 +183,7 @@
     cursor: pointer;
     transition: transform 0.14s ease;
     min-height: 205px;
+    box-shadow: 3px 3px 0 #1e293b;
   }
   .mode-card:hover { transform: translateY(-3px); }
   .mode-card span {
@@ -191,22 +192,22 @@
     color: #0f172a;
     margin-top: 14px;
   }
-  .c-green { background: #6ee76b; box-shadow: 0 4px 0 #38b835; }
-  .c-pink { background: #ff8da1; box-shadow: 0 4px 0 #e05670; }
-  .c-blue { background: #7da6f8; box-shadow: 0 4px 0 #4d7ce0; }
-  .c-orange { background: #fdb462; box-shadow: 0 4px 0 #dc8629; }
-  .c-purple { background: #b99aff; box-shadow: 0 4px 0 #8a63e6; }
-  .c-rose { background: #f88fb3; box-shadow: 0 4px 0 #d65b86; }
-  .c-yellow { background: #fcd34d; box-shadow: 0 4px 0 #d4a317; }
-  .c-mint { background: #67d4a7; box-shadow: 0 4px 0 #37a377; }
-  .c-cyan { background: #67d8ef; box-shadow: 0 4px 0 #34a6bd; }
+  .c-green { background: #6ee76b; }
+  .c-pink { background: #ff8da1; }
+  .c-blue { background: #7da6f8; }
+  .c-orange { background: #fdb462; }
+  .c-purple { background: #b99aff; }
+  .c-rose { background: #f88fb3; }
+  .c-yellow { background: #fcd34d; }
+  .c-mint { background: #67d4a7; }
+  .c-cyan { background: #67d8ef; }
 
   .panel-card {
     background: var(--bg-card);
-    border: 1px solid var(--border-col);
-    border-radius: 14px;
+    border: 2px solid var(--border-col);
     padding: 18px;
     margin-bottom: 30px;
+    box-shadow: 3px 3px 0 var(--border-col);
   }
   .studio-previews {
     display: grid;
@@ -216,7 +217,7 @@
   }
   .preview-box {
     background: var(--bg-art);
-    border-radius: 10px;
+    border: 2px solid var(--border-col);
     padding: 14px;
     display: grid;
     place-items: center;
@@ -224,10 +225,9 @@
   .btn-gold {
     width: 100%;
     background: #facc15;
-    border: none;
-    box-shadow: 0 3px 0 #ca8a04;
+    border: 2px solid #78350f;
+    box-shadow: 3px 3px 0 #78350f;
     padding: 13px;
-    border-radius: 10px;
     font-weight: 800;
     font-size: 14px;
     color: #1e1b08;
@@ -247,14 +247,13 @@
   .mini-item {
     min-width: 142px;
     background: var(--bg-card);
-    border: 1px solid var(--border-col);
-    border-radius: 12px;
+    border: 2px solid var(--border-col);
     padding: 14px 10px;
     text-align: center;
     cursor: pointer;
     flex-shrink: 0;
+    box-shadow: 2px 2px 0 var(--border-col);
   }
-  .mini-item:hover { border-color: #3b82f6; }
   .mini-item h4 { font-size: 13px; font-weight: 700; margin: 8px 0 6px; color: var(--text-main); }
 
   .badge {
@@ -262,21 +261,21 @@
     font-size: 10px;
     font-weight: 800;
     padding: 2px 8px;
-    border-radius: 5px;
     text-transform: uppercase;
     letter-spacing: 0.4px;
+    border: 1px solid currentColor;
   }
-  .b-legendary { border: 1px solid #f59e0b; color: #d97706; background: rgba(245, 158, 11, 0.12); }
-  .b-mythic { border: 1px solid #ec4899; color: #db2777; background: rgba(236, 72, 153, 0.12); }
-  .b-epic { border: 1px solid #8b5cf6; color: #7c3aed; background: rgba(139, 92, 246, 0.12); }
-  .b-rare { border: 1px solid #3b82f6; color: #2563eb; background: rgba(59, 130, 246, 0.12); }
+  .b-legendary { color: #d97706; background: rgba(245, 158, 11, 0.12); }
+  .b-mythic { color: #db2777; background: rgba(236, 72, 153, 0.12); }
+  .b-epic { color: #7c3aed; background: rgba(139, 92, 246, 0.12); }
+  .b-rare { color: #2563eb; background: rgba(59, 130, 246, 0.12); }
 
   .news-card {
     background: var(--bg-card);
-    border: 1px solid var(--border-col);
-    border-radius: 12px;
+    border: 2px solid var(--border-col);
     padding: 16px 18px;
     margin-bottom: 12px;
+    box-shadow: 3px 3px 0 var(--border-col);
   }
   .tag-pill {
     display: inline-block;
@@ -286,7 +285,6 @@
     border: 1px solid #22c55e;
     background: rgba(34, 197, 94, 0.12);
     padding: 2px 7px;
-    border-radius: 4px;
     margin-bottom: 6px;
   }
   .news-card h3 { font-size: 15px; font-weight: 800; margin-bottom: 4px; color: var(--text-main); }
@@ -303,16 +301,16 @@
   @media (max-width: 480px) { .catalog-grid { grid-template-columns: 1fr; } }
   .item-card {
     background: var(--bg-card);
-    border: 1px solid var(--border-col);
-    border-radius: 14px;
+    border: 2px solid var(--border-col);
     padding: 14px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    box-shadow: 3px 3px 0 var(--border-col);
   }
   .item-art-bg {
     background: var(--bg-art);
-    border-radius: 10px;
+    border: 2px solid var(--border-col);
     height: 115px;
     display: grid;
     place-items: center;
@@ -336,10 +334,9 @@
   .btn-cart {
     background: #4ea819;
     color: #fff;
-    border: none;
-    box-shadow: 0 3px 0 #36780e;
+    border: 2px solid #205007;
+    box-shadow: 2px 2px 0 #205007;
     padding: 8px 14px;
-    border-radius: 8px;
     font-weight: 700;
     font-size: 12.5px;
     cursor: pointer;
@@ -355,8 +352,7 @@
   }
   .pack-tile {
     width: 72px;
-    border: 1px solid var(--border-col);
-    border-radius: 8px;
+    border: 2px solid var(--border-col);
     padding: 8px 4px;
     text-align: center;
     background: var(--bg-soft);
@@ -373,20 +369,20 @@
   @media (max-width: 760px) { .studio-layout { grid-template-columns: 1fr; } }
   .stage-box {
     background: var(--bg-art);
-    border: 1px solid var(--border-col);
-    border-radius: 14px;
+    border: 2px solid var(--border-col);
     padding: 28px 16px;
     display: grid;
     place-items: center;
     position: sticky;
     top: 78px;
+    box-shadow: 3px 3px 0 var(--border-col);
   }
   .ctrl-card {
     background: var(--bg-card);
-    border: 1px solid var(--border-col);
-    border-radius: 12px;
+    border: 2px solid var(--border-col);
     padding: 16px;
     margin-bottom: 14px;
+    box-shadow: 3px 3px 0 var(--border-col);
   }
   .ctrl-card h3 { font-size: 15px; font-weight: 800; margin-bottom: 12px; color: var(--text-main); }
   .swatch-row {
@@ -398,17 +394,15 @@
   .swatch-label { width: 52px; font-size: 12.5px; font-weight: 600; color: var(--text-muted); }
   .swatch {
     width: 28px; height: 28px;
-    border-radius: 6px;
     border: 2px solid var(--border-col);
     cursor: pointer;
   }
   .swatch.active { outline: 2px solid #3b82f6; outline-offset: 2px; }
   .equip-grid { display: flex; flex-wrap: wrap; gap: 10px; }
   .equip-btn {
-    border: 1px solid var(--border-col);
+    border: 2px solid var(--border-col);
     background: var(--bg-soft);
     color: var(--text-main);
-    border-radius: 10px;
     padding: 8px 12px;
     display: flex;
     align-items: center;
@@ -416,6 +410,7 @@
     cursor: pointer;
     text-align: left;
     font-family: inherit;
+    box-shadow: 2px 2px 0 var(--border-col);
   }
   .equip-btn.selected {
     border: 2px solid #3b82f6;
@@ -426,10 +421,10 @@
 
   .rule-box {
     background: var(--bg-card);
-    border: 1px solid var(--border-col);
-    border-radius: 12px;
+    border: 2px solid var(--border-col);
     margin-bottom: 10px;
     overflow: hidden;
+    box-shadow: 3px 3px 0 var(--border-col);
   }
   .rule-head {
     padding: 16px 18px;
@@ -471,37 +466,37 @@
   }
   .s-btn-brown {
     background: linear-gradient(180deg, #85583f, #5c3a27);
-    border: 2px solid #a87659;
+    border: 2px solid #3b2315;
     color: #fff;
     padding: 12px;
-    border-radius: 8px;
     font-family: 'Press Start 2P', monospace;
     font-size: 11px;
     cursor: pointer;
+    box-shadow: 3px 3px 0 #3b2315;
   }
   .s-btn-blue {
     background: linear-gradient(180deg, #2b6cb0, #1e4e8c);
-    border: 2px solid #4299e1;
+    border: 2px solid #102a43;
     color: #fff;
     padding: 12px;
-    border-radius: 8px;
     font-family: 'Press Start 2P', monospace;
     font-size: 11px;
     cursor: pointer;
+    box-shadow: 3px 3px 0 #102a43;
   }
   .crate-hero {
     background: var(--bg-card);
     border: 2px solid var(--border-col);
-    border-radius: 12px;
     padding: 24px;
     text-align: center;
     margin-bottom: 18px;
+    box-shadow: 4px 4px 0 var(--border-col);
   }
   .crate-art-box {
     width: 150px; height: 150px;
     margin: 0 auto 16px;
     background: #2d4259;
-    border-radius: 10px;
+    border: 2px solid var(--border-col);
     display: grid;
     place-items: center;
   }
@@ -528,7 +523,7 @@
     margin-bottom: 18px;
   }
   .cat-tile {
-    border-radius: 10px;
+    border: 2px solid var(--border-col);
     padding: 18px;
     text-align: center;
     cursor: pointer;
@@ -544,27 +539,27 @@
     text-shadow: 0 2px 0 rgba(0,0,0,0.45);
     margin-top: 10px;
   }
-  .cat-crates { grid-row: span 2; background: #eab308; box-shadow: 0 4px 0 #a16207; }
-  .cat-coins { background: #0284c7; box-shadow: 0 4px 0 #0369a1; }
-  .cat-ranks { background: #dc2626; box-shadow: 0 4px 0 #991b1b; }
-  .cat-bundles { background: #ea580c; box-shadow: 0 4px 0 #9a3412; }
-  .cat-sageplus { background: #0ea5e9; box-shadow: 0 4px 0 #0284c7; }
+  .cat-crates { grid-row: span 2; background: #eab308; border-color: #78350f; box-shadow: 3px 3px 0 #78350f; }
+  .cat-coins { background: #0284c7; border-color: #034f75; box-shadow: 3px 3px 0 #034f75; }
+  .cat-ranks { background: #dc2626; border-color: #7f1d1d; box-shadow: 3px 3px 0 #7f1d1d; }
+  .cat-bundles { background: #ea580c; border-color: #7c2d12; box-shadow: 3px 3px 0 #7c2d12; }
+  .cat-sageplus { background: #0ea5e9; border-color: #0369a1; box-shadow: 3px 3px 0 #0369a1; }
   .pop-pill {
     background: #facc15;
     color: #1e1b08;
     font-size: 9px;
     font-weight: 800;
     padding: 2px 8px;
-    border-radius: 99px;
     margin-bottom: 6px;
+    border: 1px solid #78350f;
   }
 
   .store-box {
     background: var(--bg-card);
-    border: 1px solid var(--border-col);
-    border-radius: 10px;
+    border: 2px solid var(--border-col);
     padding: 16px 18px;
     margin-bottom: 14px;
+    box-shadow: 3px 3px 0 var(--border-col);
   }
   .store-box h4 {
     font-family: 'Press Start 2P', monospace;
@@ -577,48 +572,38 @@
     max-width: 440px;
     margin: 24px auto;
     background: var(--bg-card);
-    border: 1px solid var(--border-col);
-    border-radius: 14px;
+    border: 2px solid var(--border-col);
     padding: 26px;
+    box-shadow: 4px 4px 0 var(--border-col);
   }
   .auth-alert {
     padding: 10px 12px;
-    border-radius: 8px;
     font-size: 13px;
     font-weight: 600;
     margin-bottom: 14px;
     display: none;
+    border: 2px solid currentColor;
   }
-  .auth-alert.err {
-    background: rgba(239, 68, 68, 0.14);
-    border: 1px solid #ef4444;
-    color: #ef4444;
-  }
-  .auth-alert.info {
-    background: rgba(59, 130, 246, 0.14);
-    border: 1px solid #3b82f6;
-    color: #3b82f6;
-  }
+  .auth-alert.err { background: rgba(239, 68, 68, 0.14); color: #ef4444; }
+  .auth-alert.info { background: rgba(59, 130, 246, 0.14); color: #3b82f6; }
   .auth-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 16px 0 18px; }
   .auth-tab {
     padding: 10px;
-    border-radius: 8px;
     font-weight: 700;
-    border: 1px solid var(--border-col);
+    border: 2px solid var(--border-col);
     background: var(--bg-soft);
     color: var(--text-main);
     cursor: pointer;
     font-family: inherit;
   }
-  .auth-tab.active { background: #3358d4; color: #fff; border-color: #3358d4; }
+  .auth-tab.active { background: #3358d4; color: #fff; border-color: #1e293b; }
   .field-lbl { display: block; font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--text-main); }
   .field-inp {
     width: 100%;
     padding: 11px 12px;
-    border: 1px solid var(--border-col);
+    border: 2px solid var(--border-col);
     background: var(--bg-soft);
     color: var(--text-main);
-    border-radius: 8px;
     margin-bottom: 14px;
     font-family: inherit;
   }
@@ -627,7 +612,7 @@
     position: fixed;
     bottom: 0; left: 0; right: 0;
     background: var(--nav-bg);
-    border-top: 1px solid var(--border-col);
+    border-top: 2px solid var(--border-col);
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -651,18 +636,50 @@
   .nav-plus {
     width: 46px; height: 46px;
     background: #facc15;
-    border-radius: 10px;
-    box-shadow: 0 3px 0 #ca8a04;
+    border: 2px solid #78350f;
+    box-shadow: 2px 2px 0 #78350f;
     display: grid;
     place-items: center;
     font-size: 24px;
     font-weight: 800;
     color: #1e1b08;
-    border: none;
     cursor: pointer;
     margin-top: -14px;
   }
 
+  /* User Menu Dropdown */
+  .user-menu-wrap { position: relative; display: inline-block; }
+  .user-dropdown {
+    position: absolute;
+    right: 0;
+    top: 46px;
+    width: 220px;
+    background: var(--bg-card);
+    border: 2px solid var(--border-col);
+    box-shadow: 4px 4px 0 var(--border-col);
+    display: none;
+    z-index: 99;
+  }
+  .user-dropdown.open { display: block; }
+  .user-dropdown button {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 12px 16px;
+    text-align: left;
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--text-main);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid var(--border-col);
+  }
+  .user-dropdown button:hover { background: var(--bg-soft); }
+
+  /* Modals */
   .modal-backdrop {
     position: fixed;
     inset: 0;
@@ -676,20 +693,20 @@
   .modal-card {
     background: var(--bg-card);
     color: var(--text-main);
-    border: 1px solid var(--border-col);
+    border: 2px solid var(--border-col);
     width: 100%;
-    max-width: 460px;
-    border-radius: 16px;
-    padding: 22px;
+    max-width: 520px;
+    padding: 24px;
     max-height: 88vh;
     overflow-y: auto;
+    box-shadow: 6px 6px 0 var(--border-col);
   }
   .cart-line {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 12px 0;
-    border-bottom: 1px solid var(--border-col);
+    border-bottom: 2px solid var(--border-col);
     gap: 10px;
   }
   .qty-ctrl {
@@ -697,8 +714,7 @@
     align-items: center;
     gap: 8px;
     background: var(--bg-soft);
-    border: 1px solid var(--border-col);
-    border-radius: 8px;
+    border: 2px solid var(--border-col);
     padding: 3px 8px;
   }
   .qty-ctrl button {
@@ -717,13 +733,13 @@
     right: 20px;
     background: #0f172a;
     color: #fff;
-    border: 1px solid #334155;
+    border: 2px solid #334155;
     padding: 11px 16px;
-    border-radius: 8px;
     font-size: 13px;
     font-weight: 600;
     display: none;
     z-index: 120;
+    box-shadow: 3px 3px 0 #334155;
   }
 
   .view { display: none; }
@@ -731,7 +747,7 @@
   footer.site-foot {
     margin-top: 32px;
     padding-top: 16px;
-    border-top: 1px solid var(--border-col);
+    border-top: 2px solid var(--border-col);
     font-size: 12px;
     color: var(--text-faint);
     display: flex;
@@ -757,7 +773,21 @@
       <button class="icon-btn" onclick="openCart()" title="Shopping Cart">
         🛒 <span id="top-cart-count">2</span>
       </button>
-      <button class="btn-primary" id="auth-btn" onclick="openAuthPage('login')">Sign in</button>
+
+      <div class="user-menu-wrap" id="user-menu-wrap" style="display:none;">
+        <button class="btn-primary" id="auth-btn-dropdown" onclick="toggleUserMenu()">
+          <span id="current-username-lbl">Account</span> ▾
+        </button>
+        <div class="user-dropdown" id="user-dropdown">
+          <button onclick="closeUserMenu(); go('account')">👤 Account</button>
+          <button onclick="closeUserMenu(); go('profile')">🎮 Game Profile</button>
+          <button onclick="closeUserMenu(); go('support')">🎧 Support / Tickets</button>
+          <button id="staff-menu-btn" style="display:none; color:#f59e0b;" onclick="closeUserMenu(); go('staff')">🛡️ Staff Tickets Dashboard</button>
+          <button onclick="logoutUser()" style="color:#ef4444;">🚪 Logout</button>
+        </div>
+      </div>
+
+      <button class="btn-primary" id="auth-signin-btn" onclick="openAuthPage('login')">Sign in</button>
     </div>
   </div>
 </header>
@@ -787,27 +817,27 @@
 
   <h2 class="sec-title">Explore</h2>
   <div class="explore-grid">
-    <div class="mode-card c-green" onclick="notify('Survival: 1.21.11 Economy & Claims')">
+    <div class="mode-card c-green" onclick="openModeModal('Survival', 'shovel', 'A big overworld to explore. Build a base, gather resources, trade with other players and make your own story.', ['Claim land and build freely', 'Player trading', 'Custom items to find and wear'])">
       <canvas class="px" data-sprite="shovel" width="84" height="84"></canvas>
       <span>Survival</span>
     </div>
-    <div class="mode-card c-pink" onclick="notify('Hardcore: Single-life seasonal world')">
+    <div class="mode-card c-pink" onclick="openModeModal('Hardcore', 'heart', 'One life. Every fight, every cave and every mistake counts. Only for players who like real risk.', ['One life only', 'Higher stakes in every fight', 'For experienced players'])">
       <canvas class="px" data-sprite="heart" width="84" height="84"></canvas>
       <span>Hardcore</span>
     </div>
-    <div class="mode-card c-blue" onclick="notify('PvP: Crystal, Axe & Netherite Duels')">
+    <div class="mode-card c-blue" onclick="openModeModal('PvP', 'iron_sword', 'Fight other players in arenas and in the open world. Use your best gear and your best aim.', ['Arena and open-world fights', 'Custom swords, shields and armor', 'Ranks and bragging rights'])">
       <canvas class="px" data-sprite="iron_sword" width="84" height="84"></canvas>
       <span>PvP</span>
     </div>
-    <div class="mode-card c-orange" onclick="notify('BedWars: Solos, Doubles & 4v4')">
+    <div class="mode-card c-orange" onclick="openModeModal('BedWars', 'bed', 'Guard your bed, gather resources and destroy the other teams. Lose your bed and you cannot respawn.', ['Team based rounds', 'Protect your bed', 'Upgrade gear during the match'])">
       <canvas class="px" data-sprite="bed" width="84" height="84"></canvas>
       <span>BedWars</span>
     </div>
-    <div class="mode-card c-purple" onclick="notify('Minigames: Spleef, TNT Run & Parkour')">
+    <div class="mode-card c-purple" onclick="openModeModal('Minigames', 'trophy', 'Short party games you can jump into with friends. Quick rounds, new winners every time.', ['Quick rounds', 'Play with friends', 'More games added over time'])">
       <canvas class="px" data-sprite="trophy" width="84" height="84"></canvas>
       <span>Minigames</span>
     </div>
-    <div class="mode-card c-rose" onclick="go('skins')">
+    <div class="mode-card c-rose" onclick="go('profile')">
       <canvas class="px" data-sprite="steve" width="84" height="84"></canvas>
       <span>Skins</span>
     </div>
@@ -825,7 +855,7 @@
     </div>
   </div>
 
-  <h2 class="sec-title">Custom Skins <a class="sec-link" onclick="go('skins')">Open studio</a></h2>
+  <h2 class="sec-title">Custom Skins <a class="sec-link" onclick="go('profile')">Open studio</a></h2>
   <div class="panel-card">
     <div class="studio-previews">
       <div class="preview-box"><canvas class="px" data-sprite="char_1" width="90" height="90"></canvas></div>
@@ -833,7 +863,7 @@
       <div class="preview-box"><canvas class="px" data-sprite="char_3" width="90" height="90"></canvas></div>
     </div>
     <p style="font-size:13.5px; color:var(--text-muted);">Put SageMC custom items on your own skin, see the full look, then buy the pieces you want.</p>
-    <button class="btn-gold" onclick="go('skins')">Try the skin studio</button>
+    <button class="btn-gold" onclick="go('profile')">Try the skin studio</button>
   </div>
 
   <h2 class="sec-title">Custom Items <a class="sec-link" onclick="go('items')">See all</a></h2>
@@ -860,42 +890,47 @@
   </div>
 </main>
 
-<!-- CUSTOM ITEMS CATALOG VIEW -->
-<main id="view-items" class="view wrap">
-  <h2 class="sec-title" style="font-size:28px; margin-bottom:6px;">Custom Items</h2>
-  <p style="font-size:14px; color:var(--text-muted); margin-bottom:20px;">Wear them on your skin in the studio, or add them straight to your cart.</p>
-
-  <div class="catalog-grid" id="catalog-grid"></div>
-
-  <div class="panel-card">
-    <h3 style="font-size:19px; font-weight:800; margin-bottom:4px;">Texture pack preview</h3>
-    <p style="font-size:13px; color:var(--text-muted);">Every custom item has its own shaded 16×16 texture. This is how they look in the pack.</p>
-    <div class="pack-grid" id="pack-grid"></div>
-    <button class="btn-gold" onclick="go('skins')">Try them in the skin studio</button>
+<!-- ACCOUNT VIEW -->
+<main id="view-account" class="view wrap">
+  <div class="auth-card" style="max-width: 600px;">
+    <h2 style="font-size:24px; font-weight:800; margin-bottom:16px;">My Account</h2>
+    <div style="margin-bottom:14px;">
+      <label class="field-lbl">Minecraft Username / Email</label>
+      <input type="text" id="acc-username" class="field-inp" readonly>
+    </div>
+    <div style="margin-bottom:14px;">
+      <label class="field-lbl">Discord Account Link</label>
+      <div style="display:flex; gap:10px; align-items:center;">
+        <input type="text" id="acc-discord" class="field-inp" style="margin-bottom:0;" value="Not linked" readonly>
+        <button class="btn-primary" id="dc-link-btn" onclick="toggleDiscordLink()">Link Account</button>
+      </div>
+    </div>
+    <div style="margin-bottom:14px;">
+      <label class="field-lbl">Role Status</label>
+      <input type="text" id="acc-role" class="field-inp" value="Standard Player" readonly>
+    </div>
+    <button class="btn-gold" onclick="logoutUser()">Logout</button>
   </div>
 </main>
 
-<!-- SKIN STUDIO VIEW -->
-<main id="view-skins" class="view wrap">
-  <h2 class="sec-title" style="font-size:28px; margin-bottom:6px;">Custom Skin</h2>
-  <p style="font-size:14px; color:var(--text-muted); margin-bottom:20px;">Pick your colors, try SageMC custom items on your character and buy what you like.</p>
+<!-- GAME PROFILE VIEW -->
+<main id="view-profile" class="view wrap">
+  <h2 class="sec-title" style="font-size:28px; margin-bottom:6px;">Game Profile & Skin Studio</h2>
+  <p style="font-size:14px; color:var(--text-muted); margin-bottom:20px;">Customize your skin, manage equipped items and link/deauthorize your Discord.</p>
 
   <div class="studio-layout">
     <div class="stage-box">
       <canvas id="studio-canvas" class="px" width="220" height="240"></canvas>
     </div>
-
     <div>
       <div class="ctrl-card">
-        <h3>Your look</h3>
+        <h3>Skin Colors</h3>
         <div class="swatch-row" id="sw-skin"><span class="swatch-label">Skin</span></div>
         <div class="swatch-row" id="sw-hair"><span class="swatch-label">Hair</span></div>
         <div class="swatch-row" id="sw-shirt"><span class="swatch-label">Shirt</span></div>
         <div class="swatch-row" id="sw-pants"><span class="swatch-label">Pants</span></div>
       </div>
-
       <div id="slot-controls"></div>
-
       <div class="ctrl-card" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
         <div>
           <div style="font-size:12px; color:var(--text-faint);" id="selected-count">2 items selected</div>
@@ -910,74 +945,66 @@
   </div>
 </main>
 
+<!-- SUPPORT VIEW -->
+<main id="view-support" class="view wrap">
+  <h2 class="sec-title" style="font-size:28px; margin-bottom:6px;">Support Center</h2>
+  <p style="font-size:14px; color:var(--text-muted); margin-bottom:18px;">Submit reports, ban appeals, or transaction issues. Our staff team reviews them daily.</p>
+
+  <div class="panel-card" style="max-width: 640px; margin-bottom:24px;">
+    <h3 style="font-size:18px; font-weight:800; margin-bottom:14px;">Create a New Ticket</h3>
+    <label class="field-lbl">Ticket Type</label>
+    <select id="sup-type" class="field-inp">
+      <option value="Bug Report">Bug Report</option>
+      <option value="Player Report">Player Report</option>
+      <option value="Transaction Issue">Transaction Issue</option>
+      <option value="Ban Appeal">Ban Appeal</option>
+    </select>
+    <label class="field-lbl">Subject / Details</label>
+    <textarea id="sup-desc" class="field-inp" rows="4" placeholder="Provide your Minecraft IGN, evidence, or transaction ID..."></textarea>
+    <button class="btn-gold" onclick="submitNewTicket()">Submit Ticket</button>
+  </div>
+
+  <h3 style="font-size:20px; font-weight:800; margin-bottom:12px;">My Submitted Tickets</h3>
+  <div id="my-tickets-list"></div>
+</main>
+
+<!-- STAFF DASHBOARD VIEW -->
+<main id="view-staff" class="view wrap">
+  <h2 class="sec-title" style="font-size:28px; margin-bottom:6px;">Staff Tickets & Ban Appeals Dashboard</h2>
+  <p style="font-size:14px; color:var(--text-muted); margin-bottom:18px;">Restricted access: Staff members can review, respond to, and resolve all player submissions.</p>
+  <div id="staff-tickets-container"></div>
+</main>
+
+<!-- CUSTOM ITEMS CATALOG VIEW -->
+<main id="view-items" class="view wrap">
+  <h2 class="sec-title" style="font-size:28px; margin-bottom:6px;">Custom Items</h2>
+  <p style="font-size:14px; color:var(--text-muted); margin-bottom:20px;">Wear them on your skin in the studio, or add them straight to your cart.</p>
+  <div class="catalog-grid" id="catalog-grid"></div>
+  <div class="panel-card">
+    <h3 style="font-size:19px; font-weight:800; margin-bottom:4px;">Texture pack preview</h3>
+    <p style="font-size:13px; color:var(--text-muted);">Every custom item has its own shaded 16×16 texture.</p>
+    <div class="pack-grid" id="pack-grid"></div>
+    <button class="btn-gold" onclick="go('profile')">Try them in the skin studio</button>
+  </div>
+</main>
+
 <!-- RULES VIEW -->
 <main id="view-rules" class="view wrap">
   <h2 class="sec-title" style="font-size:28px; margin-bottom:6px;">Server Rules</h2>
-  <p style="font-size:14px; color:var(--text-muted); margin-bottom:18px;">Read these before you play. Breaking them can lead to a mute, kick or ban.<br>Questions? Open a support ticket.</p>
-
   <div class="rule-box open">
-    <div class="rule-head" onclick="this.parentElement.classList.toggle('open')">
-      <span>Respect everyone</span><span>−</span>
-    </div>
+    <div class="rule-head" onclick="this.parentElement.classList.toggle('open')"><span>Respect everyone</span><span>−</span></div>
     <ol class="rule-body">
       <li><strong>Be kind.</strong> No harassment, hate speech, threats or targeting of any player or staff member.</li>
       <li><strong>Keep chat clean.</strong> No spam, caps abuse, excessive swearing or sexual content.</li>
-      <li><strong>No drama copy-pasting.</strong> Do not bring outside fights into SageMC chat.</li>
     </ol>
   </div>
   <div class="rule-box">
-    <div class="rule-head" onclick="this.parentElement.classList.toggle('open')">
-      <span>Fair play</span><span>+</span>
-    </div>
+    <div class="rule-head" onclick="this.parentElement.classList.toggle('open')"><span>Fair play</span><span>+</span></div>
     <ol class="rule-body">
       <li><strong>No hacked clients.</strong> KillAura, Reach, X-Ray texture packs and auto-clickers are strictly banned.</li>
-      <li><strong>Allowed mods.</strong> Sodium, Optifine, MiniMaps without cave/entity radar, and ArmorStatus HUDs are fine.</li>
     </ol>
   </div>
-  <div class="rule-box">
-    <div class="rule-head" onclick="this.parentElement.classList.toggle('open')">
-      <span>Survival and Hardcore</span><span>+</span>
-    </div>
-    <ol class="rule-body">
-      <li><strong>No griefing claimed land.</strong> Bypassing claim borders with TNT cannons or pistons is bannable.</li>
-      <li><strong>Keep lag machines off.</strong> Massive redstone clocks without an on/off lever will be removed.</li>
-    </ol>
-  </div>
-  <div class="rule-box">
-    <div class="rule-head" onclick="this.parentElement.classList.toggle('open')">
-      <span>PvP and Minigames</span><span>+</span>
-    </div>
-    <ol class="rule-body">
-      <li><strong>No cross-teaming.</strong> Teaming in Solo BedWars or Free-For-All arenas results in a temporary ban.</li>
-      <li><strong>No combat logging.</strong> Disconnecting mid-fight forfeits your inventory automatically.</li>
-    </ol>
-  </div>
-  <div class="rule-box">
-    <div class="rule-head" onclick="this.parentElement.classList.toggle('open')">
-      <span>Skins, names and items</span><span>+</span>
-    </div>
-    <ol class="rule-body">
-      <li><strong>Keep skins appropriate.</strong> Offensive skins or renamed items with slurs will be confiscated.</li>
-    </ol>
-  </div>
-  <div class="rule-box">
-    <div class="rule-head" onclick="this.parentElement.classList.toggle('open')">
-      <span>Store and purchases</span><span>+</span>
-    </div>
-    <ol class="rule-body">
-      <li><strong>All store items are cosmetic or server perks.</strong> Chargebacks result in an automatic network ban.</li>
-    </ol>
-  </div>
-  <div class="rule-box">
-    <div class="rule-head" onclick="this.parentElement.classList.toggle('open')">
-      <span>Staff and appeals</span><span>+</span>
-    </div>
-    <ol class="rule-body">
-      <li><strong>Ban appeals.</strong> Open a support ticket with your IGN and ban ID within 14 days.</li>
-    </ol>
-  </div>
-
-  <button class="btn-gold" onclick="handleSupportTicket()">Create a support ticket</button>
+  <button class="btn-gold" onclick="requireAuth(() => go('support'), 'Please login to create a support ticket.')">Create a support ticket</button>
 </main>
 
 <!-- STORE VIEW -->
@@ -986,16 +1013,12 @@
     <h1>SAGEMC</h1>
     <p>OFFICIAL STORE</p>
   </div>
-
   <div class="store-top-btns">
     <button class="s-btn-brown" onclick="requireAuth(() => go('items'), 'Please sign in or sign up to browse store items.')">⊞ MENU</button>
     <button class="s-btn-blue" onclick="openCart()">🛒 CART (<span id="store-cart-badge">2</span>)</button>
   </div>
-
   <div class="crate-hero">
-    <div class="crate-art-box">
-      <canvas class="px" data-sprite="void_chest" width="96" height="96"></canvas>
-    </div>
+    <div class="crate-art-box"><canvas class="px" data-sprite="void_chest" width="96" height="96"></canvas></div>
     <h2>SAGE BLADE CRATE</h2>
     <p style="font-size:12px; color:var(--text-faint);">Available for a limited time!</p>
     <div class="timer-row">
@@ -1007,7 +1030,6 @@
     </div>
     <button class="btn-gold" style="width:auto; padding:11px 24px;" onclick="storeAction('sage_crate')">Open crates — ₹249</button>
   </div>
-
   <div class="store-cats">
     <div class="cat-tile cat-crates" onclick="storeAction('sage_crate')">
       <canvas class="px" data-sprite="chest" width="76" height="76"></canvas>
@@ -1031,42 +1053,15 @@
       <h3>SAGE+</h3>
     </div>
   </div>
-
-  <div class="store-box">
-    <h4>BROWSE THE STORE</h4>
-    <p style="font-size:13px; color:var(--text-muted);">Pick Crates, Coins, Ranks, Bundles or Sage+ above. Custom items are on the <a style="color:#eab308; font-weight:700; text-decoration:underline; cursor:pointer;" onclick="requireAuth(() => go('items'), 'Sign in first to access Store items.')">Items page</a>.</p>
-  </div>
-
   <div class="store-box">
     <h4>SUPPORT / QUESTIONS</h4>
-    <div style="display:flex; justify-content:space-between; align-items:center; padding:8px 0; border-bottom:1px solid var(--border-col);">
+    <div style="display:flex; justify-content:space-between; align-items:center; padding:8px 0;">
       <div>
-        <strong style="color:#22c55e; font-size:13px;">Support Ticket</strong>
-        <div style="font-size:11.5px; color:var(--text-faint);">Problem with an order or a player?</div>
+        <strong style="color:#22c55e; font-size:13px;">Support Ticket / Ban Appeal</strong>
+        <div style="font-size:11.5px; color:var(--text-faint);">Need help or want to appeal a ban?</div>
       </div>
-      <button class="btn-cart" onclick="handleSupportTicket()">CREATE</button>
+      <button class="btn-cart" onclick="requireAuth(() => go('support'), 'Sign in first.')">OPEN</button>
     </div>
-    <div style="display:flex; justify-content:space-between; align-items:center; padding-top:10px;">
-      <div>
-        <strong style="color:#6366f1; font-size:13px;">Discord Channel</strong>
-        <div style="font-size:11.5px; color:var(--text-faint);">Chat with the community</div>
-      </div>
-      <button class="btn-primary" style="padding:7px 14px; font-size:12px;" onclick="handleDiscord()">JOIN</button>
-    </div>
-  </div>
-
-  <div class="store-box" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
-    <div>
-      <h4>ACCOUNT</h4>
-      <strong style="font-size:13px;" id="store-user-lbl">Not signed in</strong>
-      <div style="font-size:11.5px; color:var(--text-faint);">Use your Minecraft username and email.</div>
-    </div>
-    <button class="btn-gold" id="store-auth-cta" style="width:auto; padding:10px 14px; margin:0; font-size:12px;" onclick="openAuthPage('login')">LOGIN / REGISTER</button>
-  </div>
-
-  <div class="store-box">
-    <h4>RECENT PURCHASES</h4>
-    <div id="recent-orders-box" style="font-size:12.5px; color:var(--text-faint);">Your orders will show here.</div>
   </div>
 </main>
 
@@ -1074,40 +1069,36 @@
 <main id="view-signin" class="view wrap">
   <div class="auth-card">
     <h2 style="font-size:26px; font-weight:800;" id="auth-heading">Sign in</h2>
-
     <div id="auth-alert" class="auth-alert"></div>
-
     <div class="auth-tabs">
       <button class="auth-tab active" id="tab-login" onclick="switchAuthTab('login')">Login</button>
       <button class="auth-tab" id="tab-reg" onclick="switchAuthTab('reg')">Register</button>
     </div>
-
     <label class="field-lbl">Minecraft username or email</label>
-    <input type="text" id="ign-input" class="field-inp" placeholder="Username or email">
-
+    <input type="text" id="ign-input" class="field-inp" placeholder="Username or email (use staff@sagemc.net for staff access)">
     <label class="field-lbl">Password</label>
     <input type="password" id="pwd-input" class="field-inp" placeholder="At least 6 characters" onkeyup="if(event.key==='Enter') handleAuthSubmit()">
-
     <button class="btn-gold" id="auth-submit-btn" onclick="handleAuthSubmit()">Login</button>
-
-    <div id="logout-zone" style="display:none; margin-top:12px;">
-      <button class="icon-btn" style="width:100%;" onclick="logoutUser()">Sign out of current account</button>
-    </div>
-
-    <p style="font-size:11.5px; color:var(--text-faint); margin-top:14px; line-height:1.5;">
-      Accounts are saved in your browser storage. Sign up once and log in anytime.
-    </p>
   </div>
 </main>
 
-<div class="wrap" style="padding-top:0;">
-  <footer class="site-foot">
-    <span>© SageMC</span>
-    <a onclick="go('rules')">Rules</a>
-    <a onclick="handleSupportTicket()">Support ticket</a>
-    <a onclick="handleDiscord()">Discord</a>
-    <a onclick="go('store')">Store</a>
-  </footer>
+<!-- MODE DETAIL MODAL (Matching screenshot) -->
+<div class="modal-backdrop" id="mode-modal" onclick="if(event.target===this) closeModeModal()">
+  <div class="modal-card">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+      <h2 id="modal-mode-title" style="font-size:22px; font-weight:800;">Mode</h2>
+      <button class="icon-btn" onclick="closeModeModal()">✕</button>
+    </div>
+    <div style="background:var(--bg-art); border:2px solid var(--border-col); padding:20px; text-align:center; margin-bottom:16px;">
+      <canvas id="modal-mode-canvas" class="px" width="80" height="80"></canvas>
+    </div>
+    <p id="modal-mode-desc" style="font-size:13.5px; color:var(--text-muted); line-height:1.6; margin-bottom:14px;"></p>
+    <ul id="modal-mode-bullets" style="margin-left:20px; font-size:13.5px; color:var(--text-main); margin-bottom:20px; line-height:1.6;"></ul>
+    <div style="display:flex; justify-content:space-between; align-items:center; background:var(--bg-soft); border:2px solid var(--border-col); padding:12px 16px;">
+      <span style="font-family:'Press Start 2P', monospace; font-size:10px;">PLAY.SAGEMC.NET</span>
+      <button class="btn-primary" onclick="copyIP()">Copy IP</button>
+    </div>
+  </div>
 </div>
 
 <!-- CART MODAL -->
@@ -1122,34 +1113,14 @@
       <span style="color:var(--text-faint); font-weight:600;">Total</span>
       <span style="font-size:22px; font-weight:800;" id="cart-total-price">₹1,098</span>
     </div>
-    <button class="btn-gold" style="margin-top:0;" onclick="checkoutNow()">Checkout</button>
-  </div>
-</div>
-
-<!-- SUPPORT TICKET MODAL -->
-<div class="modal-backdrop" id="ticket-modal" onclick="if(event.target===this) closeTicketModal()">
-  <div class="modal-card">
-    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
-      <h2 style="font-size:20px; font-weight:800;">Create Support Ticket</h2>
-      <button class="icon-btn" onclick="closeTicketModal()">✕</button>
-    </div>
-    <label class="field-lbl">Category</label>
-    <select id="ticket-cat" class="field-inp">
-      <option>Store / Payment Issue</option>
-      <option>Player Report</option>
-      <option>Ban / Mute Appeal</option>
-      <option>Bug Report</option>
-    </select>
-    <label class="field-lbl">Describe your issue</label>
-    <textarea id="ticket-msg" class="field-inp" rows="4" placeholder="Include your IGN and details..."></textarea>
-    <button class="btn-gold" style="margin-top:0;" onclick="submitTicket()">Submit Ticket</button>
+    <button class="btn-gold" style="margin-top:0;" onclick="requireAuth(() => checkoutNow(), 'Please sign in to complete checkout.')">Checkout</button>
   </div>
 </div>
 
 <!-- BOTTOM NAV -->
 <nav class="bottom-nav">
   <button class="nav-item active" id="nav-home" onclick="go('home')"><span>🏠</span>Home</button>
-  <button class="nav-item" id="nav-skins" onclick="go('skins')"><span>👕</span>Skins</button>
+  <button class="nav-item" id="nav-skins" onclick="go('profile')"><span>👕</span>Skins</button>
   <button class="nav-plus" onclick="go('items')" title="All Custom Items">+</button>
   <button class="nav-item" id="nav-rules" onclick="go('rules')"><span>📄</span>Rules</button>
   <button class="nav-item" id="nav-store" onclick="go('store')"><span>🛍️</span>Store</button>
@@ -1159,8 +1130,7 @@
 const DISCORD_INVITE = "https://discord.gg/3vMdsVkWj3";
 
 const PAL = {
-  '.': null,
-  'k': '#141722',
+  '.': null, 'k': '#141722',
   'e': '#047857', 'E': '#10b981', 'g': '#6ee7b7', 'w': '#ecfdf5',
   'o': '#92400e', 'y': '#d97706', 'Y': '#facc15', 'L': '#fef08a',
   'b': '#451a03', 'B': '#78350f', 't': '#b45309',
@@ -1172,438 +1142,30 @@ const PAL = {
 };
 
 const SPRITES = {
-  logo: [
-    "....kkkk........",
-    "..kkGGGGkk......",
-    "kkGGhhhhGGkk....",
-    "kGhhwwwwhhGk....",
-    "kGhwwGGGGhGk....",
-    "kGhwwkkkkkGk....",
-    "kGhhwwwwhhGk....",
-    "kGGGhhhhhhGk....",
-    "keeeeGGGGGGk....",
-    "keeeeeeeeeek....",
-    "keeeewwwwwkk....",
-    "keeeeeeeeek.....",
-    "..kkeeeekk......",
-    "....kkkk........",
-    "................",
-    "................"
-  ],
-  sage_blade: [
-    "...........kkkk.",
-    "..........kwwgkk",
-    ".........kwwgEgk",
-    "........kwwgEgk.",
-    ".......kwwgEgk..",
-    "......kwwgEgk...",
-    ".....kwwgEgk....",
-    "..kkkwwgEgk.....",
-    ".kLYkkgEgk......",
-    ".kYLYkEgk.......",
-    "..kkYYkk........",
-    "..kBtkYk........",
-    ".kBtkkLYk.......",
-    "kBtk..kk........",
-    "kkk.............",
-    "................"
-  ],
-  inferno_edge: [
-    "...........kkkk.",
-    "..........kFFOkk",
-    ".........kFFOORk",
-    "........kFFOORk.",
-    ".......kFFOORk..",
-    "......kFFOORk...",
-    ".....kFFOORk....",
-    "..kkkFFOORk.....",
-    ".kOykkgORk......",
-    ".kROykORk.......",
-    "..kkRRkk........",
-    "..kbbkRk........",
-    ".kbbkkOyk.......",
-    "kbbk..kk........",
-    "kkk.............",
-    "................"
-  ],
-  void_cleaver: [
-    "...........kkkk.",
-    "..........kPPpkk",
-    ".........kPPpVpk",
-    "........kPPpVpk.",
-    ".......kPPpVpk..",
-    "......kPPpVpk...",
-    ".....kPPpVpk....",
-    "..kkkPPpVpk.....",
-    ".kSskkpVpk......",
-    ".kMSskVpk.......",
-    "..kkVVkk........",
-    "..kbbkVk........",
-    ".kbbkkSsk.......",
-    "kbbk..kk........",
-    "kkk.............",
-    "................"
-  ],
-  dragonfang_axe: [
-    ".......kkkkk....",
-    "......kLYYYLk...",
-    ".....kLYYYYYLk..",
-    "....kLYYYyoyYLk.",
-    "....kLYYyoooyLk.",
-    ".....kLYyokoyk..",
-    "......kkBtkkk...",
-    ".....kBtk.......",
-    "....kBtk........",
-    "...kBtk.........",
-    "..kBtk..........",
-    ".kBtk...........",
-    "kBtk............",
-    "kkk.............",
-    "................",
-    "................"
-  ],
-  shadow_bow: [
-    "....kkkk........",
-    "...kMssSk.......",
-    "..kMs..kMk......",
-    ".kMs....kMk.....",
-    ".kMs....kMk.....",
-    "kVpk....kMk.....",
-    "kVpk....kMk.....",
-    "kVpk....kMk.....",
-    "kVpk....kMk.....",
-    ".kMs....kMk.....",
-    ".kMs....kMk.....",
-    "..kMs..kMk......",
-    "...kMssSk.......",
-    "....kkkk........",
-    "................",
-    "................"
-  ],
-  guardian_shield: [
-    "..kkkkkkkkkkkk..",
-    ".kYLLLLLLLLLLyk.",
-    ".kYeeeeeeeeeeyk.",
-    ".kYewwwwwwwweyk.",
-    ".kYewGGGGGGweyk.",
-    ".kYewGGGGGGweyk.",
-    ".kYewwwwwwwweyk.",
-    ".kYeeeeeeeeeeyk.",
-    ".kYeeeeeeeeeeyk.",
-    "..kYeeeeeeeeyk..",
-    "..kYeeeeeeeeyk..",
-    "...kYeeeeeeyk...",
-    "....kYeeeeyk....",
-    ".....kYeeyk.....",
-    "......kkkk......",
-    "................"
-  ],
-  crown: [
-    "................",
-    "................",
-    ".kk....kk....kk.",
-    "kLLk..kLLk..kLLk",
-    "kLYk..kLYk..kLYk",
-    "kLYYkkLYYk..kLYk",
-    "kLYYYYYYYkkkkLYk",
-    "kLYEAYYYYYEAYLYk",
-    "kLYYYYYYYYYYYLYk",
-    "kooyyyyyyyyyyook",
-    "kYYYYYYYYYYYYYYk",
-    "kkkkkkkkkkkkkkkk",
-    "................",
-    "................",
-    "................",
-    "................"
-  ],
-  frost_helm: [
-    "................",
-    "................",
-    "...kkkkkkkkkk...",
-    "..kAAAAAAAAAAk..",
-    ".kAaaaaaaaaaaAk.",
-    ".kAaccccccccaAk.",
-    ".kAacMMMMMMcaAk.",
-    ".kAacMAAAAcMaAk.",
-    ".kAaccccccccaAk.",
-    ".kAaakkkkkkaaAk.",
-    ".kAaak....kaaAk.",
-    ".kkkk......kkkk.",
-    "................",
-    "................",
-    "................",
-    "................"
-  ],
-  storm_wings: [
-    "................",
-    ".kk..........kk.",
-    "kAAk........kAAk",
-    "kAack......kcaAk",
-    "kAacCk....kCcaAk",
-    "kAacCCk..kCCcaAk",
-    ".kAacCCkkCCcaAk.",
-    ".kAacCCCCCCcaAk.",
-    "..kAacCCCCcaAk..",
-    "..kAacCCCCcaAk..",
-    "...kAacCCcaAk...",
-    "....kAaccaAk....",
-    ".....kAAAAk.....",
-    "......kkkk......",
-    "................",
-    "................"
-  ],
-  phoenix_wings: [
-    "................",
-    ".kk..........kk.",
-    "kFFk........kFFk",
-    "kFOOk......kOOFk",
-    "kFOORk....kROOFk",
-    "kFOORRk..kRROOFk",
-    ".kFOORRkkRROOFk.",
-    ".kFOORRRRRROOFk.",
-    "..kFOORRRROOFk..",
-    "..kFOORRRROOFk..",
-    "...kFOORROOFk...",
-    "....kFOOOOFk....",
-    ".....kFFFFk.....",
-    "......kkkk......",
-    "................",
-    "................"
-  ],
-  aqua_boots: [
-    "................",
-    "................",
-    "................",
-    "..kkkkk..kkkkk..",
-    ".kMMMMMk.kMMMMMk",
-    ".kCaaaCk.kCaaaCk",
-    ".kCaaaCk.kCaaaCk",
-    ".kCaaaCk.kCaaaCk",
-    ".kCaaaCkkCaaaCkk",
-    "kACaaaCCkACaaaCk",
-    "kCCCCCCckCCCCCCk",
-    "kkkkkkkkkkkkkkkk",
-    "................",
-    "................",
-    "................",
-    "................"
-  ],
-  magma_boots: [
-    "................",
-    "................",
-    "................",
-    "..kkkkk..kkkkk..",
-    ".kOOOOOk.kOOOOOk",
-    ".kRbbbRk.kRbbbRk",
-    ".kRbbbRk.kRbbbRk",
-    ".kRbbbRk.kRbbbRk",
-    ".kRbbbRkkRbbbRkk",
-    "kFRbbbRRkFRbbbRk",
-    "kFFFFFFrkFFFFFFk",
-    "kkkkkkkkkkkkkkkk",
-    "................",
-    "................",
-    "................",
-    "................"
-  ],
-  grass: [
-    ".kkkkkkkkkkkkkk.",
-    "kGGGGhGGGGhGGGGk",
-    "kGhGGGGhGGGGhGGk",
-    "kGGGGeGGGGGeGGGk",
-    "kGekGGeGGekGGeGk",
-    "kdkkDdkkdkkDdkdk",
-    "kdDnDDdDnDDdDnDk",
-    "kDDdDnDDdDnDDdDk",
-    "kDnDDdDnDDdDnDDk",
-    "kdDnDDdDnDDdDnDk",
-    "kDDdDnDDdDnDDdDk",
-    "kDnDDdDnDDdDnDDk",
-    "kdDnDDdDnDDdDnDk",
-    "kDDDDDDDDDDDDDDk",
-    ".kkkkkkkkkkkkkk.",
-    "................"
-  ],
-  shovel: [
-    ".........kkkkk..",
-    "........kMMMMMk.",
-    ".......kMMmmmMMk",
-    ".......kMmSSSmMk",
-    ".......kMmSSSmMk",
-    "........kMMMMMk.",
-    ".......kBtkkkk..",
-    "......kBtk......",
-    ".....kBtk.......",
-    "....kBtk........",
-    "...kBtk.........",
-    "..kBtk..........",
-    ".kBtk...........",
-    "kBtk............",
-    "kkk.............",
-    "................"
-  ],
-  heart: [
-    "................",
-    "..kkkk....kkkk..",
-    ".kRRRRk..kRRRRk.",
-    "kRFFFFRk.kRRRRRk",
-    "kRFFRRRRkRRRRRRk",
-    "kRFRRRRRRRRRRRrk",
-    "kRRRRRRRRRRRRrrk",
-    "kRRRRRRRRRRRRrrk",
-    ".kRRRRRRRRRRrrk.",
-    "..kRRRRRRRRrrk..",
-    "...kRRRRRRrrk...",
-    "....kRRRRrrk....",
-    ".....kRRrrk.....",
-    "......krrk......",
-    ".......kk.......",
-    "................"
-  ],
-  iron_sword: [
-    "...........kkkk.",
-    "..........kMMmkk",
-    ".........kMMmSmk",
-    "........kMMmSmk.",
-    ".......kMMmSmk..",
-    "......kMMmSmk...",
-    ".....kMMmSmk....",
-    "..kkkMMmSmk.....",
-    ".kLYkkmSmk......",
-    ".kYLYkSmk.......",
-    "..kkYYkk........",
-    "..kBtkYk........",
-    ".kBtkkLYk.......",
-    "kBtk..kk........",
-    "kkk.............",
-    "................"
-  ],
-  bed: [
-    "................",
-    "................",
-    "................",
-    "................",
-    ".kkkkkkkkkkkkkk.",
-    "kMMMMkRRRRRRRRRk",
-    "kMmmmMRRRRRRRrrk",
-    "kMMMMkRRRRRRRRRk",
-    "kBBBBBBBBBBBBBBk",
-    "kBttttttttttttBk",
-    "kBtk........kBtk",
-    "kBtk........kBtk",
-    "kkk..........kkk",
-    "................",
-    "................",
-    "................"
-  ],
-  trophy: [
-    "................",
-    "..kkkkkkkkkkkk..",
-    ".kLLLLLLLLLLLLk.",
-    "kkLYYYYYYYYYYLkk",
-    "kLYYYLLLLLLYYYLk",
-    "kLYYYYYYYYYYYYLk",
-    "kkLYYYYYYYYYYLkk",
-    ".kkLYYYYYYYYLkk.",
-    "...kLYYYYYYLk...",
-    "....kkYYYYkk....",
-    ".....kYYYYk.....",
-    "....kYYYYYYk....",
-    "...kBBBBBBBBk...",
-    "..kBttttttttBk..",
-    "..kkkkkkkkkkkk..",
-    "................"
-  ],
-  chest: [
-    "................",
-    ".kkkkkkkkkkkkkk.",
-    "kBBBBBBBBBBBBBBk",
-    "kBttttttttttttBk",
-    "kBttttttttttttBk",
-    "kBttttttttttttBk",
-    "kBttttkLLkttttBk",
-    "kkkkkkkYYkkkkkkk",
-    "kBttttkYYkttttBk",
-    "kBttttttttttttBk",
-    "kBttttttttttttBk",
-    "kBBBBBBBBBBBBBBk",
-    ".kkkkkkkkkkkkkk.",
-    "................",
-    "................",
-    "................"
-  ],
-  void_chest: [
-    "................",
-    ".kkkkkkkkkkkkkk.",
-    "kvvvvvvvvvvvvvvk",
-    "kvVVVVVVVVVVVVvk",
-    "kvVVppppppppVVvk",
-    "kvVVppppppppVVvk",
-    "kvVVppkLLkppVVvk",
-    "kkkkkkkYYkkkkkkk",
-    "kvVVppkYYkppVVvk",
-    "kvVVppppppppVVvk",
-    "kvVVVVVVVVVVVVvk",
-    "kvvvvvvvvvvvvvvk",
-    ".kkkkkkkkkkkkkk.",
-    "................",
-    "................",
-    "................"
-  ],
-  diamond: [
-    "................",
-    ".....kkkkkk.....",
-    "....kAAAAAAk....",
-    "...kAAccccAAk...",
-    "..kAAccMMccAAk..",
-    ".kAAccMccMccAAk.",
-    ".kAAccMccMccAAk.",
-    "..kAAccMMccAAk..",
-    "...kAAccccAAk...",
-    "....kAAccAAk....",
-    ".....kAAAAk.....",
-    "......kAAk......",
-    ".......kk.......",
-    "................",
-    "................",
-    "................"
-  ],
-  bundle: [
-    "................",
-    "....kk....kk....",
-    "...kYYk..kYYk...",
-    "....kkYYYYkk....",
-    "..kkkkkkkkkkkk..",
-    ".kRRRRkYYkRRRRk.",
-    ".kRFFRkYYkRRRRk.",
-    ".kRRRRkYYkRRRRk.",
-    ".kRRRRkYYkRRRRk.",
-    ".kRRRRkYYkRRRRk.",
-    ".kRRRRkYYkRRRRk.",
-    ".krrrrkYYkrrrrk.",
-    "..kkkkkkkkkkkk..",
-    "................",
-    "................",
-    "................"
-  ],
-  plus_gem: [
-    "................",
-    "......kkkk......",
-    ".....kAAAAk.....",
-    ".....kCaaCk.....",
-    "..kkkkCaaCkkkk..",
-    ".kAAAACaaCAAAAk.",
-    ".kCaaaaaaaaaaCk.",
-    ".kCaaaaaaaaaaCk.",
-    ".kCCCCaaaaCCCCk.",
-    "..kkkkCaaCkkkk..",
-    ".....kCaaCk.....",
-    ".....kCCCCk.....",
-    "......kkkk......",
-    "................",
-    "................",
-    "................"
-  ]
+  logo: ["....kkkk........","..kkGGGGkk......","kkGGhhhhGGkk....","kGhhwwwwhhGk....","kGhwwGGGGhGk....","kGhwwkkkkkGk....","kGhhwwwwhhGk....","kGGGhhhhhhGk....","keeeeGGGGGGk....","keeeeeeeeeek....","keeeewwwwwkk....","keeeeeeeeek.....",""..kkeeeekk......","....kkkk........","................","................"],
+  sage_blade: ["...........kkkk.","..........kwwgkk",".........kwwgEgk","........kwwgEgk.",".......kwwgEgk..","......kwwgEgk...",".....kwwgEgk....","..kkkwwgEgk.....",".kLYkkgEgk......",".kYLYkEgk.......",""..kkYYkk........",""..kBtkYk........",".kBtkkLYk.......","kBtk..kk........","kkk.............","................"],
+  inferno_edge: ["...........kkkk.","..........kFFOkk",".........kFFOORk","........kFFOORk.",".......kFFOORk..","......kFFOORk...",".....kFFOORk....",""..kkkFFOORk.....",".kOykkgORk......",".kROykORk.......",""..kkRRkk........",""..kbbkRk........",".kbbkkOyk.......","kbbk..kk........","kkk.............","................"],
+  void_cleaver: ["...........kkkk.","..........kPPpkk",".........kPPpVpk","........kPPpVpk.",".......kPPpVpk..","......kPPpVpk...",".....kPPpVpk....",""..kkkPPpVpk.....",".kSskkpVpk......",".kMSskVpk.......",""..kkVVkk........",""..kbbkVk........",".kbbkkSsk.......","kbbk..kk........","kkk.............","................"],
+  dragonfang_axe: [".......kkkkk....","......kLYYYLk...",".....kLYYYYYLk..","....kLYYYyoyYLk.","....kLYYyoooyLk.",".....kLYyokoyk..","......kkBtkkk...",".....kBtk.......","....kBtk........",""...kBtk.........",""..kBtk..........",".kBtk...........", "kBtk............","kkk.............","................","................"],
+  shadow_bow: ["....kkkk........","...kMssSk.......",""..kMs..kMk......",".kMs....kMk.....",".kMs....kMk.....","kVpk....kMk.....","kVpk....kMk.....","kVpk....kMk.....","kVpk....kMk.....",".kMs....kMk.....",".kMs....kMk.....",""..kMs..kMk......","...kMssSk.......","....kkkk........","................","................"],
+  guardian_shield: ["..kkkkkkkkkkkk..",".kYLLLLLLLLLLyk.",".kYeeeeeeeeeeyk.",".kYewwwwwwwweyk.",".kYewGGGGGGweyk.",".kYewGGGGGGweyk.",".kYewwwwwwwweyk.",".kYeeeeeeeeeeyk.",".kYeeeeeeeeeeyk.",""..kYeeeeeeeeyk..",""..kYeeeeeeeeyk..","...kYeeeeeeyk...", "....kYeeeeyk....",".....kYeeyk.....","......kkkk......","................"],
+  crown: ["................","................",".kk....kk....kk.","kLLk..kLLk..kLLk","kLYk..kLYk..kLYk","kLYYkkLYYk..kLYk","kLYYYYYYYkkkkLYk","kLYEAYYYYYEAYLYk","kLYYYYYYYYYYYLYk","kooyyyyyyyyyyook","kYYYYYYYYYYYYYYk","kkkkkkkkkkkkkkkk","................","................","................","................"],
+  frost_helm: ["................","................","...kkkkkkkkkk...", "..kAAAAAAAAAAk..",".kAaaaaaaaaaaAk.",".kAaccccccccaAk.",".kAacMMMMMMcaAk.",".kAacMAAAAcMaAk.",".kAaccccccccaAk.",".kAaakkkkkkaaAk.",".kAaak....kaaAk.",".kkkk......kkkk.", "................","................","................","................"],
+  storm_wings: ["................",".kk..........kk.","kAAk........kAAk","kAack......kcaAk","kAacCk....kCcaAk","kAacCCk..kCCcaAk",".kAacCCkkCCcaAk.",".kAacCCCCCCcaAk.",""..kAacCCCCcaAk..",""..kAacCCCCcaAk..",""...kAacCCcaAk...", "....kAaccaAk....",".....kAAAAk.....","......kkkk......","................","................"],
+  phoenix_wings: ["................",".kk..........kk.","kFFk........kFFk","kFOOk......kOOFk","kFOORk....kROOFk","kFOORRk..kRROOFk",".kFOORRkkRROOFk.",".kFOORRRRRROOFk.",""..kFOORRRROOFk..",""..kFOORRRROOFk..",""...kFOORROOFk...", "....kFOOOOFk....",".....kFFFFk.....","......kkkk......","................","................"],
+  aqua_boots: ["................","................","................",""..kkkkk..kkkkk..",".kMMMMMk.kMMMMMk",".kCaaaCk.kCaaaCk",".kCaaaCk.kCaaaCk",".kCaaaCk.kCaaaCk",".kCaaaCkkCaaaCkk","kACaaaCCkACaaaCk","kCCCCCCckCCCCCCk", "kkkkkkkkkkkkkkkk","................","................","................","................"],
+  magma_boots: ["................","................","................",""..kkkkk..kkkkk..",".kOOOOOk.kOOOOOk",".kRbbbRk.kRbbbRk",".kRbbbRk.kRbbbRk",".kRbbbRk.kRbbbRk",".kRbbbRkkRbbbRkk","kFRbbbRRkFRbbbRk","kFFFFFFrkFFFFFFk", "kkkkkkkkkkkkkkkk","................","................","................","................"],
+  grass: [".kkkkkkkkkkkkkk.","kGGGGhGGGGhGGGGk","kGhGGGGhGGGGhGGk","kGGGGeGGGGGeGGGk","kGekGGeGGekGGeGk","kdkkDdkkdkkDdkdk","kdDnDDdDnDDdDnDk","kDDdDnDDdDnDDdDk","kDnDDdDnDDdDnDDk","kdDnDDdDnDDdDnDk","kDDdDnDDdDnDDdDk","kDnDDdDnDDdDnDDk","kdDnDDdDnDDdDnDk","kDDDDDDDDDDDDDDk",".kkkkkkkkkkkkkk.","................"],
+  shovel: [".........kkkkk..","........kMMMMMk.",".......kMMmmmMMk",".......kMmSSSmMk",".......kMmSSSmMk","........kMMMMMk.",".......kBtkkkk..","......kBtk......",".....kBtk.......","....kBtk........",""...kBtk.........", "..kBtk..........",".kBtk...........", "kBtk............","kkk.............","................"],
+  heart: ["................","..kkkk....kkkk..",".kRRRRk..kRRRRk.","kRFFFFRk.kRRRRRk","kRFFRRRRkRRRRRRk","kRFRRRRRRRRRRRrk","kRRRRRRRRRRRRrrk","kRRRRRRRRRRRRrrk",".kRRRRRRRRRRrrk.",""..kRRRRRRRRrrk..",""...kRRRRRRrrk...", "....kRRRRrrk....",".....kRRrrk.....","......krrk......",".......kk.......","................"],
+  iron_sword: ["...........kkkk.","..........kMMmkk",".........kMMmSmk","........kMMmSmk.",".......kMMmSmk..","......kMMmSmk...", ".....kMMmSmk....",""..kkkMMmSmk.....",".kLYkkmSmk......",".kYLYkSmk.......",""..kkYYkk........",""..kBtkYk........",".kBtkkLYk.......","kBtk..kk........","kkk.............","................"],
+  bed: ["................","................","................","................",".kkkkkkkkkkkkkk.","kMMMMkRRRRRRRRRk","kMmmmMRRRRRRRrrk","kMMMMkRRRRRRRRRk","kBBBBBBBBBBBBBBk","kBttttttttttttBk", "kBtk........kBtk","kBtk........kBtk","kkk..........kkk","................","................","................"],
+  trophy: ["................","..kkkkkkkkkkkk..",".kLLLLLLLLLLLLk.","kkLYYYYYYYYYYLkk","kLYYYLLLLLLYYYLk","kLYYYYYYYYYYYYLk","kkLYYYYYYYYYYLkk",".kkLYYYYYYYYLkk.","...kLYYYYYYLk...", "....kkYYYYkk....",".....kYYYYk.....","....kYYYYYYk....",""...kBBBBBBBBk..",""..kBttttttttBk..",""..kkkkkkkkkkkk..","................"],
+  chest: ["................",".kkkkkkkkkkkkkk.","kBBBBBBBBBBBBBBk","kBttttttttttttBk","kBttttttttttttBk","kBttttttttttttBk","kBttttkLLkttttBk","kkkkkkkYYkkkkkkk","kBttttkYYkttttBk", "kBttttttttttttBk","kBttttttttttttBk","kBBBBBBBBBBBBBBk",".kkkkkkkkkkkkkk.","................","................","................"],
+  void_chest: ["................",".kkkkkkkkkkkkkk.","kvvvvvvvvvvvvvvk","kvVVVVVVVVVVVVvk","kvVVppppppppVVvk","kvVVppppppppVVvk","kvVVppkLLkppVVvk","kkkkkkkYYkkkkkkk","kvVVppkYYkppVVvk", "kvVVppppppppVVvk","kvVVVVVVVVVVVVvk","kvvvvvvvvvvvvvvk",".kkkkkkkkkkkkkk.","................","................","................"],
+  diamond: ["................",".....kkkkkk.....","....kAAAAAAk....","...kAAccccAAk...", "..kAAccMMccAAk..",".kAAccMccMccAAk.",".kAAccMccMccAAk.",""..kAAccMMccAAk..","...kAAccccAAk...", "....kAAccAAk....",".....kAAAAk.....","......kAAk......",".......kk.......","................","................","................"],
+  bundle: ["................","....kk....kk....","...kYYk..kYYk...", "....kkYYYYkk....",""..kkkkkkkkkkkk..",".kRRRRkYYkRRRRk.",".kRFFRkYYkRRRRk.",".kRRRRkYYkRRRRk.",".kRRRRkYYkRRRRk.",".kRRRRkYYkRRRRk.","".kRRRRkYYkRRRRk.",".krrrrkYYkrrrrk.", "..kkkkkkkkkkkk..","................","................","................"],
+  plus_gem: ["................","......kkkk......",".....kAAAAk.....",".....kCaaCk.....",""..kkkkCaaCkkkk..",".kAAAACaaCAAAAk.",".kCaaaaaaaaaaCk.","".kCaaaaaaaaaaCk.",".kCCCCaaaaCCCCk.", "..kkkkCaaCkkkk..",".....kCaaCk.....",".....kCCCCk.....","......kkkk......","................","................","................"]
 };
 
 const ITEMS = [
@@ -1719,8 +1281,11 @@ function toggleTheme() {
   }
 })();
 
+// ==========================================
+// AUTH & TASK REDIRECTION SYSTEM
+// ==========================================
 let authMode = 'login';
-let pendingAction = null;
+let pendingRoute = null;
 
 function getUsers() {
   try { return JSON.parse(localStorage.getItem('sagemc_users') || '[]'); }
@@ -1733,25 +1298,64 @@ function getCurrentUser() {
   return localStorage.getItem('sagemc_current_user') || null;
 }
 
+function isUserStaff(username) {
+  if (!username) return false;
+  if (username.toLowerCase().includes('staff') || username.toLowerCase() === 'admin@sagemc.net') return true;
+  const users = getUsers();
+  const u = users.find(x => x.ign.toLowerCase() === username.toLowerCase());
+  return u && u.isStaff;
+}
+
 function updateAuthUI() {
   const user = getCurrentUser();
-  const btn = document.getElementById('auth-btn');
-  const storeLbl = document.getElementById('store-user-lbl');
-  const storeCta = document.getElementById('store-auth-cta');
-  const logoutZone = document.getElementById('logout-zone');
+  const signinBtn = document.getElementById('auth-signin-btn');
+  const menuWrap = document.getElementById('user-menu-wrap');
+  const usernameLbl = document.getElementById('current-username-lbl');
+  const staffBtn = document.getElementById('staff-menu-btn');
 
   if (user) {
-    btn.textContent = user;
-    if (storeLbl) storeLbl.textContent = 'Signed in as ' + user;
-    if (storeCta) storeCta.textContent = 'SWITCH ACCOUNT';
-    if (logoutZone) logoutZone.style.display = 'block';
+    signinBtn.style.display = 'none';
+    menuWrap.style.display = 'inline-block';
+    usernameLbl.textContent = user;
+    if (staffBtn) {
+      staffBtn.style.display = isUserStaff(user) ? 'block' : 'none';
+    }
+    const accUsr = document.getElementById('acc-username');
+    if (accUsr) accUsr.value = user;
+
+    const dcStatus = localStorage.getItem('sagemc_dc_' + user);
+    const dcInput = document.getElementById('acc-discord');
+    const dcBtn = document.getElementById('dc-link-btn');
+    if (dcInput && dcBtn) {
+      if (dcStatus) {
+        dcInput.value = dcStatus;
+        dcBtn.textContent = 'Deauthorize';
+        dcBtn.style.background = '#dc2626';
+      } else {
+        dcInput.value = 'Not linked';
+        dcBtn.textContent = 'Link Account';
+        dcBtn.style.background = '#3358d4';
+      }
+    }
   } else {
-    btn.textContent = 'Sign in';
-    if (storeLbl) storeLbl.textContent = 'Not signed in';
-    if (storeCta) storeCta.textContent = 'LOGIN / REGISTER';
-    if (logoutZone) logoutZone.style.display = 'none';
+    signinBtn.style.display = 'inline-flex';
+    menuWrap.style.display = 'none';
   }
-  renderRecentOrders();
+  renderUserTickets();
+  renderStaffDashboard();
+}
+
+function toggleUserMenu() {
+  document.getElementById('user-dropdown').classList.toggle('open');
+}
+function closeUserMenu() {
+  document.getElementById('user-dropdown').classList.remove('open');
+}
+
+window.onclick = function(event) {
+  if (!event.target.closest('#user-menu-wrap')) {
+    closeUserMenu();
+  }
 }
 
 function requireAuth(callback, promptMsg) {
@@ -1759,8 +1363,8 @@ function requireAuth(callback, promptMsg) {
     callback();
     return;
   }
-  pendingAction = callback;
-  openAuthPage('login', promptMsg || 'Please login or register first to continue.');
+  pendingRoute = callback;
+  openAuthPage('login', promptMsg || 'Please login or register to continue.');
 }
 
 function openAuthPage(mode = 'login', infoMsg = '') {
@@ -1800,14 +1404,15 @@ function handleAuthSubmit() {
   if (pwd.length < 6) return showAuthError('Password must be at least 6 characters.');
 
   const users = getUsers();
-  const existing = users.find(u => u.ign.toLowerCase() === ign.toLowerCase());
+  let existing = users.find(u => u.ign.toLowerCase() === ign.toLowerCase());
 
   if (authMode === 'reg') {
     if (existing) {
       showAuthError('Credentials already registered! <a style="text-decoration:underline; cursor:pointer; font-weight:800;" onclick="switchAuthTab(\'login\')">Click on Login</a>.');
       return;
     }
-    users.push({ ign, pwd });
+    const isStaffEmail = ign.toLowerCase().includes('staff') || ign.toLowerCase() === 'admin@sagemc.net';
+    users.push({ ign, pwd, isStaff: isStaffEmail });
     saveUsers(users);
     localStorage.setItem('sagemc_current_user', ign);
     updateAuthUI();
@@ -1831,9 +1436,9 @@ function handleAuthSubmit() {
 
 function finishAuthRedirect() {
   document.getElementById('pwd-input').value = '';
-  if (pendingAction) {
-    const fn = pendingAction;
-    pendingAction = null;
+  if (pendingRoute) {
+    const fn = pendingRoute;
+    pendingRoute = null;
     fn();
   } else {
     go('home');
@@ -1847,6 +1452,142 @@ function logoutUser() {
   go('home');
 }
 
+// Discord linking / deauthorizing
+function toggleDiscordLink() {
+  const user = getCurrentUser();
+  if (!user) return;
+  const currentLink = localStorage.getItem('sagemc_dc_' + user);
+  if (currentLink) {
+    localStorage.removeItem('sagemc_dc_' + user);
+    notify('Discord account deauthorized successfully.');
+  } else {
+    localStorage.setItem('sagemc_dc_' + user, user + '#0001 (Linked)');
+    notify('Discord account linked successfully!');
+  }
+  updateAuthUI();
+}
+
+// ==========================================
+// TICKETS & BAN APPEALS (Staff Dashboard)
+// ==========================================
+function getTickets() {
+  try { return JSON.parse(localStorage.getItem('sagemc_tickets') || '[]'); }
+  catch(e) { return []; }
+}
+function saveTickets(list) {
+  localStorage.setItem('sagemc_tickets', JSON.stringify(list));
+}
+
+function submitNewTicket() {
+  requireAuth(() => {
+    const type = document.getElementById('sup-type').value;
+    const desc = document.getElementById('sup-desc').value.trim();
+    if (!desc) return notify('Please provide details for your ticket.');
+
+    const tickets = getTickets();
+    tickets.unshift({
+      id: 'TICK-' + Math.floor(1000 + Math.random() * 9000),
+      user: getCurrentUser(),
+      type,
+      desc,
+      status: 'Open',
+      date: new Date().toLocaleDateString('en-IN')
+    });
+    saveTickets(tickets);
+    document.getElementById('sup-desc').value = '';
+    notify('Ticket submitted successfully! Staff will review it.');
+    renderUserTickets();
+    renderStaffDashboard();
+  }, 'Please sign in to submit a support ticket.');
+}
+
+function renderUserTickets() {
+  const list = document.getElementById('my-tickets-list');
+  if (!list) return;
+  const user = getCurrentUser();
+  const tickets = getTickets().filter(t => t.user === user);
+  if (!user || !tickets.length) {
+    list.innerHTML = '<p style="color:var(--text-faint); font-size:13px;">No tickets submitted yet.</p>';
+    return;
+  }
+  list.innerHTML = tickets.map(t => `
+    <div class="panel-card" style="margin-bottom:10px; padding:14px;">
+      <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+        <strong>[${t.id}] ${t.type}</strong>
+        <span class="badge ${t.status === 'Open' ? 'b-legendary' : 'b-rare'}">${t.status}</span>
+      </div>
+      <p style="font-size:13px; color:var(--text-muted);">${t.desc}</p>
+      <small style="color:var(--text-faint);">Submitted on ${t.date}</small>
+    </div>
+  `).join('');
+}
+
+function renderStaffDashboard() {
+  const container = document.getElementById('staff-tickets-container');
+  if (!container) return;
+  const user = getCurrentUser();
+  if (!user || !isUserStaff(user)) {
+    container.innerHTML = '<p style="color:#ef4444; font-weight:700;">Access Denied. Staff credentials required to view this dashboard.</p>';
+    return;
+  }
+  const tickets = getTickets();
+  if (!tickets.length) {
+    container.innerHTML = '<p style="color:var(--text-faint);">No player tickets or ban appeals submitted.</p>';
+    return;
+  }
+  container.innerHTML = tickets.map(t => `
+    <div class="panel-card" style="margin-bottom:12px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+        <div><strong>[${t.id}] ${t.type}</strong> by <span style="color:#3b82f6;">${t.user}</span></div>
+        <span class="badge ${t.status === 'Open' ? 'b-legendary' : 'b-rare'}">${t.status}</span>
+      </div>
+      <p style="font-size:13.5px; color:var(--text-main); margin-bottom:10px;">${t.desc}</p>
+      <div style="display:flex; gap:10px;">
+        <button class="btn-primary" style="padding:6px 12px; font-size:12px;" onclick="resolveTicket('${t.id}')">Mark Resolved</button>
+        <button class="icon-btn" style="padding:6px 12px; font-size:12px; color:#ef4444;" onclick="deleteTicket('${t.id}')">Delete</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function resolveTicket(id) {
+  const tickets = getTickets();
+  const t = tickets.find(x => x.id === id);
+  if (t) t.status = 'Resolved';
+  saveTickets(tickets);
+  renderStaffDashboard();
+  renderUserTickets();
+  notify('Ticket ' + id + ' resolved.');
+}
+
+function deleteTicket(id) {
+  let tickets = getTickets();
+  tickets = tickets.filter(x => x.id !== id);
+  saveTickets(tickets);
+  renderStaffDashboard();
+  renderUserTickets();
+  notify('Ticket deleted.');
+}
+
+// ==========================================
+// MODE POPUP MODAL (matching screenshot)
+// ==========================================
+function openModeModal(title, sprite, desc, bullets) {
+  document.getElementById('modal-mode-title').textContent = title;
+  document.getElementById('modal-mode-desc').textContent = desc;
+  const cv = document.getElementById('modal-mode-canvas');
+  drawSpriteToCanvas(cv, sprite, 0, 0, 5);
+  const ul = document.getElementById('modal-mode-bullets');
+  ul.innerHTML = bullets.map(b => `<li>${b}</li>`).join('');
+  document.getElementById('mode-modal').classList.add('open');
+}
+function closeModeModal() {
+  document.getElementById('mode-modal').classList.remove('open');
+}
+
+// ==========================================
+// STORE & CART SYSTEM
+// ==========================================
 function storeAction(itemId) {
   requireAuth(() => {
     addToCart(itemId);
@@ -1854,51 +1595,19 @@ function storeAction(itemId) {
   }, 'Please sign in or register to purchase items from the SageMC Store.');
 }
 
-function handleDiscord() {
-  requireAuth(() => {
-    window.open(DISCORD_INVITE, '_blank', 'noopener');
-  }, 'Please sign in or sign up to join the official SageMC Discord channel.');
-}
-
-function handleSupportTicket() {
-  requireAuth(() => {
-    document.getElementById('ticket-modal').classList.add('open');
-  }, 'Please sign in or register before creating a support ticket.');
-}
-
-function closeTicketModal() {
-  document.getElementById('ticket-modal').classList.remove('open');
-}
-
-function submitTicket() {
-  const msg = document.getElementById('ticket-msg').value.trim();
-  if (!msg) return notify('Please describe your issue first.');
-  document.getElementById('ticket-msg').value = '';
-  closeTicketModal();
-  notify('Support ticket submitted for ' + getCurrentUser() + '!');
-}
-
 let cart = JSON.parse(localStorage.getItem('sagemc_cart') || '[{"id":"sage_blade","qty":1},{"id":"crown","qty":1}]');
 
-function saveCart() {
-  localStorage.setItem('sagemc_cart', JSON.stringify(cart));
-}
-
-function getItemObj(id) {
-  return ITEMS.find(i => i.id === id) || EXTRA_STORE[id];
-}
+function saveCart() { localStorage.setItem('sagemc_cart', JSON.stringify(cart)); }
+function getItemObj(id) { return ITEMS.find(i => i.id === id) || EXTRA_STORE[id]; }
 
 function updateCartUI() {
   const totalCount = cart.reduce((s, x) => s + x.qty, 0);
   document.getElementById('top-cart-count').textContent = totalCount;
   const sb = document.getElementById('store-cart-badge');
   if (sb) sb.textContent = totalCount;
-  const sub = document.getElementById('modal-cart-sub');
-  if (sub) sub.textContent = totalCount ? `(${totalCount} items)` : '';
-
   const list = document.getElementById('cart-items-list');
   let sum = 0;
-  if (cart.length === 0) {
+  if (!cart.length) {
     list.innerHTML = '<p style="color:var(--text-faint); padding:20px 0; text-align:center;">Your cart is empty.</p>';
   } else {
     list.innerHTML = cart.map(entry => {
@@ -1906,17 +1615,11 @@ function updateCartUI() {
       if (!it) return '';
       const lineTotal = it.price * entry.qty;
       sum += lineTotal;
-      const spriteId = it.sprite || it.id;
       return `
         <div class="cart-line">
-          <div style="display:flex; align-items:center; gap:12px;">
-            <div style="background:var(--bg-art); border-radius:8px; padding:4px; display:grid; place-items:center;">
-              <canvas class="px" data-cart-sprite="${spriteId}" width="34" height="34"></canvas>
-            </div>
-            <div>
-              <strong style="font-size:14.5px; display:block;">${it.name}</strong>
-              <span style="font-size:12px; color:var(--text-faint);">₹${it.price} each · <strong>₹${lineTotal}</strong></span>
-            </div>
+          <div>
+            <strong style="font-size:14.5px; display:block;">${it.name}</strong>
+            <span style="font-size:12px; color:var(--text-faint);">₹${it.price} each · <strong>₹${lineTotal}</strong></span>
           </div>
           <div style="display:flex; align-items:center; gap:8px;">
             <div class="qty-ctrl">
@@ -1924,15 +1627,11 @@ function updateCartUI() {
               <span style="font-size:13px; font-weight:700;">${entry.qty}</span>
               <button onclick="changeQty('${entry.id}', 1)">+</button>
             </div>
-            <button class="icon-btn" style="padding:0 8px; color:#ef4444;" onclick="removeFromCart('${entry.id}')" title="Remove">🗑</button>
+            <button class="icon-btn" style="padding:0 8px; color:#ef4444;" onclick="removeFromCart('${entry.id}')">🗑</button>
           </div>
         </div>
       `;
     }).join('');
-
-    list.querySelectorAll('canvas[data-cart-sprite]').forEach(cv => {
-      drawSpriteToCanvas(cv, cv.dataset.cartSprite);
-    });
   }
   document.getElementById('cart-total-price').textContent = '₹' + sum.toLocaleString('en-IN');
 }
@@ -1950,9 +1649,7 @@ function changeQty(id, delta) {
   const found = cart.find(c => c.id === id);
   if (!found) return;
   found.qty += delta;
-  if (found.qty <= 0) {
-    cart = cart.filter(c => c.id !== id);
-  }
+  if (found.qty <= 0) cart = cart.filter(c => c.id !== id);
   saveCart();
   updateCartUI();
 }
@@ -1963,51 +1660,20 @@ function removeFromCart(id) {
   updateCartUI();
 }
 
-function openCart() {
-  updateCartUI();
-  document.getElementById('cart-modal').classList.add('open');
-}
-function closeCart() {
-  document.getElementById('cart-modal').classList.remove('open');
-}
-
+function openCart() { updateCartUI(); document.getElementById('cart-modal').classList.add('open'); }
+function closeCart() { document.getElementById('cart-modal').classList.remove('open'); }
 function checkoutNow() {
-  if (!cart.length) return notify('Add an item first!');
+  if (!cart.length) return notify('Cart is empty.');
   closeCart();
-  requireAuth(() => {
-    const user = getCurrentUser();
-    const total = cart.reduce((s, x) => s + getItemObj(x.id).price * x.qty, 0);
-    const summary = cart.map(x => `${getItemObj(x.id).name} ×${x.qty}`).join(', ');
-
-    const orders = JSON.parse(localStorage.getItem('sagemc_orders') || '[]');
-    orders.unshift({ user, summary, total, date: new Date().toLocaleDateString('en-IN') });
-    localStorage.setItem('sagemc_orders', JSON.stringify(orders));
-
-    cart = [];
-    saveCart();
-    updateCartUI();
-    renderRecentOrders();
-    notify('Order confirmed for ' + user + '! Delivered in-game.');
-  }, 'Please login or create an account before completing Checkout.');
+  cart = [];
+  saveCart();
+  updateCartUI();
+  notify('Checkout successful! Items delivered in-game.');
 }
 
-function renderRecentOrders() {
-  const box = document.getElementById('recent-orders-box');
-  if (!box) return;
-  const user = getCurrentUser();
-  const orders = JSON.parse(localStorage.getItem('sagemc_orders') || '[]').filter(o => o.user === user);
-  if (!user || !orders.length) {
-    box.textContent = 'Your orders will show here.';
-    return;
-  }
-  box.innerHTML = orders.map(o => `
-    <div style="padding:8px 0; border-bottom:1px solid var(--border-col); display:flex; justify-content:space-between;">
-      <span><strong style="color:var(--text-main);">${o.summary}</strong> (${o.date})</span>
-      <strong style="color:#22c55e;">₹${o.total}</strong>
-    </div>
-  `).join('');
-}
-
+// ==========================================
+// SKIN STUDIO
+// ==========================================
 const COLORS = {
   skin: ['#f5d0a9', '#e5b083', '#c68652', '#8d5524', '#523218'],
   hair: ['#241c18', '#5c3c24', '#d4a338', '#b9382c', '#e2e8f0', '#2563eb'],
@@ -2015,17 +1681,7 @@ const COLORS = {
   pants: ['#1e3a8a', '#1e293b', '#5c3a21', '#166534', '#64748b', '#7c3aed']
 };
 
-let studioState = {
-  skin: '#e5b083',
-  hair: '#241c18',
-  shirt: '#2e8b57',
-  pants: '#1e3a8a',
-  Head: 'crown',
-  Back: null,
-  'Main hand': 'sage_blade',
-  'Off hand': null,
-  Feet: null
-};
+let studioState = { skin: '#e5b083', hair: '#241c18', shirt: '#2e8b57', pants: '#1e3a8a', Head: 'crown', Back: null, 'Main hand': 'sage_blade', 'Off hand': null, Feet: null };
 
 function buildStudio() {
   Object.keys(COLORS).forEach(part => {
@@ -2083,11 +1739,7 @@ function toggleEquip(slot, id) {
 }
 
 function resetStudio() {
-  studioState.Head = null;
-  studioState.Back = null;
-  studioState['Main hand'] = null;
-  studioState['Off hand'] = null;
-  studioState.Feet = null;
+  studioState.Head = null; studioState.Back = null; studioState['Main hand'] = null; studioState['Off hand'] = null; studioState.Feet = null;
   document.querySelectorAll('.equip-btn').forEach(b => b.classList.remove('selected'));
   renderStudio();
 }
@@ -2105,7 +1757,7 @@ function renderStudio() {
 
 function buySelectedStudio() {
   const picked = ['Head', 'Back', 'Main hand', 'Off hand', 'Feet'].map(s => studioState[s]).filter(Boolean);
-  if (!picked.length) return notify('Select at least one item on your character!');
+  if (!picked.length) return notify('Select at least one item!');
   picked.forEach(id => {
     const ex = cart.find(c => c.id === id);
     if (!ex) cart.push({ id, qty: 1 });
@@ -2117,7 +1769,6 @@ function buySelectedStudio() {
 
 function populateCatalogs() {
   const badgeClass = r => 'b-' + r.toLowerCase();
-
   const strip = document.getElementById('home-items-strip');
   if (strip) {
     strip.innerHTML = ITEMS.slice(0, 7).map(it => `
@@ -2128,15 +1779,12 @@ function populateCatalogs() {
       </div>
     `).join('');
   }
-
   const grid = document.getElementById('catalog-grid');
   if (grid) {
     grid.innerHTML = ITEMS.map(it => `
       <div class="item-card">
         <div>
-          <div class="item-art-bg">
-            <canvas class="px" data-sprite="${it.id}" width="68" height="68"></canvas>
-          </div>
+          <div class="item-art-bg"><canvas class="px" data-sprite="${it.id}" width="68" height="68"></canvas></div>
           <div class="item-top">
             <h3>${it.name}</h3>
             <span class="badge ${badgeClass(it.rarity)}">${it.rarity}</span>
@@ -2151,7 +1799,6 @@ function populateCatalogs() {
       </div>
     `).join('');
   }
-
   const pack = document.getElementById('pack-grid');
   if (pack) {
     pack.innerHTML = ITEMS.map(it => `
@@ -2166,17 +1813,11 @@ function populateCatalogs() {
 function renderAllSprites() {
   document.querySelectorAll('canvas[data-sprite]').forEach(cv => {
     const key = cv.dataset.sprite;
-    if (key === 'steve') {
-      drawCharacter(cv, { skin: '#e5b083', hair: '#4a2e1b', shirt: '#26a69a', pants: '#283593' });
-    } else if (key === 'char_1') {
-      drawCharacter(cv, { skin: '#e5b083', hair: '#241c18', shirt: '#2e8b57', pants: '#1e3a8a', Head: 'crown', 'Main hand': 'sage_blade' });
-    } else if (key === 'char_2') {
-      drawCharacter(cv, { skin: '#c68652', hair: '#5c3c24', shirt: '#dc2626', pants: '#1e293b', Back: 'phoenix_wings', 'Main hand': 'inferno_edge' });
-    } else if (key === 'char_3') {
-      drawCharacter(cv, { skin: '#f5d0a9', hair: '#2563eb', shirt: '#3358d4', pants: '#1e3a8a', Head: 'frost_helm', Back: 'storm_wings', 'Off hand': 'guardian_shield' });
-    } else {
-      drawSpriteToCanvas(cv, key);
-    }
+    if (key === 'steve') drawCharacter(cv, { skin: '#e5b083', hair: '#4a2e1b', shirt: '#26a69a', pants: '#283593' });
+    else if (key === 'char_1') drawCharacter(cv, { skin: '#e5b083', hair: '#241c18', shirt: '#2e8b57', pants: '#1e3a8a', Head: 'crown', 'Main hand': 'sage_blade' });
+    else if (key === 'char_2') drawCharacter(cv, { skin: '#c68652', hair: '#5c3c24', shirt: '#dc2626', pants: '#1e293b', Back: 'phoenix_wings', 'Main hand': 'inferno_edge' });
+    else if (key === 'char_3') drawCharacter(cv, { skin: '#f5d0a9', hair: '#2563eb', shirt: '#3358d4', pants: '#1e3a8a', Head: 'frost_helm', Back: 'storm_wings', 'Off hand': 'guardian_shield' });
+    else drawSpriteToCanvas(cv, key);
   });
 }
 
@@ -2184,16 +1825,9 @@ function go(viewName) {
   document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
   const target = document.getElementById('view-' + viewName);
   if (target) target.classList.add('active');
-
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
   const navBtn = document.getElementById('nav-' + viewName);
   if (navBtn) navBtn.classList.add('active');
-
-  if (viewName === 'store') document.body.classList.add('dark-mode');
-  else if (!localStorage.getItem('sagemc_theme') || localStorage.getItem('sagemc_theme') === 'light') {
-    document.body.classList.remove('dark-mode');
-  }
-
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
@@ -2211,7 +1845,7 @@ function notify(msg) {
   window._toastTimer = setTimeout(() => { t.style.display = 'none'; }, 2400);
 }
 
-// Initial Boot
+// Boot
 populateCatalogs();
 buildStudio();
 renderAllSprites();
