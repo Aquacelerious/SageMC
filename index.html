@@ -6,31 +6,47 @@
 <title>SageMC - Minecraft Server & Custom Store</title>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Press+Start+2P&display=swap" rel="stylesheet">
 <style>
+  :root {
+    --bg-main: #eef2ff;
+    --bg-card: #ffffff;
+    --bg-soft: #f8fafc;
+    --bg-art: #d9ecff;
+    --text-main: #0f172a;
+    --text-muted: #475569;
+    --text-faint: #64748b;
+    --border-col: #cbd5e1;
+    --nav-bg: #ffffff;
+  }
+
+  body.dark-mode {
+    --bg-main: #111318;
+    --bg-card: #1b1f27;
+    --bg-soft: #242934;
+    --bg-art: #233347;
+    --text-main: #f8fafc;
+    --text-muted: #cbd5e1;
+    --text-faint: #94a3b8;
+    --border-col: #313846;
+    --nav-bg: #181b22;
+  }
+
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
     font-family: 'Plus Jakarta Sans', sans-serif;
-    background: #eef2ff;
-    color: #0f172a;
+    background: var(--bg-main);
+    color: var(--text-main);
     padding-bottom: 92px;
-    transition: background 0.2s;
-  }
-  body.store-dark {
-    background: #16181d;
-    color: #f8fafc;
+    transition: background 0.2s, color 0.2s;
   }
 
   /* top bar */
   .topbar {
-    background: #ffffff;
-    border-bottom: 1px solid #dbe4f3;
+    background: var(--nav-bg);
+    border-bottom: 1px solid var(--border-col);
     padding: 12px 20px;
     position: sticky;
     top: 0;
     z-index: 40;
-  }
-  body.store-dark .topbar {
-    background: #1e2128;
-    border-bottom-color: #2d323e;
   }
   .topbar-inner {
     max-width: 960px;
@@ -47,32 +63,37 @@
     font-size: 19px;
     cursor: pointer;
     text-decoration: none;
-    color: inherit;
+    color: var(--text-main);
   }
   .nav-actions { display: flex; gap: 8px; align-items: center; }
   .icon-btn {
-    width: 38px; height: 38px;
+    height: 38px;
+    min-width: 38px;
+    padding: 0 10px;
     border-radius: 8px;
-    border: 1px solid #cbd5e1;
-    background: #fff;
+    border: 1px solid var(--border-col);
+    background: var(--bg-card);
+    color: var(--text-main);
     cursor: pointer;
-    display: grid;
-    place-items: center;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 13px;
   }
-  body.store-dark .icon-btn {
-    background: #282c37;
-    border-color: #3b4252;
-    color: #fff;
-  }
+  .icon-btn:hover { border-color: #3358d4; }
   .btn-primary {
     background: #3358d4;
     color: #fff;
     border: none;
-    padding: 9px 18px;
+    padding: 9px 16px;
     border-radius: 8px;
     font-weight: 700;
-    font-size: 14px;
+    font-size: 13.5px;
     cursor: pointer;
+    font-family: inherit;
   }
   .btn-primary:hover { background: #2747b5; }
 
@@ -84,15 +105,14 @@
 
   /* search */
   .search-box {
-    background: #fff;
-    border: 1px solid #cbd5e1;
+    background: var(--bg-card);
+    border: 1px solid var(--border-col);
     border-radius: 12px;
     padding: 6px 8px 6px 14px;
     display: flex;
     align-items: center;
     gap: 10px;
     margin-bottom: 20px;
-    box-shadow: 0 2px 6px rgba(15, 23, 42, 0.03);
   }
   .search-box input {
     border: none;
@@ -100,7 +120,8 @@
     flex: 1;
     font-size: 14px;
     font-family: inherit;
-    color: #1e293b;
+    background: transparent;
+    color: var(--text-main);
   }
 
   /* hero banner */
@@ -117,7 +138,7 @@
     gap: 16px;
   }
   .hero-banner h1 { font-size: 26px; font-weight: 800; color: #1e1b08; margin-bottom: 4px; }
-  .hero-banner p { font-size: 14px; color: #3f380e; margin-bottom: 14px; font-weight: 500; }
+  .hero-banner p { font-size: 14px; color: #3f380e; margin-bottom: 14px; font-weight: 600; }
   .ip-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
   .ip-pill {
     background: #fef9c3;
@@ -138,10 +159,11 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    color: var(--text-main);
   }
   .sec-link {
     font-size: 13px;
-    color: #3358d4;
+    color: #3b82f6;
     font-weight: 700;
     cursor: pointer;
     text-decoration: none;
@@ -154,9 +176,7 @@
     gap: 16px;
     margin-bottom: 32px;
   }
-  @media (max-width: 700px) {
-    .explore-grid { grid-template-columns: repeat(2, 1fr); }
-  }
+  @media (max-width: 700px) { .explore-grid { grid-template-columns: repeat(2, 1fr); } }
   .mode-card {
     border-radius: 14px;
     padding: 24px 16px 18px;
@@ -166,7 +186,7 @@
     justify-content: space-between;
     cursor: pointer;
     transition: transform 0.14s ease;
-    min-height: 210px;
+    min-height: 205px;
   }
   .mode-card:hover { transform: translateY(-3px); }
   .mode-card span {
@@ -187,8 +207,8 @@
 
   /* skin studio promo */
   .panel-card {
-    background: #fff;
-    border: 1px solid #cbd5e1;
+    background: var(--bg-card);
+    border: 1px solid var(--border-col);
     border-radius: 14px;
     padding: 18px;
     margin-bottom: 30px;
@@ -200,7 +220,7 @@
     margin-bottom: 14px;
   }
   .preview-box {
-    background: #dceeff;
+    background: var(--bg-art);
     border-radius: 10px;
     padding: 14px;
     display: grid;
@@ -218,6 +238,7 @@
     color: #1e1b08;
     cursor: pointer;
     margin-top: 12px;
+    font-family: inherit;
   }
   .btn-gold:hover { background: #f5c305; }
 
@@ -231,16 +252,16 @@
   }
   .mini-item {
     min-width: 142px;
-    background: #fff;
-    border: 1px solid #cbd5e1;
+    background: var(--bg-card);
+    border: 1px solid var(--border-col);
     border-radius: 12px;
     padding: 14px 10px;
     text-align: center;
     cursor: pointer;
     flex-shrink: 0;
   }
-  .mini-item:hover { border-color: #3358d4; }
-  .mini-item h4 { font-size: 13px; font-weight: 700; margin: 8px 0 6px; }
+  .mini-item:hover { border-color: #3b82f6; }
+  .mini-item h4 { font-size: 13px; font-weight: 700; margin: 8px 0 6px; color: var(--text-main); }
 
   /* rarity pills */
   .badge {
@@ -252,15 +273,15 @@
     text-transform: uppercase;
     letter-spacing: 0.4px;
   }
-  .b-legendary { border: 1px solid #f59e0b; color: #d97706; background: #fffbeb; }
-  .b-mythic { border: 1px solid #ec4899; color: #db2777; background: #fdf2f8; }
-  .b-epic { border: 1px solid #8b5cf6; color: #7c3aed; background: #f5f3ff; }
-  .b-rare { border: 1px solid #3b82f6; color: #2563eb; background: #eff6ff; }
+  .b-legendary { border: 1px solid #f59e0b; color: #d97706; background: rgba(245, 158, 11, 0.12); }
+  .b-mythic { border: 1px solid #ec4899; color: #db2777; background: rgba(236, 72, 153, 0.12); }
+  .b-epic { border: 1px solid #8b5cf6; color: #7c3aed; background: rgba(139, 92, 246, 0.12); }
+  .b-rare { border: 1px solid #3b82f6; color: #2563eb; background: rgba(59, 130, 246, 0.12); }
 
   /* news cards */
   .news-card {
-    background: #fff;
-    border: 1px solid #cbd5e1;
+    background: var(--bg-card);
+    border: 1px solid var(--border-col);
     border-radius: 12px;
     padding: 16px 18px;
     margin-bottom: 12px;
@@ -269,16 +290,16 @@
     display: inline-block;
     font-size: 10px;
     font-weight: 800;
-    color: #15803d;
+    color: #16a34a;
     border: 1px solid #22c55e;
-    background: #f0fdf4;
+    background: rgba(34, 197, 94, 0.12);
     padding: 2px 7px;
     border-radius: 4px;
     margin-bottom: 6px;
   }
-  .news-card h3 { font-size: 15px; font-weight: 800; margin-bottom: 4px; }
-  .news-card p { font-size: 13px; color: #475569; margin-bottom: 6px; }
-  .news-card small { font-size: 11px; color: #64748b; }
+  .news-card h3 { font-size: 15px; font-weight: 800; margin-bottom: 4px; color: var(--text-main); }
+  .news-card p { font-size: 13px; color: var(--text-muted); margin-bottom: 6px; }
+  .news-card small { font-size: 11px; color: var(--text-faint); }
 
   /* items catalog page */
   .catalog-grid {
@@ -290,8 +311,8 @@
   @media (max-width: 760px) { .catalog-grid { grid-template-columns: repeat(2, 1fr); } }
   @media (max-width: 480px) { .catalog-grid { grid-template-columns: 1fr; } }
   .item-card {
-    background: #fff;
-    border: 1px solid #cbd5e1;
+    background: var(--bg-card);
+    border: 1px solid var(--border-col);
     border-radius: 14px;
     padding: 14px;
     display: flex;
@@ -299,7 +320,7 @@
     justify-content: space-between;
   }
   .item-art-bg {
-    background: #d9ecff;
+    background: var(--bg-art);
     border-radius: 10px;
     height: 115px;
     display: grid;
@@ -312,15 +333,15 @@
     align-items: center;
     margin-bottom: 6px;
   }
-  .item-top h3 { font-size: 15px; font-weight: 800; }
-  .item-desc { font-size: 12.5px; color: #475569; line-height: 1.4; margin-bottom: 8px; }
-  .item-slot { font-size: 12px; color: #334155; margin-bottom: 12px; }
+  .item-top h3 { font-size: 15px; font-weight: 800; color: var(--text-main); }
+  .item-desc { font-size: 12.5px; color: var(--text-muted); line-height: 1.4; margin-bottom: 8px; }
+  .item-slot { font-size: 12px; color: var(--text-faint); margin-bottom: 12px; }
   .item-foot {
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
-  .price { font-size: 17px; font-weight: 800; }
+  .price { font-size: 17px; font-weight: 800; color: var(--text-main); }
   .btn-cart {
     background: #4ea819;
     color: #fff;
@@ -331,6 +352,7 @@
     font-weight: 700;
     font-size: 12.5px;
     cursor: pointer;
+    font-family: inherit;
   }
   .btn-cart:hover { background: #439414; }
 
@@ -342,11 +364,12 @@
   }
   .pack-tile {
     width: 72px;
-    border: 1px solid #cbd5e1;
+    border: 1px solid var(--border-col);
     border-radius: 8px;
     padding: 8px 4px;
     text-align: center;
-    background: #f8fafc;
+    background: var(--bg-soft);
+    color: var(--text-main);
   }
   .pack-tile span { display: block; font-size: 10px; font-weight: 700; margin-top: 4px; }
 
@@ -359,8 +382,8 @@
   }
   @media (max-width: 760px) { .studio-layout { grid-template-columns: 1fr; } }
   .stage-box {
-    background: #d7ebff;
-    border: 1px solid #bfd8f5;
+    background: var(--bg-art);
+    border: 1px solid var(--border-col);
     border-radius: 14px;
     padding: 28px 16px;
     display: grid;
@@ -369,35 +392,32 @@
     top: 78px;
   }
   .ctrl-card {
-    background: #fff;
-    border: 1px solid #cbd5e1;
+    background: var(--bg-card);
+    border: 1px solid var(--border-col);
     border-radius: 12px;
     padding: 16px;
     margin-bottom: 14px;
   }
-  .ctrl-card h3 { font-size: 15px; font-weight: 800; margin-bottom: 12px; }
+  .ctrl-card h3 { font-size: 15px; font-weight: 800; margin-bottom: 12px; color: var(--text-main); }
   .swatch-row {
     display: flex;
     align-items: center;
     gap: 10px;
     margin-bottom: 10px;
   }
-  .swatch-label { width: 52px; font-size: 12.5px; font-weight: 600; color: #475569; }
+  .swatch-label { width: 52px; font-size: 12.5px; font-weight: 600; color: var(--text-muted); }
   .swatch {
     width: 28px; height: 28px;
     border-radius: 6px;
-    border: 2px solid #cbd5e1;
+    border: 2px solid var(--border-col);
     cursor: pointer;
   }
-  .swatch.active { outline: 2px solid #2563eb; outline-offset: 2px; }
-  .equip-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
+  .swatch.active { outline: 2px solid #3b82f6; outline-offset: 2px; }
+  .equip-grid { display: flex; flex-wrap: wrap; gap: 10px; }
   .equip-btn {
-    border: 1px solid #cbd5e1;
-    background: #f8fafc;
+    border: 1px solid var(--border-col);
+    background: var(--bg-soft);
+    color: var(--text-main);
     border-radius: 10px;
     padding: 8px 12px;
     display: flex;
@@ -405,18 +425,19 @@
     gap: 10px;
     cursor: pointer;
     text-align: left;
+    font-family: inherit;
   }
   .equip-btn.selected {
-    border: 2px solid #2563eb;
-    background: #eff6ff;
+    border: 2px solid #3b82f6;
+    background: rgba(59, 130, 246, 0.14);
   }
   .equip-btn strong { display: block; font-size: 12.5px; }
-  .equip-btn small { font-size: 11px; color: #64748b; }
+  .equip-btn small { font-size: 11px; color: var(--text-faint); }
 
   /* rules accordion */
   .rule-box {
-    background: #fff;
-    border: 1px solid #cbd5e1;
+    background: var(--bg-card);
+    border: 1px solid var(--border-col);
     border-radius: 12px;
     margin-bottom: 10px;
     overflow: hidden;
@@ -428,32 +449,30 @@
     display: flex;
     justify-content: space-between;
     cursor: pointer;
+    color: var(--text-main);
   }
   .rule-body {
     padding: 0 18px 16px 34px;
     font-size: 13.5px;
-    color: #334155;
+    color: var(--text-muted);
     line-height: 1.7;
     display: none;
   }
   .rule-box.open .rule-body { display: block; }
 
-  /* dark store view */
-  .store-pixel-head {
-    text-align: center;
-    padding: 18px 0 22px;
-  }
+  /* store view */
+  .store-pixel-head { text-align: center; padding: 14px 0 22px; }
   .store-pixel-head h1 {
     font-family: 'Press Start 2P', monospace;
     font-size: 26px;
-    color: #fcd34d;
-    text-shadow: 0 3px 0 #92400e;
+    color: #f59e0b;
+    text-shadow: 0 3px 0 #78350f;
     margin-bottom: 8px;
   }
   .store-pixel-head p {
     font-family: 'Press Start 2P', monospace;
     font-size: 9px;
-    color: #94a3b8;
+    color: var(--text-faint);
     letter-spacing: 2px;
   }
   .store-top-btns {
@@ -483,9 +502,9 @@
     cursor: pointer;
   }
   .crate-hero {
-    background: #232730;
-    border: 2px solid #353b48;
-    border-radius: 10px;
+    background: var(--bg-card);
+    border: 2px solid var(--border-col);
+    border-radius: 12px;
     padding: 24px;
     text-align: center;
     margin-bottom: 18px;
@@ -494,14 +513,14 @@
     width: 150px; height: 150px;
     margin: 0 auto 16px;
     background: #2d4259;
-    border-radius: 8px;
+    border-radius: 10px;
     display: grid;
     place-items: center;
   }
   .crate-hero h2 {
     font-family: 'Press Start 2P', monospace;
     font-size: 15px;
-    color: #fcd34d;
+    color: #eab308;
     margin-bottom: 8px;
   }
   .timer-row {
@@ -511,8 +530,8 @@
     margin: 14px 0 18px;
     font-family: 'Press Start 2P', monospace;
   }
-  .timer-num { font-size: 20px; color: #fde68a; }
-  .timer-lbl { font-size: 9px; color: #94a3b8; margin-top: 6px; font-family: 'Plus Jakarta Sans', sans-serif; }
+  .timer-num { font-size: 20px; color: #f59e0b; }
+  .timer-lbl { font-size: 9px; color: var(--text-faint); margin-top: 6px; font-family: 'Plus Jakarta Sans', sans-serif; }
 
   .store-cats {
     display: grid;
@@ -525,7 +544,6 @@
     padding: 18px;
     text-align: center;
     cursor: pointer;
-    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -553,17 +571,17 @@
     margin-bottom: 6px;
   }
 
-  .dark-box {
-    background: #232730;
-    border: 1px solid #353b48;
+  .store-box {
+    background: var(--bg-card);
+    border: 1px solid var(--border-col);
     border-radius: 10px;
     padding: 16px 18px;
     margin-bottom: 14px;
   }
-  .dark-box h4 {
+  .store-box h4 {
     font-family: 'Press Start 2P', monospace;
     font-size: 11px;
-    color: #fde68a;
+    color: #eab308;
     margin-bottom: 10px;
   }
 
@@ -571,26 +589,48 @@
   .auth-card {
     max-width: 440px;
     margin: 24px auto;
-    background: #fff;
-    border: 1px solid #cbd5e1;
+    background: var(--bg-card);
+    border: 1px solid var(--border-col);
     border-radius: 14px;
     padding: 26px;
+  }
+  .auth-alert {
+    padding: 10px 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 14px;
+    display: none;
+  }
+  .auth-alert.err {
+    background: rgba(239, 68, 68, 0.14);
+    border: 1px solid #ef4444;
+    color: #ef4444;
+  }
+  .auth-alert.info {
+    background: rgba(59, 130, 246, 0.14);
+    border: 1px solid #3b82f6;
+    color: #3b82f6;
   }
   .auth-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 16px 0 18px; }
   .auth-tab {
     padding: 10px;
     border-radius: 8px;
     font-weight: 700;
-    border: 1px solid #cbd5e1;
-    background: #f1f5f9;
+    border: 1px solid var(--border-col);
+    background: var(--bg-soft);
+    color: var(--text-main);
     cursor: pointer;
+    font-family: inherit;
   }
   .auth-tab.active { background: #3358d4; color: #fff; border-color: #3358d4; }
-  .field-lbl { display: block; font-size: 13px; font-weight: 700; margin-bottom: 6px; }
+  .field-lbl { display: block; font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--text-main); }
   .field-inp {
     width: 100%;
     padding: 11px 12px;
-    border: 1px solid #cbd5e1;
+    border: 1px solid var(--border-col);
+    background: var(--bg-soft);
+    color: var(--text-main);
     border-radius: 8px;
     margin-bottom: 14px;
     font-family: inherit;
@@ -600,17 +640,13 @@
   .bottom-nav {
     position: fixed;
     bottom: 0; left: 0; right: 0;
-    background: #fff;
-    border-top: 1px solid #cbd5e1;
+    background: var(--nav-bg);
+    border-top: 1px solid var(--border-col);
     display: flex;
     justify-content: space-around;
     align-items: center;
     padding: 8px 0 10px;
     z-index: 50;
-  }
-  body.store-dark .bottom-nav {
-    background: #1e2128;
-    border-top-color: #2d323e;
   }
   .nav-item {
     display: flex;
@@ -619,12 +655,13 @@
     gap: 3px;
     font-size: 11px;
     font-weight: 700;
-    color: #64748b;
+    color: var(--text-faint);
     cursor: pointer;
     border: none;
     background: none;
+    font-family: inherit;
   }
-  .nav-item.active { color: #2563eb; }
+  .nav-item.active { color: #3b82f6; }
   .nav-plus {
     width: 46px; height: 46px;
     background: #facc15;
@@ -640,11 +677,11 @@
     margin-top: -14px;
   }
 
-  /* cart modal */
+  /* modals */
   .modal-backdrop {
     position: fixed;
     inset: 0;
-    background: rgba(15, 23, 42, 0.55);
+    background: rgba(0, 0, 0, 0.65);
     display: none;
     place-items: center;
     z-index: 100;
@@ -652,27 +689,51 @@
   }
   .modal-backdrop.open { display: grid; }
   .modal-card {
-    background: #fff;
-    color: #0f172a;
+    background: var(--bg-card);
+    color: var(--text-main);
+    border: 1px solid var(--border-col);
     width: 100%;
-    max-width: 440px;
+    max-width: 460px;
     border-radius: 16px;
     padding: 22px;
+    max-height: 88vh;
+    overflow-y: auto;
   }
   .cart-line {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 12px 0;
-    border-bottom: 1px solid #e2e8f0;
+    border-bottom: 1px solid var(--border-col);
+    gap: 10px;
   }
+  .qty-ctrl {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--bg-soft);
+    border: 1px solid var(--border-col);
+    border-radius: 8px;
+    padding: 3px 8px;
+  }
+  .qty-ctrl button {
+    background: none;
+    border: none;
+    color: var(--text-main);
+    font-weight: 800;
+    font-size: 15px;
+    cursor: pointer;
+    padding: 0 4px;
+  }
+
   .toast {
     position: fixed;
     top: 72px;
     right: 20px;
     background: #0f172a;
     color: #fff;
-    padding: 10px 16px;
+    border: 1px solid #334155;
+    padding: 11px 16px;
     border-radius: 8px;
     font-size: 13px;
     font-weight: 600;
@@ -685,9 +746,9 @@
   footer.site-foot {
     margin-top: 32px;
     padding-top: 16px;
-    border-top: 1px solid rgba(148,163,184,0.3);
+    border-top: 1px solid var(--border-col);
     font-size: 12px;
-    color: #64748b;
+    color: var(--text-faint);
     display: flex;
     gap: 16px;
     flex-wrap: wrap;
@@ -698,7 +759,7 @@
 </head>
 <body>
 
-<div id="toast" class="toast">Copied to clipboard!</div>
+<div id="toast" class="toast">Notification</div>
 
 <header class="topbar">
   <div class="topbar-inner">
@@ -707,10 +768,11 @@
       <span>SageMC</span>
     </a>
     <div class="nav-actions">
-      <button class="icon-btn" onclick="openCart()" title="Cart">
-        🛒 <span id="top-cart-count" style="font-size:11px;font-weight:800;">2</span>
+      <button class="icon-btn" id="theme-toggle" onclick="toggleTheme()" title="Switch Light / Dark Mode">🌙</button>
+      <button class="icon-btn" onclick="openCart()" title="Shopping Cart">
+        🛒 <span id="top-cart-count">2</span>
       </button>
-      <button class="btn-primary" id="auth-btn" onclick="go('signin')">Sign in</button>
+      <button class="btn-primary" id="auth-btn" onclick="openAuthPage('login')">Sign in</button>
     </div>
   </div>
 </header>
@@ -785,7 +847,7 @@
       <div class="preview-box"><canvas class="px" data-sprite="char_2" width="90" height="90"></canvas></div>
       <div class="preview-box"><canvas class="px" data-sprite="char_3" width="90" height="90"></canvas></div>
     </div>
-    <p style="font-size:13.5px; color:#475569;">Put SageMC custom items on your own skin, see the full look, then buy the pieces you want.</p>
+    <p style="font-size:13.5px; color:var(--text-muted);">Put SageMC custom items on your own skin, see the full look, then buy the pieces you want.</p>
     <button class="btn-gold" onclick="go('skins')">Try the skin studio</button>
   </div>
 
@@ -816,13 +878,13 @@
 <!-- CUSTOM ITEMS CATALOG VIEW -->
 <main id="view-items" class="view wrap">
   <h2 class="sec-title" style="font-size:28px; margin-bottom:6px;">Custom Items</h2>
-  <p style="font-size:14px; color:#475569; margin-bottom:20px;">Wear them on your skin in the studio, or add them straight to your cart.</p>
+  <p style="font-size:14px; color:var(--text-muted); margin-bottom:20px;">Wear them on your skin in the studio, or add them straight to your cart.</p>
 
   <div class="catalog-grid" id="catalog-grid"></div>
 
   <div class="panel-card">
     <h3 style="font-size:19px; font-weight:800; margin-bottom:4px;">Texture pack preview</h3>
-    <p style="font-size:13px; color:#475569;">Every custom item has its own shaded 16×16 texture. This is how they look in the pack.</p>
+    <p style="font-size:13px; color:var(--text-muted);">Every custom item has its own shaded 16×16 texture. This is how they look in the pack.</p>
     <div class="pack-grid" id="pack-grid"></div>
     <button class="btn-gold" onclick="go('skins')">Try them in the skin studio</button>
   </div>
@@ -831,7 +893,7 @@
 <!-- SKIN STUDIO VIEW -->
 <main id="view-skins" class="view wrap">
   <h2 class="sec-title" style="font-size:28px; margin-bottom:6px;">Custom Skin</h2>
-  <p style="font-size:14px; color:#475569; margin-bottom:20px;">Pick your colors, try SageMC custom items on your character and buy what you like.</p>
+  <p style="font-size:14px; color:var(--text-muted); margin-bottom:20px;">Pick your colors, try SageMC custom items on your character and buy what you like.</p>
 
   <div class="studio-layout">
     <div class="stage-box">
@@ -849,13 +911,13 @@
 
       <div id="slot-controls"></div>
 
-      <div class="ctrl-card" style="display:flex; justify-content:space-between; align-items:center;">
+      <div class="ctrl-card" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
         <div>
-          <div style="font-size:12px; color:#64748b;" id="selected-count">2 items selected</div>
+          <div style="font-size:12px; color:var(--text-faint);" id="selected-count">2 items selected</div>
           <div style="font-size:22px; font-weight:800;" id="selected-total">₹1,098</div>
         </div>
         <div style="display:flex; gap:8px;">
-          <button class="icon-btn" style="width:auto; padding:0 14px; font-weight:700;" onclick="resetStudio()">Reset</button>
+          <button class="icon-btn" onclick="resetStudio()">Reset</button>
           <button class="btn-cart" style="padding:10px 18px;" onclick="buySelectedStudio()">Buy selected</button>
         </div>
       </div>
@@ -866,7 +928,7 @@
 <!-- RULES VIEW -->
 <main id="view-rules" class="view wrap">
   <h2 class="sec-title" style="font-size:28px; margin-bottom:6px;">Server Rules</h2>
-  <p style="font-size:14px; color:#475569; margin-bottom:18px;">Read these before you play. Breaking them can lead to a mute, kick or ban.<br>Questions? Open a support ticket.</p>
+  <p style="font-size:14px; color:var(--text-muted); margin-bottom:18px;">Read these before you play. Breaking them can lead to a mute, kick or ban.<br>Questions? Open a support ticket.</p>
 
   <div class="rule-box open">
     <div class="rule-head" onclick="this.parentElement.classList.toggle('open')">
@@ -930,10 +992,10 @@
     </ol>
   </div>
 
-  <button class="btn-gold" onclick="notify('Support ticket modal opened!')">Create a support ticket</button>
+  <button class="btn-gold" onclick="handleSupportTicket()">Create a support ticket</button>
 </main>
 
-<!-- DARK STORE VIEW -->
+<!-- STORE VIEW -->
 <main id="view-store" class="view wrap">
   <div class="store-pixel-head">
     <h1>SAGEMC</h1>
@@ -941,7 +1003,7 @@
   </div>
 
   <div class="store-top-btns">
-    <button class="s-btn-brown" onclick="go('items')">⊞ MENU</button>
+    <button class="s-btn-brown" onclick="requireAuth(() => go('items'), 'Please sign in or sign up to browse store items.')">⊞ MENU</button>
     <button class="s-btn-blue" onclick="openCart()">🛒 CART (<span id="store-cart-badge">2</span>)</button>
   </div>
 
@@ -950,7 +1012,7 @@
       <canvas class="px" data-sprite="void_chest" width="96" height="96"></canvas>
     </div>
     <h2>SAGE BLADE CRATE</h2>
-    <p style="font-size:12px; color:#94a3b8;">Available for a limited time!</p>
+    <p style="font-size:12px; color:var(--text-faint);">Available for a limited time!</p>
     <div class="timer-row">
       <div><div class="timer-num">23</div><div class="timer-lbl">Days</div></div>
       <div><div class="timer-num">:</div></div>
@@ -958,81 +1020,97 @@
       <div><div class="timer-num">:</div></div>
       <div><div class="timer-num">29</div><div class="timer-lbl">Minutes</div></div>
     </div>
-    <button class="btn-gold" style="width:auto; padding:11px 24px;" onclick="addToCart('sage_crate')">Open crates — ₹249</button>
+    <button class="btn-gold" style="width:auto; padding:11px 24px;" onclick="storeAction('sage_crate')">Open crates — ₹249</button>
   </div>
 
   <div class="store-cats">
-    <div class="cat-tile cat-crates" onclick="addToCart('sage_crate')">
+    <div class="cat-tile cat-crates" onclick="storeAction('sage_crate')">
       <canvas class="px" data-sprite="chest" width="76" height="76"></canvas>
       <h3>CRATES</h3>
     </div>
-    <div class="cat-tile cat-coins" onclick="addToCart('coins_pack')">
+    <div class="cat-tile cat-coins" onclick="storeAction('coins_pack')">
       <span class="pop-pill">Most Popular</span>
       <canvas class="px" data-sprite="diamond" width="54" height="54"></canvas>
       <h3>COINS</h3>
     </div>
-    <div class="cat-tile cat-ranks" onclick="addToCart('sage_rank')">
+    <div class="cat-tile cat-ranks" onclick="storeAction('sage_rank')">
       <canvas class="px" data-sprite="crown" width="54" height="54"></canvas>
       <h3>RANKS</h3>
     </div>
-    <div class="cat-tile cat-bundles" onclick="go('items')">
+    <div class="cat-tile cat-bundles" onclick="requireAuth(() => go('items'), 'Sign in or create an account to view Store Bundles.')">
       <canvas class="px" data-sprite="bundle" width="54" height="54"></canvas>
       <h3>BUNDLES</h3>
     </div>
-    <div class="cat-tile cat-sageplus" onclick="addToCart('sage_plus')">
+    <div class="cat-tile cat-sageplus" onclick="storeAction('sage_plus')">
       <canvas class="px" data-sprite="plus_gem" width="54" height="54"></canvas>
       <h3>SAGE+</h3>
     </div>
   </div>
 
-  <div class="dark-box">
+  <div class="store-box">
     <h4>BROWSE THE STORE</h4>
-    <p style="font-size:13px; color:#cbd5e1;">Pick Crates, Coins, Ranks, Bundles or Sage+ above. Custom items are on the <a style="color:#fde68a; text-decoration:underline; cursor:pointer;" onclick="go('items')">Items page</a>.</p>
+    <p style="font-size:13px; color:var(--text-muted);">Pick Crates, Coins, Ranks, Bundles or Sage+ above. Custom items are on the <a style="color:#eab308; font-weight:700; text-decoration:underline; cursor:pointer;" onclick="requireAuth(() => go('items'), 'Sign in first to access Store items.')">Items page</a>.</p>
   </div>
 
-  <div class="dark-box">
+  <div class="store-box">
     <h4>SUPPORT / QUESTIONS</h4>
-    <div style="display:flex; justify-content:space-between; align-items:center; padding:8px 0; border-bottom:1px solid #353b48;">
+    <div style="display:flex; justify-content:space-between; align-items:center; padding:8px 0; border-bottom:1px solid var(--border-col);">
       <div>
-        <strong style="color:#4ade80; font-size:13px;">Support Ticket</strong>
-        <div style="font-size:11.5px; color:#94a3b8;">Problem with an order or a player?</div>
+        <strong style="color:#22c55e; font-size:13px;">Support Ticket</strong>
+        <div style="font-size:11.5px; color:var(--text-faint);">Problem with an order or a player?</div>
       </div>
-      <button class="btn-cart" onclick="notify('Ticket created!')">CREATE</button>
+      <button class="btn-cart" onclick="handleSupportTicket()">CREATE</button>
     </div>
     <div style="display:flex; justify-content:space-between; align-items:center; padding-top:10px;">
       <div>
-        <strong style="color:#818cf8; font-size:13px;">Discord Channel</strong>
-        <div style="font-size:11.5px; color:#94a3b8;">Chat with the community</div>
+        <strong style="color:#6366f1; font-size:13px;">Discord Channel</strong>
+        <div style="font-size:11.5px; color:var(--text-faint);">Chat with the community</div>
       </div>
-      <button class="btn-primary" style="padding:7px 14px; font-size:12px;" onclick="notify('Opening discord.gg/sagemc')">JOIN</button>
+      <button class="btn-primary" style="padding:7px 14px; font-size:12px;" onclick="handleDiscord()">JOIN</button>
     </div>
   </div>
 
-  <div class="dark-box" style="display:flex; justify-content:space-between; align-items:center;">
+  <div class="store-box" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
     <div>
       <h4>ACCOUNT</h4>
       <strong style="font-size:13px;" id="store-user-lbl">Not signed in</strong>
-      <div style="font-size:11.5px; color:#94a3b8;">Use your Minecraft username and email.</div>
+      <div style="font-size:11.5px; color:var(--text-faint);">Use your Minecraft username and email.</div>
     </div>
-    <button class="btn-gold" style="width:auto; padding:10px 14px; margin:0; font-size:12px;" onclick="go('signin')">LOGIN / REGISTER</button>
+    <button class="btn-gold" id="store-auth-cta" style="width:auto; padding:10px 14px; margin:0; font-size:12px;" onclick="openAuthPage('login')">LOGIN / REGISTER</button>
+  </div>
+
+  <div class="store-box">
+    <h4>RECENT PURCHASES</h4>
+    <div id="recent-orders-box" style="font-size:12.5px; color:var(--text-faint);">Your orders will show here.</div>
   </div>
 </main>
 
-<!-- SIGN IN VIEW -->
+<!-- SIGN IN / SIGN UP VIEW -->
 <main id="view-signin" class="view wrap">
   <div class="auth-card">
-    <h2 style="font-size:26px; font-weight:800;">Sign in</h2>
+    <h2 style="font-size:26px; font-weight:800;" id="auth-heading">Sign in</h2>
+
+    <div id="auth-alert" class="auth-alert"></div>
+
     <div class="auth-tabs">
       <button class="auth-tab active" id="tab-login" onclick="switchAuthTab('login')">Login</button>
       <button class="auth-tab" id="tab-reg" onclick="switchAuthTab('reg')">Register</button>
     </div>
+
     <label class="field-lbl">Minecraft username or email</label>
     <input type="text" id="ign-input" class="field-inp" placeholder="Username or email">
+
     <label class="field-lbl">Password</label>
-    <input type="password" id="pwd-input" class="field-inp" placeholder="At least 6 characters">
-    <button class="btn-gold" id="auth-submit-btn" onclick="handleLogin()">Login</button>
-    <p style="font-size:11.5px; color:#64748b; margin-top:14px; line-height:1.5;">
-      Accounts are saved only in this browser for now. Real accounts and payments need a server connected later.
+    <input type="password" id="pwd-input" class="field-inp" placeholder="At least 6 characters" onkeyup="if(event.key==='Enter') handleAuthSubmit()">
+
+    <button class="btn-gold" id="auth-submit-btn" onclick="handleAuthSubmit()">Login</button>
+
+    <div id="logout-zone" style="display:none; margin-top:12px;">
+      <button class="icon-btn" style="width:100%;" onclick="logoutUser()">Sign out of current account</button>
+    </div>
+
+    <p style="font-size:11.5px; color:var(--text-faint); margin-top:14px; line-height:1.5;">
+      Accounts are saved in your browser storage. Sign up once and log in anytime.
     </p>
   </div>
 </main>
@@ -1041,8 +1119,8 @@
   <footer class="site-foot">
     <span>© SageMC</span>
     <a onclick="go('rules')">Rules</a>
-    <a onclick="notify('Support ticket opened')">Support ticket</a>
-    <a onclick="notify('discord.gg/sagemc')">Discord</a>
+    <a onclick="handleSupportTicket()">Support ticket</a>
+    <a onclick="handleDiscord()">Discord</a>
     <a onclick="go('store')">Store</a>
   </footer>
 </div>
@@ -1051,15 +1129,35 @@
 <div class="modal-backdrop" id="cart-modal" onclick="if(event.target===this) closeCart()">
   <div class="modal-card">
     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
-      <h2 style="font-size:22px; font-weight:800;">Cart</h2>
+      <h2 style="font-size:22px; font-weight:800;">Cart <span id="modal-cart-sub" style="font-size:13px; font-weight:600; color:var(--text-faint);"></span></h2>
       <button class="icon-btn" onclick="closeCart()">✕</button>
     </div>
     <div id="cart-items-list"></div>
     <div style="display:flex; justify-content:space-between; align-items:center; margin:18px 0;">
-      <span style="color:#64748b; font-weight:600;">Total</span>
+      <span style="color:var(--text-faint); font-weight:600;">Total</span>
       <span style="font-size:22px; font-weight:800;" id="cart-total-price">₹1,098</span>
     </div>
     <button class="btn-gold" style="margin-top:0;" onclick="checkoutNow()">Checkout</button>
+  </div>
+</div>
+
+<!-- SUPPORT TICKET MODAL -->
+<div class="modal-backdrop" id="ticket-modal" onclick="if(event.target===this) closeTicketModal()">
+  <div class="modal-card">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+      <h2 style="font-size:20px; font-weight:800;">Create Support Ticket</h2>
+      <button class="icon-btn" onclick="closeTicketModal()">✕</button>
+    </div>
+    <label class="field-lbl">Category</label>
+    <select id="ticket-cat" class="field-inp">
+      <option>Store / Payment Issue</option>
+      <option>Player Report</option>
+      <option>Ban / Mute Appeal</option>
+      <option>Bug Report</option>
+    </select>
+    <label class="field-lbl">Describe your issue</label>
+    <textarea id="ticket-msg" class="field-inp" rows="4" placeholder="Include your IGN and details..."></textarea>
+    <button class="btn-gold" style="margin-top:0;" onclick="submitTicket()">Submit Ticket</button>
   </div>
 </div>
 
@@ -1073,25 +1171,19 @@
 </nav>
 
 <script>
-// Upgraded shaded 16x16 pixel sprite matrices with multi-tone highlights & bevels
+const DISCORD_INVITE = "https://discord.gg/3vMdsVkWj3";
+
+// Shaded 16x16 pixel palette & sprites
 const PAL = {
   '.': null,
-  'k': '#141722', // deep outline
-  // emerald / sage blade
+  'k': '#141722',
   'e': '#047857', 'E': '#10b981', 'g': '#6ee7b7', 'w': '#ecfdf5',
-  // gold / hilt
   'o': '#92400e', 'y': '#d97706', 'Y': '#facc15', 'L': '#fef08a',
-  // wood / handle
   'b': '#451a03', 'B': '#78350f', 't': '#b45309',
-  // inferno fire
   'r': '#991b1b', 'R': '#ef4444', 'O': '#f97316', 'F': '#fde047',
-  // void purple
   'v': '#4c1d95', 'V': '#7c3aed', 'p': '#c084fc', 'P': '#f3e8ff',
-  // ice / frost / diamond
   'c': '#0369a1', 'C': '#0ea5e9', 'a': '#7dd3fc', 'A': '#e0f2fe',
-  // steel / iron / shadow
   's': '#334155', 'S': '#64748b', 'm': '#cbd5e1', 'M': '#f8fafc',
-  // grass & dirt
   'd': '#5c3a21', 'D': '#7c4d2b', 'n': '#9c663c', 'G': '#22c55e', 'h': '#86efac'
 };
 
@@ -1546,10 +1638,10 @@ const ITEMS = [
 ];
 
 const EXTRA_STORE = {
-  sage_crate: { id: 'sage_crate', name: 'Sage Blade Crate Key', price: 249 },
-  coins_pack: { id: 'coins_pack', name: '2,500 Sage Coins', price: 199 },
-  sage_rank: { id: 'sage_rank', name: 'Sage MVP Rank (Lifetime)', price: 899 },
-  sage_plus: { id: 'sage_plus', name: 'Sage+ Monthly Pass', price: 299 }
+  sage_crate: { id: 'sage_crate', name: 'Sage Blade Crate Key', price: 249, sprite: 'void_chest' },
+  coins_pack: { id: 'coins_pack', name: '2,500 Sage Coins', price: 199, sprite: 'diamond' },
+  sage_rank: { id: 'sage_rank', name: 'Sage MVP Rank (Lifetime)', price: 899, sprite: 'crown' },
+  sage_plus: { id: 'sage_plus', name: 'Sage+ Monthly Pass', price: 299, sprite: 'plus_gem' }
 };
 
 function drawSpriteToCanvas(canvas, spriteKey, dx = 0, dy = 0, scale = null) {
@@ -1575,25 +1667,20 @@ function drawCharacter(canvas, opts) {
   const ox = Math.floor((canvas.width - 16 * u) / 2);
   const oy = Math.floor((canvas.height - 20 * u) / 2);
 
-  // Back wings first
   if (opts.Back) {
     drawSpriteToCanvas(canvas, opts.Back, ox - u, oy + 4 * u, Math.round(u * 1.12));
   }
 
-  // Head
   ctx.fillStyle = opts.skin;
   ctx.fillRect(ox + 5 * u, oy + 2 * u, 6 * u, 6 * u);
-  // Subtle shading on face
   ctx.fillStyle = 'rgba(0,0,0,0.12)';
   ctx.fillRect(ox + 5 * u, oy + 7 * u, 6 * u, u);
 
-  // Hair
   ctx.fillStyle = opts.hair;
   ctx.fillRect(ox + 5 * u, oy + 2 * u, 6 * u, 2 * u);
   ctx.fillRect(ox + 5 * u, oy + 3 * u, u, 2 * u);
   ctx.fillRect(ox + 10 * u, oy + 3 * u, u, 2 * u);
 
-  // Eyes
   ctx.fillStyle = '#ffffff';
   ctx.fillRect(ox + 6 * u, oy + 5 * u, u, u);
   ctx.fillRect(ox + 9 * u, oy + 5 * u, u, u);
@@ -1601,41 +1688,32 @@ function drawCharacter(canvas, opts) {
   ctx.fillRect(ox + 7 * u, oy + 5 * u, Math.ceil(u * 0.6), u);
   ctx.fillRect(ox + 9 * u, oy + 5 * u, Math.ceil(u * 0.6), u);
 
-  // Torso & Arms
   ctx.fillStyle = opts.shirt;
   ctx.fillRect(ox + 5 * u, oy + 8 * u, 6 * u, 6 * u);
   ctx.fillRect(ox + 3 * u, oy + 8 * u, 2 * u, 3 * u);
   ctx.fillRect(ox + 11 * u, oy + 8 * u, 2 * u, 3 * u);
-  // Shirt bevel
   ctx.fillStyle = 'rgba(255,255,255,0.15)';
   ctx.fillRect(ox + 5 * u, oy + 8 * u, 6 * u, u);
 
-  // Forearms
   ctx.fillStyle = opts.skin;
   ctx.fillRect(ox + 3 * u, oy + 11 * u, 2 * u, 3 * u);
   ctx.fillRect(ox + 11 * u, oy + 11 * u, 2 * u, 3 * u);
 
-  // Legs
   ctx.fillStyle = opts.pants;
   ctx.fillRect(ox + 5 * u, oy + 14 * u, 3 * u, 5 * u);
   ctx.fillRect(ox + 8 * u, oy + 14 * u, 3 * u, 5 * u);
   ctx.fillStyle = 'rgba(0,0,0,0.15)';
   ctx.fillRect(ox + 8 * u, oy + 14 * u, 3 * u, 5 * u);
 
-  // Shoes or custom boots
   ctx.fillStyle = '#33261d';
   ctx.fillRect(ox + 5 * u, oy + 19 * u, 3 * u, u);
   ctx.fillRect(ox + 8 * u, oy + 19 * u, 3 * u, u);
   if (opts.Feet) {
     drawSpriteToCanvas(canvas, opts.Feet, ox + 4 * u, oy + 15 * u, Math.round(u * 0.52));
   }
-
-  // Headgear
   if (opts.Head) {
     drawSpriteToCanvas(canvas, opts.Head, ox + 4 * u, oy - u, Math.round(u * 0.52));
   }
-
-  // Main hand & Off hand
   if (opts['Main hand']) {
     drawSpriteToCanvas(canvas, opts['Main hand'], ox + 10 * u, oy + 8 * u, Math.round(u * 0.55));
   }
@@ -1644,11 +1722,195 @@ function drawCharacter(canvas, opts) {
   }
 }
 
-// Cart state
-let cart = [
-  { id: 'sage_blade', qty: 1 },
-  { id: 'crown', qty: 1 }
-];
+// ==========================================
+// THEME SWITCHER (LIGHT / DARK)
+// ==========================================
+function toggleTheme() {
+  const isDark = document.body.classList.toggle('dark-mode');
+  localStorage.setItem('sagemc_theme', isDark ? 'dark' : 'light');
+  document.getElementById('theme-toggle').textContent = isDark ? '☀️' : '🌙';
+}
+
+(function initTheme() {
+  if (localStorage.getItem('sagemc_theme') === 'dark') {
+    document.body.classList.add('dark-mode');
+    document.getElementById('theme-toggle').textContent = '☀️';
+  }
+})();
+
+// ==========================================
+// AUTHENTICATION SYSTEM & GATEKEEPER
+// ==========================================
+let authMode = 'login';
+let pendingAction = null;
+
+function getUsers() {
+  try { return JSON.parse(localStorage.getItem('sagemc_users') || '[]'); }
+  catch (e) { return []; }
+}
+function saveUsers(list) {
+  localStorage.setItem('sagemc_users', JSON.stringify(list));
+}
+function getCurrentUser() {
+  return localStorage.getItem('sagemc_current_user') || null;
+}
+
+function updateAuthUI() {
+  const user = getCurrentUser();
+  const btn = document.getElementById('auth-btn');
+  const storeLbl = document.getElementById('store-user-lbl');
+  const storeCta = document.getElementById('store-auth-cta');
+  const logoutZone = document.getElementById('logout-zone');
+
+  if (user) {
+    btn.textContent = user;
+    if (storeLbl) storeLbl.textContent = 'Signed in as ' + user;
+    if (storeCta) storeCta.textContent = 'SWITCH ACCOUNT';
+    if (logoutZone) logoutZone.style.display = 'block';
+  } else {
+    btn.textContent = 'Sign in';
+    if (storeLbl) storeLbl.textContent = 'Not signed in';
+    if (storeCta) storeCta.textContent = 'LOGIN / REGISTER';
+    if (logoutZone) logoutZone.style.display = 'none';
+  }
+  renderRecentOrders();
+}
+
+function requireAuth(callback, promptMsg) {
+  if (getCurrentUser()) {
+    callback();
+    return;
+  }
+  pendingAction = callback;
+  openAuthPage('login', promptMsg || 'Please login or register first to continue.');
+}
+
+function openAuthPage(mode = 'login', infoMsg = '') {
+  switchAuthTab(mode);
+  const alertBox = document.getElementById('auth-alert');
+  if (infoMsg) {
+    alertBox.className = 'auth-alert info';
+    alertBox.textContent = infoMsg;
+    alertBox.style.display = 'block';
+  } else {
+    alertBox.style.display = 'none';
+  }
+  go('signin');
+}
+
+function switchAuthTab(mode) {
+  authMode = mode;
+  document.getElementById('tab-login').classList.toggle('active', mode === 'login');
+  document.getElementById('tab-reg').classList.toggle('active', mode === 'reg');
+  document.getElementById('auth-heading').textContent = mode === 'login' ? 'Sign in' : 'Create account';
+  document.getElementById('auth-submit-btn').textContent = mode === 'login' ? 'Login' : 'Register';
+  document.getElementById('auth-alert').style.display = 'none';
+}
+
+function showAuthError(htmlMsg) {
+  const alertBox = document.getElementById('auth-alert');
+  alertBox.className = 'auth-alert err';
+  alertBox.innerHTML = htmlMsg;
+  alertBox.style.display = 'block';
+}
+
+function handleAuthSubmit() {
+  const ign = document.getElementById('ign-input').value.trim();
+  const pwd = document.getElementById('pwd-input').value.trim();
+
+  if (!ign) return showAuthError('Please enter your Minecraft username or email.');
+  if (pwd.length < 6) return showAuthError('Password must be at least 6 characters.');
+
+  const users = getUsers();
+  const existing = users.find(u => u.ign.toLowerCase() === ign.toLowerCase());
+
+  if (authMode === 'reg') {
+    if (existing) {
+      showAuthError('Credentials already registered! <a style="text-decoration:underline; cursor:pointer; font-weight:800;" onclick="switchAuthTab(\'login\')">Click on Login</a>.');
+      return;
+    }
+    users.push({ ign, pwd });
+    saveUsers(users);
+    localStorage.setItem('sagemc_current_user', ign);
+    updateAuthUI();
+    notify('Account created! Welcome, ' + ign);
+    finishAuthRedirect();
+  } else {
+    if (!existing) {
+      showAuthError('No account found with that username. <a style="text-decoration:underline; cursor:pointer; font-weight:800;" onclick="switchAuthTab(\'reg\')">Register first</a>.');
+      return;
+    }
+    if (existing.pwd !== pwd) {
+      showAuthError('Incorrect password. Please try again.');
+      return;
+    }
+    localStorage.setItem('sagemc_current_user', existing.ign);
+    updateAuthUI();
+    notify('Welcome back, ' + existing.ign + '!');
+    finishAuthRedirect();
+  }
+}
+
+function finishAuthRedirect() {
+  document.getElementById('pwd-input').value = '';
+  if (pendingAction) {
+    const fn = pendingAction;
+    pendingAction = null;
+    fn();
+  } else {
+    go('home');
+  }
+}
+
+function logoutUser() {
+  localStorage.removeItem('sagemc_current_user');
+  updateAuthUI();
+  notify('Signed out.');
+  go('home');
+}
+
+// ==========================================
+// GATED STORE, DISCORD & SUPPORT ACTIONS
+// ==========================================
+function storeAction(itemId) {
+  requireAuth(() => {
+    addToCart(itemId);
+    openCart();
+  }, 'Please sign in or register to purchase items from the SageMC Store.');
+}
+
+function handleDiscord() {
+  requireAuth(() => {
+    window.open(DISCORD_INVITE, '_blank', 'noopener');
+  }, 'Please sign in or sign up to join the official SageMC Discord channel.');
+}
+
+function handleSupportTicket() {
+  requireAuth(() => {
+    document.getElementById('ticket-modal').classList.add('open');
+  }, 'Please sign in or register before creating a support ticket.');
+}
+
+function closeTicketModal() {
+  document.getElementById('ticket-modal').classList.remove('open');
+}
+
+function submitTicket() {
+  const msg = document.getElementById('ticket-msg').value.trim();
+  if (!msg) return notify('Please describe your issue first.');
+  document.getElementById('ticket-msg').value = '';
+  closeTicketModal();
+  notify('Support ticket submitted for ' + getCurrentUser() + '!');
+}
+
+// ==========================================
+// IMPROVED CART & CHECKOUT
+// ==========================================
+let cart = JSON.parse(localStorage.getItem('sagemc_cart') || '[{"id":"sage_blade","qty":1},{"id":"crown","qty":1}]');
+
+function saveCart() {
+  localStorage.setItem('sagemc_cart', JSON.stringify(cart));
+}
 
 function getItemObj(id) {
   return ITEMS.find(i => i.id === id) || EXTRA_STORE[id];
@@ -1659,25 +1921,46 @@ function updateCartUI() {
   document.getElementById('top-cart-count').textContent = totalCount;
   const sb = document.getElementById('store-cart-badge');
   if (sb) sb.textContent = totalCount;
+  const sub = document.getElementById('modal-cart-sub');
+  if (sub) sub.textContent = totalCount ? `(${totalCount} items)` : '';
 
   const list = document.getElementById('cart-items-list');
   let sum = 0;
   if (cart.length === 0) {
-    list.innerHTML = '<p style="color:#64748b; padding:16px 0;">Your cart is empty.</p>';
+    list.innerHTML = '<p style="color:var(--text-faint); padding:20px 0; text-align:center;">Your cart is empty.</p>';
   } else {
     list.innerHTML = cart.map(entry => {
       const it = getItemObj(entry.id);
-      sum += it.price * entry.qty;
+      if (!it) return '';
+      const lineTotal = it.price * entry.qty;
+      sum += lineTotal;
+      const spriteId = it.sprite || it.id;
       return `
         <div class="cart-line">
-          <div>
-            <strong style="font-size:15px;">${it.name}</strong>
-            <div style="font-size:12.5px; color:#64748b;">₹${it.price} × ${entry.qty}</div>
+          <div style="display:flex; align-items:center; gap:12px;">
+            <div style="background:var(--bg-art); border-radius:8px; padding:4px; display:grid; place-items:center;">
+              <canvas class="px" data-cart-sprite="${spriteId}" width="34" height="34"></canvas>
+            </div>
+            <div>
+              <strong style="font-size:14.5px; display:block;">${it.name}</strong>
+              <span style="font-size:12px; color:var(--text-faint);">₹${it.price} each · <strong>₹${lineTotal}</strong></span>
+            </div>
           </div>
-          <button class="icon-btn" style="width:auto; padding:0 12px; font-weight:700; font-size:12px;" onclick="removeFromCart('${entry.id}')">Remove</button>
+          <div style="display:flex; align-items:center; gap:8px;">
+            <div class="qty-ctrl">
+              <button onclick="changeQty('${entry.id}', -1)">−</button>
+              <span style="font-size:13px; font-weight:700;">${entry.qty}</span>
+              <button onclick="changeQty('${entry.id}', 1)">+</button>
+            </div>
+            <button class="icon-btn" style="padding:0 8px; color:#ef4444;" onclick="removeFromCart('${entry.id}')" title="Remove">🗑</button>
+          </div>
         </div>
       `;
     }).join('');
+
+    list.querySelectorAll('canvas[data-cart-sprite]').forEach(cv => {
+      drawSpriteToCanvas(cv, cv.dataset.cartSprite);
+    });
   }
   document.getElementById('cart-total-price').textContent = '₹' + sum.toLocaleString('en-IN');
 }
@@ -1686,12 +1969,25 @@ function addToCart(id) {
   const found = cart.find(c => c.id === id);
   if (found) found.qty++;
   else cart.push({ id, qty: 1 });
+  saveCart();
   updateCartUI();
   notify(getItemObj(id).name + ' added to cart!');
 }
 
+function changeQty(id, delta) {
+  const found = cart.find(c => c.id === id);
+  if (!found) return;
+  found.qty += delta;
+  if (found.qty <= 0) {
+    cart = cart.filter(c => c.id !== id);
+  }
+  saveCart();
+  updateCartUI();
+}
+
 function removeFromCart(id) {
   cart = cart.filter(c => c.id !== id);
+  saveCart();
   updateCartUI();
 }
 
@@ -1702,15 +1998,47 @@ function openCart() {
 function closeCart() {
   document.getElementById('cart-modal').classList.remove('open');
 }
+
 function checkoutNow() {
   if (!cart.length) return notify('Add an item first!');
   closeCart();
-  notify('Order placed! Items queued for your IGN.');
-  cart = [];
-  updateCartUI();
+  requireAuth(() => {
+    const user = getCurrentUser();
+    const total = cart.reduce((s, x) => s + getItemObj(x.id).price * x.qty, 0);
+    const summary = cart.map(x => `${getItemObj(x.id).name} ×${x.qty}`).join(', ');
+
+    const orders = JSON.parse(localStorage.getItem('sagemc_orders') || '[]');
+    orders.unshift({ user, summary, total, date: new Date().toLocaleDateString('en-IN') });
+    localStorage.setItem('sagemc_orders', JSON.stringify(orders));
+
+    cart = [];
+    saveCart();
+    updateCartUI();
+    renderRecentOrders();
+    notify('Order confirmed for ' + user + '! Delivered in-game.');
+  }, 'Please login or create an account before completing Checkout.');
 }
 
-// Studio state
+function renderRecentOrders() {
+  const box = document.getElementById('recent-orders-box');
+  if (!box) return;
+  const user = getCurrentUser();
+  const orders = JSON.parse(localStorage.getItem('sagemc_orders') || '[]').filter(o => o.user === user);
+  if (!user || !orders.length) {
+    box.textContent = 'Your orders will show here.';
+    return;
+  }
+  box.innerHTML = orders.map(o => `
+    <div style="padding:8px 0; border-bottom:1px solid var(--border-col); display:flex; justify-content:space-between;">
+      <span><strong style="color:var(--text-main);">${o.summary}</strong> (${o.date})</span>
+      <strong style="color:#22c55e;">₹${o.total}</strong>
+    </div>
+  `).join('');
+}
+
+// ==========================================
+// SKIN STUDIO
+// ==========================================
 const COLORS = {
   skin: ['#f5d0a9', '#e5b083', '#c68652', '#8d5524', '#523218'],
   hair: ['#241c18', '#5c3c24', '#d4a338', '#b9382c', '#e2e8f0', '#2563eb'],
@@ -1809,11 +2137,14 @@ function buySelectedStudio() {
     const ex = cart.find(c => c.id === id);
     if (!ex) cart.push({ id, qty: 1 });
   });
+  saveCart();
   updateCartUI();
   openCart();
 }
 
-// Render dynamic item lists
+// ==========================================
+// RENDER CATALOGS & NAVIGATION
+// ==========================================
 function populateCatalogs() {
   const badgeClass = r => 'b-' + r.toLowerCase();
 
@@ -1870,54 +2201,8 @@ function renderAllSprites() {
   });
 }
 
-// Navigation & Auth
 function go(viewName) {
   document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
   document.getElementById('view-' + viewName).classList.add('active');
 
-  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-  const navBtn = document.getElementById('nav-' + viewName);
-  if (navBtn) navBtn.classList.add('active');
-
-  if (viewName === 'store') document.body.classList.add('store-dark');
-  else document.body.classList.remove('store-dark');
-
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-function switchAuthTab(mode) {
-  document.getElementById('tab-login').classList.toggle('active', mode === 'login');
-  document.getElementById('tab-reg').classList.toggle('active', mode === 'reg');
-  document.getElementById('auth-submit-btn').textContent = mode === 'login' ? 'Login' : 'Create Account';
-}
-
-function handleLogin() {
-  const ign = document.getElementById('ign-input').value.trim();
-  if (!ign) return notify('Enter a Minecraft username!');
-  document.getElementById('auth-btn').textContent = ign;
-  document.getElementById('store-user-lbl').textContent = 'Signed in as ' + ign;
-  notify('Welcome back, ' + ign + '!');
-  go('home');
-}
-
-function copyIP() {
-  navigator.clipboard?.writeText('play.sagemc.net');
-  notify('Copied play.sagemc.net!');
-}
-
-function notify(msg) {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.style.display = 'block';
-  clearTimeout(window._toastTimer);
-  window._toastTimer = setTimeout(() => { t.style.display = 'none'; }, 2400);
-}
-
-// Boot
-populateCatalogs();
-buildStudio();
-renderAllSprites();
-updateCartUI();
-</script>
-</body>
-</html>
+  document.querySelectorAll('.nav-item').forEach(n => n.classList
